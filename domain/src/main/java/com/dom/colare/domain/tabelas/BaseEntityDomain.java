@@ -18,8 +18,8 @@ public abstract class BaseEntityDomain {
     private Integer codigo;
     @Column
     private String descricao;
-    @Column
+    @Column(columnDefinition = "varchar(10)")
     private String vigenciaInicio;
-    @Column
+    @Column(columnDefinition = "varchar(10)")
     private String vigenciaFim;
 }

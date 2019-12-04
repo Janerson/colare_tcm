@@ -5,8 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
- @Entity(name ="TIPO_DA_COMISSAO" )
+ @Entity(name = "ORGAO_RESPONSAVEL_REGISTRO")
 @Data
-public class TipoDaComissao extends BaseEntityDomain {
-
+public class OrgaoResponsavelPeloRegistro extends BaseEntityDomain {
 }
