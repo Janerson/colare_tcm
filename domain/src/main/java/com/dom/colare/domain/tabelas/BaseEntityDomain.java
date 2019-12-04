@@ -19,5 +19,7 @@ public abstract class BaseEntityDomain {
     @Column
     private String descricao;
     @Column
-    private String vigencia;
+    private String vigenciaInicio;
+    @Column
+    private String vigenciaFim;
 }
