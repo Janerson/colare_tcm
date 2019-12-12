@@ -1,7 +1,6 @@
 package com.dom.colare.core.entidades;
 
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
