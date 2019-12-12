@@ -8,7 +8,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
         "com.dom.colare.core",
         "com.dom.colare.domain"
 })
-@EntityScan({"com.dom.colare.domain"})
+@EntityScan({
+        "com.dom.colare.domain",
+        "com.dom.colare.core"
+})
 public class Api {
     public static void main(String[] args) {
         SpringApplication.run(Api.class,args);
