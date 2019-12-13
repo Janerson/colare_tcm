@@ -1,5 +1,5 @@
 
-package com.dom.colare.core.entidades.fase1;
+package com.dom.colare.core.entidades.licitacaofase1;
 
 import com.dom.colare.core.entidades.BaseEntityID;
 import lombok.Data;
