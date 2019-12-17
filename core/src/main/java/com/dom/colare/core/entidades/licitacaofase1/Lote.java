@@ -1,10 +1,14 @@
 
-package com.dom.colare.core.entidades.shared;
+package com.dom.colare.core.entidades.licitacaofase1;
 
-import com.dom.colare.core.entidades.BaseEntityID;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 
@@ -14,9 +18,8 @@ import java.util.Set;
  * – Cadastro de Lotes do Processo Licitatório
  * 
  */
-@Entity(name = "LOTE")
+@Entity
 @Data
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Lote extends BaseEntityID {
 
     /**
@@ -24,24 +27,22 @@ public class Lote extends BaseEntityID {
      * (Required)
      * 
      */
-    @Column
+    @DecimalMin("0")
+    @NotNull
     public Integer numeroLote;
     /**
      * Descrição do Lote
      * 
      */
-    @Column
     public String descricaoLote;
     /**
      * 
      * (Required)
      * 
      */
-    @OneToMany(
-            mappedBy = "lote",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @Size(min = 1)
+    @Valid
+    @NotNull
     public Set<Item> item = null;
 
 }

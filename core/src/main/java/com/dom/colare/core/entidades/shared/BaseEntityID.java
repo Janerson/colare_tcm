@@ -1,4 +1,4 @@
-package com.dom.colare.core.entidades;
+package com.dom.colare.core.entidades.shared;
 
 
 import lombok.Getter;

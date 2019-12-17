@@ -1,17 +1,17 @@
 
 package com.dom.colare.core.entidades.licitacaofase1;
 
-import com.dom.colare.core.entidades.BaseEntityID;
-import com.dom.colare.core.entidades.shared.Responsavel;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -21,233 +21,468 @@ import java.util.Set;
  * Envio inicial dos dados da licitação - Abertura da licitação
  * 
  */
-@Entity(name = "LICITACAO_FASE_UM")
+@Entity
 @Data
 public class LicitacaoFaseUm extends BaseEntityID {
 
     /**
      * Exercício do edital da licitação
-     * Ano do Edital com 4 dígitos (AAAA)
      * (Required)
      * 
      */
-    @Size(min = 4, max = 4)
-    @Column
+    @DecimalMin("2010")
+    @DecimalMax("2050")
+    @NotNull
     public Integer exercicioLicitacao;
     /**
      * Número da Licitação por modalidade
      * (Required)
-     * Número sequencial da modalidade de licitação,
-     * por exercício (ex. Concorrência nº 3, Pregão nº 28)
      * 
      */
-    @Column
+    @DecimalMin("1")
+    @DecimalMax("500")
+    @NotNull
     public Integer numeroLicitacao;
     /**
      * Data prevista para a sessão de recebimento da documentação
      * (Required)
      * 
      */
-    @Column(length = 10)
+    @NotNull
     public String dataPrevistaAberturaSessao;
     /**
-     * Descrever o objeto licitado.
+     * Objeto
      * (Required)
      * 
      */
-    @Column
+    @NotNull
     public String objeto;
     /**
-     * Preencher somente e obrigatoriamente se a Modalidade = Convite
+     * Número de convidados.
      * 
      */
-    @Column
+    @DecimalMin("1")
     public Integer numeroDeConvidados;
     /**
      * Licitação com preferência para ME e EPP (Art. 44, Lei Complementar 123/2006)
      * (Required)
      * 
      */
-    @Type(type = "true_false")
-    @Column
+    @NotNull
     public Boolean criterioDesempateMEEPP;
     /**
      * Destinação exclusiva a ME e EPP (Art. 48, I, Lei Complementar 123/2006)
      * (Required)
      * 
      */
-    @Type(type = "true_false")
-    @Column
+    @NotNull
     public Boolean destinacaoExclusivaMEEPP;
     /**
      * Exigência de subcontratação de ME e EPP (Art. 48, II, Lei Complementar 123/2006)
      * (Required)
      * 
      */
-    @Column
+    @NotNull
     public Boolean subcontratacaoMEEPP;
     /**
      * Estabeleceu limite percentual do objeto para a contratação de ME e EPP? (Art. 48, III, Lei Complementar 123/2006)
      * (Required)
      * 
      */
-    @Column
+    @NotNull
     public Boolean limitePercObjetoContratacaoMEEPP;
     /**
      * Modalidade da Licitação
      * (Required)
      * 
      */
-    @Column
-    public int codModalidadeLicitacao;
+    @NotNull
+    public LicitacaoFaseUm.CodModalidadeLicitacao codModalidadeLicitacao;
     /**
      * Natureza do Procedimento
      * (Required)
      * 
      */
-    @Column
-    public int codNaturezaProcedimento;
+    @NotNull
+    public LicitacaoFaseUm.CodNaturezaProcedimento codNaturezaProcedimento;
     /**
      * Tipo de licitação
      * 
      */
-    @Column
-    public int codTipoLicitacaoCriterioJulgamento;
+    public CodTipoLicitacaoCriterioJulgamento codTipoLicitacaoCriterioJulgamento;
     /**
      * Regime de execução
      * 
      */
-    @Column
-    public int codRegimeExecucao;
+    public CodRegimeExecucao codRegimeExecucao;
     /**
      * Processo realizado por lote
      * (Required)
      * 
      */
-    @Column
+    @NotNull
     public Boolean processoPorLote;
     /**
      * Número do Processo Administrativo
      * (Required)
-     * Número do processo administrativo licitatório, incluindo o ano com quatro dígitos (NNNNNN/AAAA)
+     * 
      */
-    @Column
+    @NotNull
     public String numeroProcessoAdministrativo;
     /**
      * Código da Natureza do Objeto
      * (Required)
-     * Conforme tabela Natureza do Objeto. Não preencher quando a modalidade for Concurso. Obrigatório para os demais casos.
+     * 
      */
-    @Column
-    public int codNaturezaObjeto;
+    @NotNull
+    public LicitacaoFaseUm.CodNaturezaObjeto codNaturezaObjeto;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
-     * Informar o ID do edital ou convite digitalizado e previamente enviado via endpoint próprio (Inclusive os Anexos)
+     * 
      */
-    @Column
+    @NotNull
     public String idDocumentoPDF;
     /**
      * Código do Tipo de Envio
      * (Required)
-     * Conforme tabela Tipo de envio de registro. Os tipos "atualização" e "correção" exigem que seja informado na URL o ID do registro enviado com tipo "inicial", utilizando o método PUT
+     * 
      */
-    @Column
-    public int codTipoEnvio;
+    @NotNull
+    public LicitacaoFaseUm.CodTipoEnvio codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
-     * Deve ser preenchido obrigatoriamente caso o codTipoEnvio seja igual a "atualização" ou "correção". Não preencher caso seja envio inicial.
+     * 
      */
-    @Column
     public String motivoAtualizacaoCorrecao;
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
      * (Required)
-     * Informar o ID da Unidade Gestora conforme cadastro no Sistema Passaporte do TCMGO
+     * 
      */
-    @Column
+    @DecimalMin("1")
+    @NotNull
     public Integer idUnidadeGestora;
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
-     * Texto Descritivo. Deve ser preenchido obrigatoriamente e somente quando Natureza do Objeto = Outros.
+     * 
      */
-    @Column
     public String descricaoNaturezaObjetoOutros;
     /**
      * Trata-se de prestação de serviço a ser executado de forma contínua.
      * (Required)
      * 
      */
-    @Column
+    @NotNull
     public Boolean servicoContinuo;
     /**
      * Descreve o prêmio ou a remuneração do vencedor do Concurso.
-     * Preencher somente e obrigatoriamente se Modalidade = Concurso.
      * 
      */
-    @Column
     public String descricaoPremioOuRemuneracaoConcurso;
     /**
      * 
      * (Required)
      * 
      */
-    @OneToMany(
-            mappedBy = "licitacaoFaseUm",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    public Set<LoteFaseUm> lote = new HashSet<>();
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    public Set<Lote> lote = null;
     /**
      * 
      * (Required)
      * 
      */
-    @OneToMany(
-            mappedBy = "licitacaoFaseUm",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    public Set<Responsavel> responsaveis = new HashSet<>();
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    public Set<Responsavel> responsaveis = null;
     /**
      * 
      * (Required)
      * 
      */
-    @OneToMany(
-            mappedBy = "licitacaoFaseUm",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    public Set<ParecerFaseUm> parecerFaseUm = new HashSet<>();
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    public Set<Parecer> parecer = null;
     /**
      * 
      * (Required)
      * 
      */
-    @OneToMany(
-            mappedBy = "licitacaoFaseUm",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    public Set<Comissao> comissao = new HashSet<>();
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    public Set<Comissao> comissao = null;
+    @Valid
+    public Set<RecursoOrcamentario> recursoOrcamentario = null;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    public Set<Publicacao> publicacao = null;
 
-    @OneToMany(
-            mappedBy = "licitacaoFaseUm",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    public Set<RecursoOrcamentario> recursoOrcamentario = new HashSet<>();
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    @OneToMany(
-            mappedBy = "licitacaoFaseUm",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    public Set<Publicacao> publicacao = new HashSet<>();
+    public enum CodModalidadeLicitacao {
+
+        _1(1),
+        _2(2),
+        _3(3),
+        _4(4),
+        _5(5),
+        _6(6),
+        _7(7),
+        _8(8);
+        private final Integer value;
+        private final static Map<Integer, CodModalidadeLicitacao> CONSTANTS = new HashMap<Integer, CodModalidadeLicitacao>();
+
+        static {
+            for (CodModalidadeLicitacao c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private CodModalidadeLicitacao(Integer value) {
+            this.value = value;
+        }
+
+        public Integer value() {
+            return this.value;
+        }
+
+        public static CodModalidadeLicitacao fromValue(Integer value) {
+            CodModalidadeLicitacao constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException((value +""));
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+    public enum CodNaturezaObjeto {
+
+        _1(1),
+        _2(2),
+        _3(3),
+        _4(4),
+        _5(5),
+        _6(6),
+        _7(7),
+        _8(8),
+        _9(9),
+        _10(10),
+        _11(11),
+        _12(12),
+        _13(13),
+        _14(14),
+        _15(15),
+        _16(16),
+        _17(17),
+        _18(18),
+        _19(19),
+        _20(20),
+        _21(21),
+        _22(22),
+        _23(23),
+        _24(24),
+        _25(25),
+        _26(26),
+        _27(27),
+        _28(28),
+        _29(29),
+        _30(30),
+        _31(31),
+        _32(32),
+        _33(33),
+        _34(34),
+        _35(35),
+        _36(36),
+        _37(37),
+        _38(38),
+        _39(39),
+        _40(40),
+        _41(41),
+        _42(42),
+        _43(43),
+        _44(44),
+        _45(45),
+        _46(46),
+        _47(47),
+        _48(48),
+        _9999(9999);
+        private final Integer value;
+        private final static Map<Integer, CodNaturezaObjeto> CONSTANTS = new HashMap<Integer, CodNaturezaObjeto>();
+
+        static {
+            for (CodNaturezaObjeto c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private CodNaturezaObjeto(Integer value) {
+            this.value = value;
+        }
+
+        public Integer value() {
+            return this.value;
+        }
+
+        public static CodNaturezaObjeto fromValue(Integer value) {
+            CodNaturezaObjeto constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException((value +""));
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+    public enum CodNaturezaProcedimento {
+
+        _1(1),
+        _2(2);
+        private final Integer value;
+        private final static Map<Integer, CodNaturezaProcedimento> CONSTANTS = new HashMap<Integer, CodNaturezaProcedimento>();
+
+        static {
+            for (CodNaturezaProcedimento c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private CodNaturezaProcedimento(Integer value) {
+            this.value = value;
+        }
+
+        public Integer value() {
+            return this.value;
+        }
+
+        public static CodNaturezaProcedimento fromValue(Integer value) {
+            CodNaturezaProcedimento constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException((value +""));
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+    public enum CodRegimeExecucao {
+
+        _1(1),
+        _2(2),
+        _3(3),
+        _4(4),
+        _5(5);
+        private final Integer value;
+        private final static Map<Integer, CodRegimeExecucao> CONSTANTS = new HashMap<Integer, CodRegimeExecucao>();
+
+        static {
+            for (CodRegimeExecucao c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private CodRegimeExecucao(Integer value) {
+            this.value = value;
+        }
+
+        public Integer value() {
+            return this.value;
+        }
+
+        public static CodRegimeExecucao fromValue(Integer value) {
+            CodRegimeExecucao constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException((value +""));
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+    public enum CodTipoEnvio {
+
+        _1(1),
+        _2(2),
+        _3(3);
+        private final Integer value;
+        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
+
+        static {
+            for (CodTipoEnvio c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private CodTipoEnvio(Integer value) {
+            this.value = value;
+        }
+
+        public Integer value() {
+            return this.value;
+        }
+
+        public static CodTipoEnvio fromValue(Integer value) {
+            CodTipoEnvio constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException((value +""));
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+    public enum CodTipoLicitacaoCriterioJulgamento {
+
+        _1(1),
+        _2(2),
+        _3(3),
+        _4(4),
+        _5(5),
+        _6(6),
+        _7(7),
+        _8(8),
+        _9(9),
+        _10(10);
+        private final Integer value;
+        private final static Map<Integer, CodTipoLicitacaoCriterioJulgamento> CONSTANTS = new HashMap<Integer, CodTipoLicitacaoCriterioJulgamento>();
+
+        static {
+            for (CodTipoLicitacaoCriterioJulgamento c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private CodTipoLicitacaoCriterioJulgamento(Integer value) {
+            this.value = value;
+        }
+
+        public Integer value() {
+            return this.value;
+        }
+
+        public static CodTipoLicitacaoCriterioJulgamento fromValue(Integer value) {
+            CodTipoLicitacaoCriterioJulgamento constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException((value +""));
+            } else {
+                return constant;
+            }
+        }
+
+    }
 
 }
