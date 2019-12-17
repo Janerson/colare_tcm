@@ -2,11 +2,16 @@
 package com.dom.colare.core.entidades.licitacaofase1;
 
 import com.dom.colare.core.entidades.BaseEntityID;
+import com.dom.colare.core.entidades.shared.Responsavel;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -43,7 +48,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * (Required)
      * 
      */
-    @Column
+    @Column(length = 10)
     public String dataPrevistaAberturaSessao;
     /**
      * Descrever o objeto licitado.
@@ -63,6 +68,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * (Required)
      * 
      */
+    @Type(type = "true_false")
     @Column
     public Boolean criterioDesempateMEEPP;
     /**
@@ -70,6 +76,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * (Required)
      * 
      */
+    @Type(type = "true_false")
     @Column
     public Boolean destinacaoExclusivaMEEPP;
     /**
@@ -185,32 +192,62 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * (Required)
      * 
      */
-    public Set<Lote> lote = null;
+    @OneToMany(
+            mappedBy = "licitacaoFaseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<LoteFaseUm> lote = new HashSet<>();
     /**
      * 
      * (Required)
      * 
      */
-    public Set<Responsavel> responsaveis = null;
+    @OneToMany(
+            mappedBy = "licitacaoFaseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<Responsavel> responsaveis = new HashSet<>();
     /**
      * 
      * (Required)
      * 
      */
-    public Set<Parecer> parecer = null;
+    @OneToMany(
+            mappedBy = "licitacaoFaseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<ParecerFaseUm> parecerFaseUm = new HashSet<>();
     /**
      * 
      * (Required)
      * 
      */
-    public Set<Comissao> comissao = null;
+    @OneToMany(
+            mappedBy = "licitacaoFaseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<Comissao> comissao = new HashSet<>();
 
-    public Set<RecursoOrcamentario> recursoOrcamentario = null;
+    @OneToMany(
+            mappedBy = "licitacaoFaseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<RecursoOrcamentario> recursoOrcamentario = new HashSet<>();
     /**
      * 
      * (Required)
      * 
      */
-    public Set<Publicacao> publicacao = null;
+    @OneToMany(
+            mappedBy = "licitacaoFaseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<Publicacao> publicacao = new HashSet<>();
 
 }

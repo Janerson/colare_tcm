@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
         "com.dom.colare.domain"
 })
 @EntityScan({
-        "com.dom.colare.domain",
         "com.dom.colare.core"
 })
 public class Api {

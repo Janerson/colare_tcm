@@ -1,9 +1,10 @@
 
-package com.dom.colare.core.entidades.licitacaofase1;
+package com.dom.colare.core.entidades.shared;
 
 import com.dom.colare.core.entidades.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -21,12 +22,14 @@ public class Responsavel extends BaseEntityID {
      * (Required)
      * 
      */
+    @Column
     public Integer codTipoResponsabilidade;
     /**
      * Número do CPF
      * (Required)
      * 
      */
+    @Column
     public String numeroCpf;
 
 }

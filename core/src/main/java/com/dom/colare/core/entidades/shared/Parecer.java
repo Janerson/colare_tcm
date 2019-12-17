@@ -1,10 +1,12 @@
 
-package com.dom.colare.core.entidades.licitacaofase1;
+package com.dom.colare.core.entidades.shared;
 
 import com.dom.colare.core.entidades.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 
 /**
@@ -15,6 +17,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Parecer extends BaseEntityID {
 
     /**

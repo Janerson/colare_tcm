@@ -2,11 +2,11 @@
 package com.dom.colare.core.entidades.licitacaofase1;
 
 import com.dom.colare.core.entidades.BaseEntityID;
+import com.dom.colare.core.entidades.shared.Lote;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.*;
 
 
 /**
@@ -19,147 +19,79 @@ import java.util.Map;
 @Data
 public class Item extends BaseEntityID {
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lote_id")
+    public Lote lote;
+
     /**
      * Número do Item
      * (Required)
      * 
      */
+    @Column
     public Integer numeroItem;
     /**
      * Quantidade
      * (Required)
      * 
      */
+    @Column
     public Double quantidade;
     /**
      * Descrição
      * (Required)
      * 
      */
+    @Column
     public String descricao;
     /**
      * Código de Mercadoria ou Serviço dos itens
      * 
      */
+    @Column
     public Integer codigoUnicoMercadoriaOuServico;
     /**
      * Código da unidade medida
      * (Required)
      * 
      */
-    public CodUnidadeMedida codUnidadeMedida;
+    @Column
+    public int codUnidadeMedida;
     /**
      * Valor de referência
      * (Required)
      * 
      */
+    @Column
     public Double valorDeReferencia;
     /**
      * Indica se é o preço máximo
      * (Required)
      * 
      */
+    @Type(type = "true_false")
+    @Column
     public Boolean precoMaximo;
     /**
      * Código da origem do valor de referência
      * (Required)
      * 
      */
-    public CodOrigemValorReferencia codOrigemValorReferencia;
+    @Column
+    public int codOrigemValorReferencia;
     /**
      * Quantidade desdobrada (quantas unidades contém a caixa / fardo / pacote)
      * 
      */
+    @Column
     public Double quantidadeDesdobraUnidade;
     /**
      * Descreve onde foi obtido o valor de referência.
      * 
      */
+    @Column
     public String descricaoOrigemValorReferencia;
 
-    public enum CodOrigemValorReferencia {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5),
-        _6(6),
-        _7(7),
-        _9999(9999),
-        _8(8);
-        private final Integer value;
-        private final static Map<Integer, CodOrigemValorReferencia> CONSTANTS = new HashMap<Integer, CodOrigemValorReferencia>();
-
-        static {
-            for (CodOrigemValorReferencia c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodOrigemValorReferencia(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodOrigemValorReferencia fromValue(Integer value) {
-            CodOrigemValorReferencia constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodUnidadeMedida {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5),
-        _6(6),
-        _7(7),
-        _8(8),
-        _9(9),
-        _10(10),
-        _11(11),
-        _12(12),
-        _13(13),
-        _14(14),
-        _15(15),
-        _16(16);
-        private final Integer value;
-        private final static Map<Integer, CodUnidadeMedida> CONSTANTS = new HashMap<Integer, CodUnidadeMedida>();
-
-        static {
-            for (CodUnidadeMedida c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodUnidadeMedida(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodUnidadeMedida fromValue(Integer value) {
-            CodUnidadeMedida constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

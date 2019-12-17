@@ -1,10 +1,11 @@
 
-package com.dom.colare.core.entidades.licitacaofase1;
+package com.dom.colare.core.entidades.shared;
 
 import com.dom.colare.core.entidades.BaseEntityID;
+import com.dom.colare.core.entidades.licitacaofase1.Item;
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Set;
 
 
@@ -16,6 +17,7 @@ import java.util.Set;
  */
 @Entity(name = "LOTE")
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Lote extends BaseEntityID {
 
     /**
@@ -23,17 +25,24 @@ public class Lote extends BaseEntityID {
      * (Required)
      * 
      */
+    @Column
     public Integer numeroLote;
     /**
      * Descrição do Lote
      * 
      */
+    @Column
     public String descricaoLote;
     /**
      * 
      * (Required)
      * 
      */
+    @OneToMany(
+            mappedBy = "lote",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     public Set<Item> item = null;
 
 }
