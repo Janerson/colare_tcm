@@ -2,7 +2,6 @@
 package com.dom.colare.core.entidades.shared;
 
 import com.dom.colare.core.entidades.BaseEntityID;
-import com.dom.colare.core.entidades.licitacaofase1.Item;
 import lombok.Data;
 
 import javax.persistence.*;

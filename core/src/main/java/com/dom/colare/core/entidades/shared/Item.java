@@ -1,8 +1,7 @@
 
-package com.dom.colare.core.entidades.licitacaofase1;
+package com.dom.colare.core.entidades.shared;
 
 import com.dom.colare.core.entidades.BaseEntityID;
-import com.dom.colare.core.entidades.shared.Lote;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
@@ -17,13 +16,8 @@ import javax.persistence.*;
  */
 @Entity(name = "ITEM")
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Item extends BaseEntityID {
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lote_id")
-    public Lote lote;
-
     /**
      * Número do Item
      * (Required)
@@ -92,6 +86,11 @@ public class Item extends BaseEntityID {
      */
     @Column
     public String descricaoOrigemValorReferencia;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lote_id")
+    public Lote lote;
 
 
 }

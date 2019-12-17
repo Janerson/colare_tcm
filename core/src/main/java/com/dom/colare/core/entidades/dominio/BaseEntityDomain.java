@@ -1,6 +1,7 @@
 package com.dom.colare.core.entidades.dominio;
 
 
+import com.dom.colare.core.entidades.BaseEntityID;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,11 +10,8 @@ import javax.persistence.*;
 @MappedSuperclass
 @Getter
 @Setter
-public abstract class BaseEntityDomain {
+public abstract class BaseEntityDomain extends BaseEntityID {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     @Column
     private Integer codigo;
     @Column
