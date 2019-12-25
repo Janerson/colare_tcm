@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.dispensa_e_inexigibilidade;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
@@ -13,7 +17,9 @@ import java.util.Map;
  * Item(s) dispensado(s) de Licitação
  * 
  */
-public class Item {
+@Entity
+@Data
+public class Item extends BaseEntityID {
 
     /**
      * Número do Item

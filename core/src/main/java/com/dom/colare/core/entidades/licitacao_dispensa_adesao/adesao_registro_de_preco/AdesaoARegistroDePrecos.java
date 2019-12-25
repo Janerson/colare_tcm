@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_de_preco;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -17,7 +21,9 @@ import java.util.Set;
  * Dados das adesões a registro de preços
  * 
  */
-public class AdesaoARegistroDePrecos {
+@Entity
+@Data
+public class AdesaoARegistroDePrecos extends BaseEntityID {
 
     /**
      * Exercício em que foi iniciado o procedimento de adesão

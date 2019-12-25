@@ -1,12 +1,16 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -15,7 +19,9 @@ import javax.validation.constraints.Size;
  * Habilitação, Julgamento, Adjudicação e Homologação do processo licitatório
  * 
  */
-public class LicitacaoFaseDois {
+@Entity
+@Data
+public class LicitacaoFaseDois extends BaseEntityID {
 
     /**
      * ID do processo de abertura da licitação (Fase 1)
