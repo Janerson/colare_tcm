@@ -1,15 +1,11 @@
 
-package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.um;
+package com.dom.colare.core.entidades.shared;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Set;
 
 
 /**
@@ -20,7 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Data
-public class Lote extends BaseEntityID {
+public abstract class Lote extends BaseEntityID {
 
     /**
      * Número do Lote
@@ -35,14 +31,6 @@ public class Lote extends BaseEntityID {
      * 
      */
     public String descricaoLote;
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    @Size(min = 1)
-    @Valid
-    @NotNull
-    public Set<Item> item = null;
+
 
 }
