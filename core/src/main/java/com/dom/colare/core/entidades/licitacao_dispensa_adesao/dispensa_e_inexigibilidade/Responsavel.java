@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * Responsáveis pela Dispensa
  * 
  */
-public class Responsavei {
+public class Responsavel {
 
     /**
      * Número do CPF
@@ -27,7 +27,7 @@ public class Responsavei {
      * 
      */
     @NotNull
-    public Responsavei.CodTipoResponsabilidade codTipoResponsabilidade;
+    public Responsavel.CodTipoResponsabilidade codTipoResponsabilidade;
 
     public enum CodTipoResponsabilidade {
 

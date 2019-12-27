@@ -4,6 +4,8 @@ package com.dom.colare.core.entidades.shared;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -14,9 +16,10 @@ import javax.validation.constraints.NotNull;
  * – Cadastro de Lotes do Processo Licitatório
  * 
  */
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Data
-public abstract class Lote extends BaseEntityID {
+public  class Lote extends BaseEntityID {
 
     /**
      * Número do Lote
@@ -25,12 +28,12 @@ public abstract class Lote extends BaseEntityID {
      */
     @DecimalMin("0")
     @NotNull
-    public Integer numeroLote;
+    private Integer numeroLote;
     /**
      * Descrição do Lote
      * 
      */
-    public String descricaoLote;
+    private String descricaoLote;
 
 
 }

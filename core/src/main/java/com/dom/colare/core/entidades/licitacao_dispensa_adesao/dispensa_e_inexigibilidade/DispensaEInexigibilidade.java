@@ -116,7 +116,7 @@ public class DispensaEInexigibilidade {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Item> item = null;
+    public Set<ItemDispensa> item = null;
     @Valid
     public Set<FornecedorContratado> fornecedorContratado = null;
     /**
@@ -127,7 +127,7 @@ public class DispensaEInexigibilidade {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Responsavei> responsaveis = null;
+    public Set<Responsavel> responsaveis = null;
     @Valid
     public Set<RecursoOrcamentario> recursoOrcamentario = null;
     /**
