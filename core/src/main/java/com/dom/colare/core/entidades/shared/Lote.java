@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Data
-public  class Lote extends BaseEntityID {
+public abstract class Lote extends BaseEntityID {
 
     /**
      * Número do Lote

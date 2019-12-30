@@ -2,7 +2,6 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.u
 
 import com.dom.colare.core.entidades.dominio.*;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
-import com.dom.colare.core.entidades.shared.Responsavel;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -106,14 +105,17 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @OneToOne
     @JoinColumn(name = "codNaturezaProcedimento", referencedColumnName = "codigo")
     private NaturezaProcedimento codNaturezaProcedimento;
+
     /**
      * Tipo de licitação
      */
+    @OneToOne
     @JoinColumn(name = "codTipoLicitacaoCriterioJulgamento", referencedColumnName = "codigo")
     private TipoLicitacaoCriterioJulgamento codTipoLicitacaoCriterioJulgamento;
     /**
      * Regime de execução
      */
+    @OneToOne
     @JoinColumn(name = "codRegimeExecucao", referencedColumnName = "codigo")
     private RegimeExecucao codRegimeExecucao;
     /**
@@ -130,11 +132,13 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @NotNull
     @Column
     private String numeroProcessoAdministrativo;
+
     /**
      * Código da Natureza do Objeto
      * (Required)
      */
     @NotNull
+    @OneToOne
     @JoinColumn(name = "codNaturezaObjeto", referencedColumnName = "codigo")
     private NaturezaObjeto codNaturezaObjeto;
     /**
@@ -143,37 +147,48 @@ public class LicitacaoFaseUm extends BaseEntityID {
      */
     @NotNull
     private String idDocumentoPDF;
+
     /**
      * Código do Tipo de Envio
      * (Required)
      */
+    @OneToOne
     @NotNull
     @JoinColumn(name = "codTipoEnvio", referencedColumnName = "codigo")
     private TipoEnvio codTipoEnvio;
+
     /**
      * Descreve o motivo da Atualização ou Correção
      */
+    @Column
     private String motivoAtualizacaoCorrecao;
+
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
      * (Required)
      */
     @DecimalMin("1")
     @NotNull
+    @Column
     private Integer idUnidadeGestora;
+
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
      */
     private String descricaoNaturezaObjetoOutros;
+
     /**
      * Trata-se de prestação de serviço a ser executado de forma contínua.
      * (Required)
      */
     @NotNull
+    @Column
     private Boolean servicoContinuo;
+
     /**
      * Descreve o prêmio ou a remuneração do vencedor do Concurso.
      */
+    @Column
     private String descricaoPremioOuRemuneracaoConcurso;
     /**
      * (Required)
@@ -192,14 +207,16 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    private Set<Responsavel> responsaveis = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    private Set<ResposanvelFaseUm> responsaveis = new HashSet<>();
     /**
      * (Required)
      */
     @Size(min = 1)
     @Valid
     @NotNull
-    private Set<Parecer> parecer = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    private Set<ParecerFaseUm> parecerFaseUm = new HashSet<>();
     /**
      * (Required)
      */
@@ -210,13 +227,14 @@ public class LicitacaoFaseUm extends BaseEntityID {
 
 
     @Valid
-    private Set<RecursoOrcamentario> recursoOrcamentarios = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    private Set<RecursoOrcamentarioFaseUm> recursoOrcamentarios = new HashSet<>();
     /**
      * (Required)
      */
     @Size(min = 1)
     @Valid
     @NotNull
-    private Set<Publicacao> publicacoes = new HashSet<>();
+    private Set<PublicacaoFaseUm> publicacoes = new HashSet<>();
 
 }

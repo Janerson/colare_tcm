@@ -1,11 +1,11 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_de_preco;
 
-import java.util.Set;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 
 /**
@@ -37,6 +37,6 @@ public class Lote {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Item> item = null;
+    public Set<ItemAdesaoRegistroPreco> item = null;
 
 }

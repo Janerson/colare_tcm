@@ -94,7 +94,7 @@ public class ContratoAditivo {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Publicacao> publicacao = null;
+    public Set<PublicacaoAditivo> publicacaoAditivo = null;
     @Valid
     public Set<Empenho> empenho = null;
     /**

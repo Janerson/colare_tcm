@@ -3,6 +3,7 @@ package com.dom.colare.core.entidades.shared;
 
 import com.dom.colare.core.entidades.dominio.TipoResponsabilidade;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +13,9 @@ import javax.validation.constraints.NotNull;
  * Detalhamento dos Responsáveis pela licitação
  * 
  */
-public class Responsavel {
+@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+public abstract class Responsavel extends BaseEntityID {
 
     /**
      * Código do tipo de responsabilidade
@@ -20,6 +23,8 @@ public class Responsavel {
      * 
      */
     @NotNull
+    @OneToOne
+    @JoinColumn(name = "codTipoResponsabilidade", referencedColumnName = "codigo")
     public TipoResponsabilidade codTipoResponsabilidade;
     /**
      * Número do CPF

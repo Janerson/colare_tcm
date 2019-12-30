@@ -79,7 +79,7 @@ public class ContratoRecisao {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Publicacao> publicacao = null;
+    public Set<PublicacaoRecisao> publicacaoRecisao = null;
     @Valid
     public Set<EmpenhoAnulado> empenhoAnulado = null;
     /**

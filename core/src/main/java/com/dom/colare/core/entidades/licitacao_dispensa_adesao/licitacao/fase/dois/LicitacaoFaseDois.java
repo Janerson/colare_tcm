@@ -63,7 +63,7 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Parecer> parecer = null;
+    public Set<ParecerFaseDois> parecerFaseDois = null;
     /**
      * 
      * (Required)

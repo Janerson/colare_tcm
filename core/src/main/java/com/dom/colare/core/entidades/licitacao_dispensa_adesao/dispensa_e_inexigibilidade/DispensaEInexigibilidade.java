@@ -129,7 +129,7 @@ public class DispensaEInexigibilidade {
     @NotNull
     public Set<Responsavel> responsaveis = null;
     @Valid
-    public Set<RecursoOrcamentario> recursoOrcamentario = null;
+    public Set<RecursoOrcamentarioDispensa> recursoOrcamentarioDispensa = null;
     /**
      * 
      * (Required)
@@ -138,7 +138,7 @@ public class DispensaEInexigibilidade {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Parecer> parecer = null;
+    public Set<ParecerDispensa> parecerDispensa = null;
 
     public enum CodNaturezaObjeto {
 

@@ -19,8 +19,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ItemDispensa extends Item {
-
-
     /**
      * Descrição do Item
      * (Required)

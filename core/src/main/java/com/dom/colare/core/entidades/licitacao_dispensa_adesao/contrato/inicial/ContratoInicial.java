@@ -137,7 +137,7 @@ public class ContratoInicial {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Publicacao> publicacao = null;
+    public Set<PublicacaoInicial> publicacaoInicial = null;
     /**
      * contratado
      * <p>

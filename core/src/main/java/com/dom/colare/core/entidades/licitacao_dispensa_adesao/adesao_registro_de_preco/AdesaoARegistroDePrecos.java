@@ -135,7 +135,7 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Publicacao> publicacao = null;
+    public Set<PublicacaoAdesao> publicacao = null;
     /**
      * 
      * (Required)
@@ -144,7 +144,7 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Responsavei> responsaveis = null;
+    public Set<Responsavel> responsavels = null;
     /**
      * 
      * (Required)
@@ -153,7 +153,7 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Parecer> parecer = null;
+    public Set<ParecerAdesao> parecerAdesao = null;
     /**
      * 
      * (Required)
@@ -162,7 +162,7 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<RecursoOrcamentario> recursoOrcamentario = null;
+    public Set<RecursoOrcamentarioAdesao> recursoOrcamentarioAdesao = null;
 
     public enum CodNaturezaObjeto {
 

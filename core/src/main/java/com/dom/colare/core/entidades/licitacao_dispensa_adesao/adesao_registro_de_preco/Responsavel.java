@@ -3,53 +3,49 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 
 /**
- * recursoOrcamentario
+ * responsaveis
  * <p>
- * Recurso Orçamentário para a realização da adesão
+ * Responsáveis pela adesão ao registro de preços
  * 
  */
-public class RecursoOrcamentario {
+public class Responsavel {
 
     /**
-     * Código da origem do recurso
+     * Número do CPF
      * (Required)
      * 
      */
     @NotNull
-    public RecursoOrcamentario.CodOrigemRecurso codOrigemRecurso;
+    public String numeroCpf;
     /**
-     * 
+     * Código do tipo de responsabilidade
      * (Required)
      * 
      */
-    @Size(min = 1)
-    @Valid
     @NotNull
-    public Set<Dotacao> dotacao = null;
+    public Responsavel.CodTipoResponsabilidade codTipoResponsabilidade;
 
-    public enum CodOrigemRecurso {
+    public enum CodTipoResponsabilidade {
 
         _1(1),
         _2(2),
         _3(3),
-        _4(4);
+        _4(4),
+        _5(5);
         private final Integer value;
-        private final static Map<Integer, CodOrigemRecurso> CONSTANTS = new HashMap<Integer, CodOrigemRecurso>();
+        private final static Map<Integer, CodTipoResponsabilidade> CONSTANTS = new HashMap<Integer, CodTipoResponsabilidade>();
 
         static {
-            for (CodOrigemRecurso c: values()) {
+            for (CodTipoResponsabilidade c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private CodOrigemRecurso(Integer value) {
+        private CodTipoResponsabilidade(Integer value) {
             this.value = value;
         }
 
@@ -57,8 +53,8 @@ public class RecursoOrcamentario {
             return this.value;
         }
 
-        public static CodOrigemRecurso fromValue(Integer value) {
-            CodOrigemRecurso constant = CONSTANTS.get(value);
+        public static CodTipoResponsabilidade fromValue(Integer value) {
+            CodTipoResponsabilidade constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException((value +""));
             } else {
