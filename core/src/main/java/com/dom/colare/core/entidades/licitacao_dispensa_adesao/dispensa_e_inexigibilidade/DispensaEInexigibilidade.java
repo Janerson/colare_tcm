@@ -107,7 +107,7 @@ public class DispensaEInexigibilidade {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Publicacao> publicacao = null;
+    public Set<PublicacaoDispensa> publicacao = null;
     /**
      * 
      * (Required)

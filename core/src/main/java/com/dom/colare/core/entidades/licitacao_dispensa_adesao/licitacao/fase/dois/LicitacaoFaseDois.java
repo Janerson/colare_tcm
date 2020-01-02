@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
+import com.dom.colare.core.entidades.dominio.TipoEnvio;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -8,8 +9,7 @@ import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -36,14 +36,14 @@ public class LicitacaoFaseDois extends BaseEntityID {
      * 
      */
     @NotNull
-    public LicitacaoFaseDois.CodTipoEnvio codTipoEnvio;
+    public TipoEnvio codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
     public String motivoAtualizacaoCorrecao;
     @Valid
-    public Set<Licitante> licitantes = null;
+    public Set<Licitante> licitantes = new HashSet<>();
     /**
      * 
      * (Required)
@@ -53,8 +53,10 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Valid
     @NotNull
     public Set<Resultado> resultado = null;
+
+
     @Valid
-    public Set<ResponsaveisPelaLicitacao> responsaveisPelaLicitacao = null;
+    public Set<ResponsaveisPelaLicitacao> responsaveisPelaLicitacao = new HashSet<>();
     /**
      * 
      * (Required)
@@ -63,7 +65,7 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<ParecerFaseDois> parecerFaseDois = null;
+    public Set<ParecerFaseDois> parecerFaseDois = new HashSet<>();
     /**
      * 
      * (Required)
@@ -72,39 +74,7 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<AtasLicitacao> atasLicitacao = null;
+    public Set<AtasLicitacao> atasLicitacao = new HashSet<>();
 
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

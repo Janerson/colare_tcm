@@ -1,6 +1,7 @@
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.um;
 
-import com.dom.colare.core.entidades.dominio.*;
+import com.dom.colare.core.entidades.dominio.NaturezaObjeto;
+import com.dom.colare.core.entidades.dominio.TipoEnvio;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -89,35 +90,34 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @NotNull
     @Column
     private Boolean limitePercObjetoContratacaoMEEPP;
+
     /**
      * Modalidade da Licitação
      * (Required)
      */
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "codModalidadeLicitacao", referencedColumnName = "codigo")
-    private ModalidadeLicitacao codModalidadeLicitacao;
+    @Column
+    private int codModalidadeLicitacao;
+
     /**
      * Natureza do Procedimento
      * (Required)
      */
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "codNaturezaProcedimento", referencedColumnName = "codigo")
-    private NaturezaProcedimento codNaturezaProcedimento;
+    @Column
+    private int codNaturezaProcedimento;
 
     /**
      * Tipo de licitação
      */
-    @OneToOne
-    @JoinColumn(name = "codTipoLicitacaoCriterioJulgamento", referencedColumnName = "codigo")
-    private TipoLicitacaoCriterioJulgamento codTipoLicitacaoCriterioJulgamento;
+    @Column
+    private int codTipoLicitacaoCriterioJulgamento;
+
     /**
      * Regime de execução
      */
-    @OneToOne
-    @JoinColumn(name = "codRegimeExecucao", referencedColumnName = "codigo")
-    private RegimeExecucao codRegimeExecucao;
+    @Column
+    private int codRegimeExecucao;
     /**
      * Processo realizado por lote
      * (Required)
@@ -138,9 +138,9 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * (Required)
      */
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "codNaturezaObjeto", referencedColumnName = "codigo")
+    @Column
     private NaturezaObjeto codNaturezaObjeto;
+
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
@@ -152,9 +152,8 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * Código do Tipo de Envio
      * (Required)
      */
-    @OneToOne
     @NotNull
-    @JoinColumn(name = "codTipoEnvio", referencedColumnName = "codigo")
+    @Column
     private TipoEnvio codTipoEnvio;
 
     /**
@@ -175,6 +174,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
      */
+    @Column
     private String descricaoNaturezaObjetoOutros;
 
     /**
@@ -190,6 +190,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      */
     @Column
     private String descricaoPremioOuRemuneracaoConcurso;
+
     /**
      * (Required)
      */
@@ -201,6 +202,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
             orphanRemoval = true
     )
     private Set<LoteFaseUm> lote = new HashSet<>();
+
     /**
      * (Required)
      */
@@ -209,6 +211,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @NotNull
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
     private Set<ResposanvelFaseUm> responsaveis = new HashSet<>();
+
     /**
      * (Required)
      */
@@ -235,6 +238,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
     private Set<PublicacaoFaseUm> publicacoes = new HashSet<>();
 
 }
