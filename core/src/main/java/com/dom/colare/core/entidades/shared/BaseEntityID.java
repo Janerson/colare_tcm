@@ -11,8 +11,10 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @MappedSuperclass
-@Getter @Setter
-public abstract class BaseEntityID implements Serializable {
+@Getter
+@Setter
+public abstract class BaseEntityID extends Object implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

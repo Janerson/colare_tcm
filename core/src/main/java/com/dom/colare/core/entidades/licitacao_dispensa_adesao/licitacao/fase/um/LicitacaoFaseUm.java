@@ -226,6 +226,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
     private Set<Comissao> comissao = new HashSet<>();
 
 
