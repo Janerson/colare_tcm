@@ -4,6 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.regulamentacao_p
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
@@ -27,6 +28,7 @@ public class Regulamentacao extends BaseEntityID {
      * 
      */
     @NotNull
+    @Column
     private int codTipoRegulamentacao;
     /**
      * Informa a existência ou não de regulamentação municipal
@@ -34,26 +36,31 @@ public class Regulamentacao extends BaseEntityID {
      * 
      */
     @NotNull
+    @Column
     private Boolean existeRegulamentacaoMunicipal;
     /**
      * Número do Decreto Municipal Regulamentador do Pregão, Registro de Preços ou da LC 123-06
      * 
      */
+    @Column
     private String numeroDecretoMunicipal;
     /**
      * Data do Decreto Municipal
      * 
      */
+    @Column
     private String dataDecretoMunicipal;
     /**
      * Data da Publicação
      * 
      */
+    @Column
     private String dataPublicacao;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * 
      */
+    @Column
     private String idDocumentoPDF;
     /**
      * Código do Tipo de Envio
@@ -61,11 +68,13 @@ public class Regulamentacao extends BaseEntityID {
      * 
      */
     @NotNull
+    @Column
     private int codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
+    @Column
     private String motivoAtualizacaoCorrecao;
     /**
      * detalhamentoLc123
