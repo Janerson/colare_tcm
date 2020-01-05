@@ -1,6 +1,12 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.recisao;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Dados dos empenhos anulados em decorrência da rescisão do contrato
  * 
  */
-public class EmpenhoAnulado {
+@Entity
+@Data
+public class EmpenhoAnulado extends BaseEntityID {
 
     /**
      * Número do empenho
@@ -20,21 +28,24 @@ public class EmpenhoAnulado {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroEmpenho;
+    @Column
+    private Integer numeroEmpenho;
     /**
      * Data de emissão do empenho
      * (Required)
      * 
      */
     @NotNull
-    public String dataEmpenho;
+    @Column
+    private String dataEmpenho;
     /**
      * Data em que o empenho foi anulado.
      * (Required)
      * 
      */
     @NotNull
-    public String dataAnulacaoEmpenho;
+    @Column
+    private String dataAnulacaoEmpenho;
     /**
      * Valor anulado do empenho
      * (Required)
@@ -42,13 +53,18 @@ public class EmpenhoAnulado {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorAnulacaoEmpenho;
+    @Column
+    private Double valorAnulacaoEmpenho;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    @Column
+    private String idDocumentoPDF;
+    
+    @ManyToOne
+    private ContratoRecisao contratoRecisao;
 
 }

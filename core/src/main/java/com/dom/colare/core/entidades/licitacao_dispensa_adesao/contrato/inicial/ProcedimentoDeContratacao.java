@@ -29,7 +29,7 @@ public class ProcedimentoDeContratacao {
      * 
      */
     @Valid
-    public Licitacao licitacao;
+    public LicitacaoInicial licitacaoInicial;
     /**
      * dispensaEInexigibilidade
      * <p>

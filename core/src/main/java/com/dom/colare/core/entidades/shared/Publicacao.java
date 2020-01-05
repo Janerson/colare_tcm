@@ -2,6 +2,7 @@ package com.dom.colare.core.entidades.shared;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -9,5 +10,14 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Data
-public class Publicacao extends BaseEntityID {
+public abstract class Publicacao extends BaseEntityID {
+
+    @Column
+    private String idDocumentoPDF;
+    @Column
+    private String dataPublicacao;
+    @Column
+    private Integer codVeiculoPublicacao;
+    @Column
+    private String descricao;
 }
