@@ -1,14 +1,19 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -17,7 +22,9 @@ import javax.validation.constraints.Size;
  * Dados do contrato
  * 
  */
-public class ContratoInicial {
+@Entity
+@Data
+public class ContratoInicial extends BaseEntityID {
 
     /**
      * Tipo do procedimento
@@ -25,19 +32,25 @@ public class ContratoInicial {
      * 
      */
     @NotNull
-    public ContratoInicial.CodTipoProcedimento codTipoProcedimento;
+    @Column
+    private ContratoInicial.CodTipoProcedimento codTipoProcedimento;
+
     /**
      * ID do procedimento do qual decorre o contrato
      * (Required)
      * 
      */
     @NotNull
-    public Integer idProcedimento;
+    @Column
+    private Integer idProcedimento;
+
     /**
      * Número do contrato
      * 
      */
-    public String numeroContrato;
+    @Column
+    private String numeroContrato;
+
     /**
      * Ano do contrato
      * (Required)
@@ -46,76 +59,98 @@ public class ContratoInicial {
     @DecimalMin("2010")
     @DecimalMax("2050")
     @NotNull
-    public Integer anoContrato;
+    @Column
+    private Integer anoContrato;
+
     /**
      * Data da firmatura do documento
      * 
      */
-    public String dataFirmatura;
+    @Column
+    private String dataFirmatura;
+
     /**
      * Data do início da vigência
      * 
      */
-    public String inicioVigencia;
+    @Column
+    private String inicioVigencia;
+
     /**
      * Data do fim da vigência
      * 
      */
-    public String fimVigencia;
+    @Column
+    private String fimVigencia;
+
     /**
      * Código da Natureza do Objeto
      * (Required)
      * 
      */
+    @Column
     @NotNull
-    public ContratoInicial.CodNaturezaObjeto codNaturezaObjeto;
+    private Integer codNaturezaObjeto;
+
     /**
      * Objeto
      * (Required)
      * 
      */
     @NotNull
-    public String objeto;
+    @Column
+    private String objeto;
+
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    @Column
+    private String idDocumentoPDF;
+
     /**
      * Código do Tipo de Envio
      * (Required)
      * 
      */
     @NotNull
-    public ContratoInicial.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
+
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    @Column
+    private String motivoAtualizacaoCorrecao;
+
     /**
      * Tipo de formalização do contrato
      * (Required)
      * 
      */
+    @Column
     @NotNull
-    public ContratoInicial.CodTipoFormalizacaoContrato codTipoFormalizacaoContrato;
+    private ContratoInicial.CodTipoFormalizacaoContrato codTipoFormalizacaoContrato;
+
     /**
      * Descrição da forma de pagamento
      * (Required)
      * 
      */
     @NotNull
-    public String formaPagamento;
+    @Column
+    private String formaPagamento;
+
     /**
      * Unidade de medida do prazo para entrega do objeto ou execução do contrato
      * (Required)
      * 
      */
     @NotNull
-    public ContratoInicial.CodUnidadeMedidaPrazoExecucao codUnidadeMedidaPrazoExecucao;
+    @Column
+    private ContratoInicial.CodUnidadeMedidaPrazoExecucao codUnidadeMedidaPrazoExecucao;
     /**
      * Prazo para entrega do objeto ou execução do contrato
      * (Required)
@@ -123,12 +158,16 @@ public class ContratoInicial {
      */
     @DecimalMin("0")
     @NotNull
-    public Integer prazoExecucao;
+    @Column
+    private Integer prazoExecucao;
+
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
      * 
      */
-    public String descricaoNaturezaObjetoOutros;
+    @Column
+    private String descricaoNaturezaObjetoOutros;
+
     /**
      * 
      * (Required)
@@ -137,7 +176,7 @@ public class ContratoInicial {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<PublicacaoInicial> publicacaoInicial = null;
+    private Set<PublicacaoInicial> privateacaoInicial = null;
     /**
      * contratado
      * <p>
@@ -147,9 +186,9 @@ public class ContratoInicial {
      */
     @Valid
     @NotNull
-    public Contratado contratado;
+    private Contratado contratado;
     @Valid
-    public Set<Empenho> empenho = null;
+    private Set<Empenho> empenho = null;
     /**
      * 
      * (Required)
@@ -158,7 +197,7 @@ public class ContratoInicial {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Responsavei> responsaveis = null;
+    private Set<Responsavei> responsaveis = null;
     /**
      * procedimentoDeContratacao
      * <p>
@@ -166,9 +205,9 @@ public class ContratoInicial {
      * 
      */
     @Valid
-    public ProcedimentoDeContratacao procedimentoDeContratacao;
+    private ProcedimentoDeContratacao procedimentoDeContratacao;
 
-    public enum CodNaturezaObjeto {
+    private enum CodNaturezaObjeto {
 
         _1(1),
         _2(2),
@@ -232,11 +271,11 @@ public class ContratoInicial {
             this.value = value;
         }
 
-        public Integer value() {
+        private Integer value() {
             return this.value;
         }
 
-        public static CodNaturezaObjeto fromValue(Integer value) {
+        private static CodNaturezaObjeto fromValue(Integer value) {
             CodNaturezaObjeto constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException((value +""));
@@ -247,7 +286,7 @@ public class ContratoInicial {
 
     }
 
-    public enum CodTipoEnvio {
+    private enum CodTipoEnvio {
 
         _1(1),
         _2(2),
@@ -265,11 +304,11 @@ public class ContratoInicial {
             this.value = value;
         }
 
-        public Integer value() {
+        private Integer value() {
             return this.value;
         }
 
-        public static CodTipoEnvio fromValue(Integer value) {
+        private static CodTipoEnvio fromValue(Integer value) {
             CodTipoEnvio constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException((value +""));
@@ -280,7 +319,7 @@ public class ContratoInicial {
 
     }
 
-    public enum CodTipoFormalizacaoContrato {
+    private enum CodTipoFormalizacaoContrato {
 
         _1(1),
         _2(2),
@@ -300,11 +339,11 @@ public class ContratoInicial {
             this.value = value;
         }
 
-        public Integer value() {
+        private Integer value() {
             return this.value;
         }
 
-        public static CodTipoFormalizacaoContrato fromValue(Integer value) {
+        private static CodTipoFormalizacaoContrato fromValue(Integer value) {
             CodTipoFormalizacaoContrato constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException((value +""));
@@ -315,7 +354,7 @@ public class ContratoInicial {
 
     }
 
-    public enum CodTipoProcedimento {
+    private enum CodTipoProcedimento {
 
         _1(1),
         _2(2),
@@ -333,11 +372,11 @@ public class ContratoInicial {
             this.value = value;
         }
 
-        public Integer value() {
+        private Integer value() {
             return this.value;
         }
 
-        public static CodTipoProcedimento fromValue(Integer value) {
+        private static CodTipoProcedimento fromValue(Integer value) {
             CodTipoProcedimento constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException((value +""));
@@ -348,7 +387,7 @@ public class ContratoInicial {
 
     }
 
-    public enum CodUnidadeMedidaPrazoExecucao {
+    private enum CodUnidadeMedidaPrazoExecucao {
 
         _1(1),
         _2(2);
@@ -365,11 +404,11 @@ public class ContratoInicial {
             this.value = value;
         }
 
-        public Integer value() {
+        private Integer value() {
             return this.value;
         }
 
-        public static CodUnidadeMedidaPrazoExecucao fromValue(Integer value) {
+        private static CodUnidadeMedidaPrazoExecucao fromValue(Integer value) {
             CodUnidadeMedidaPrazoExecucao constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException((value +""));
