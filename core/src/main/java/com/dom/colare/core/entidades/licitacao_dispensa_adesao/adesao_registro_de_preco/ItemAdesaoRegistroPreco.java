@@ -4,11 +4,15 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 import com.dom.colare.core.entidades.shared.Item;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -28,6 +32,7 @@ public class ItemAdesaoRegistroPreco extends Item {
      * 
      */
     @NotNull
+    @Column
     private String descricao;
 
 
@@ -38,6 +43,7 @@ public class ItemAdesaoRegistroPreco extends Item {
      */
     @DecimalMin("0")
     @NotNull
+    @Column
     private Double quantidadeLicitada;
 
 
@@ -48,6 +54,7 @@ public class ItemAdesaoRegistroPreco extends Item {
      */
     @DecimalMin("0")
     @NotNull
+    @Column
     private Double valorUnitario;
     /**
      * Quantidade aderida
@@ -56,6 +63,7 @@ public class ItemAdesaoRegistroPreco extends Item {
      */
     @DecimalMin("0")
     @NotNull
+    @Column
     private Double quantidadeAderida;
 
     /**
@@ -64,6 +72,7 @@ public class ItemAdesaoRegistroPreco extends Item {
      * 
      */
     @NotNull
+    @Column
     private int codTipoDocumento;
     /**
      * Número do documento
@@ -71,6 +80,7 @@ public class ItemAdesaoRegistroPreco extends Item {
      * 
      */
     @NotNull
+    @Column
     private String numeroDocumento;
     /**
      * 
@@ -80,8 +90,11 @@ public class ItemAdesaoRegistroPreco extends Item {
     @Size(min = 1)
     @Valid
     @NotNull
-    private Set<CotacaoProprium> cotacaoPropria = null;
+    @OneToMany
+    private Set<CotacaoPropria> cotacaoPropria = new HashSet<>();
 
+    @ManyToOne
+    private LoteAdesaoRegistroPreco loteAdesaoRegistroPreco;
 
 
 

@@ -4,14 +4,13 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -33,61 +32,79 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @DecimalMin("2010")
     @DecimalMax("2050")
     @NotNull
-    public Integer exercicioAdesao;
+    @Column
+    private Integer exercicioAdesao;
+
     /**
      * Número do Processo Administrativo
      * (Required)
      * 
      */
     @NotNull
-    public String numeroProcessoAdministrativo;
+    @Column
+    private String numeroProcessoAdministrativo;
+
     /**
      * Processo realizado por lote
      * (Required)
      * 
      */
     @NotNull
-    public Boolean processoPorLote;
+    @Column
+    private Boolean processoPorLote;
+
     /**
      * Tipo da adesão
      * (Required)
      * 
      */
     @NotNull
-    public AdesaoARegistroDePrecos.CodTipoAdesao codTipoAdesao;
+    @Column
+    private Integer codTipoAdesao;
+
     /**
-     * Data da publicação do aviso de intenção de adesão
+     * Data da privateação do aviso de intenção de adesão
      * (Required)
      * 
      */
     @NotNull
-    public String dataPublicacaoAvisoIntencao;
+    @Column
+    private String dataPublicacaoAvisoIntencao;
+
     /**
      * Objeto
      * (Required)
      * 
      */
     @NotNull
-    public String objeto;
+    @Column
+    private String objeto;
+
     /**
      * Código da Natureza do Objeto
      * (Required)
      * 
      */
     @NotNull
-    public AdesaoARegistroDePrecos.CodNaturezaObjeto codNaturezaObjeto;
+    @Column
+    private Integer codNaturezaObjeto;
+
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
      * 
      */
-    public String descricaoNaturezaObjetoOutros;
+    @Column
+    private String descricaoNaturezaObjetoOutros;
+
     /**
      * Unidade de medida do prazo para entrega do objeto ou execução do contrato
      * (Required)
      * 
      */
     @NotNull
-    public AdesaoARegistroDePrecos.CodUnidadeMedidaPrazoExecucao codUnidadeMedidaPrazoExecucao;
+    @Column
+    private Integer codUnidadeMedidaPrazoExecucao;
+
     /**
      * Prazo para entrega do objeto ou execução do contrato
      * (Required)
@@ -95,19 +112,23 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
      */
     @DecimalMin("0")
     @NotNull
-    public Integer prazoExecucao;
+    private Integer prazoExecucao;
+
     /**
      * Código do Tipo de Envio
      * (Required)
      * 
      */
     @NotNull
-    public AdesaoARegistroDePrecos.CodTipoEnvio codTipoEnvio;
+    @Column
+    private Integer codTipoEnvio;
+
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    @Column
+    private String motivoAtualizacaoCorrecao;
     /**
      * 
      * (Required)
@@ -116,7 +137,8 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Documento> documentos = null;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adesaoARegistroDePrecos")
+    private Set<DocumentoAdesaoRegistroDePrecos> documentoAdesaoRegistroDePrecos = null;
     /**
      * orgaoGerenciadorDaAdesao
      * <p>
@@ -126,7 +148,8 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
      */
     @Valid
     @NotNull
-    public OrgaoGerenciadorDaAdesao orgaoGerenciadorDaAdesao;
+    @OneToOne
+    private OrgaoGerenciadorDaAdesao orgaoGerenciadorDaAdesao;
     /**
      * 
      * (Required)
@@ -135,7 +158,9 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<PublicacaoAdesao> publicacao = null;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adesaoARegistroDePrecos")
+    private Set<PublicacaoAdesao> publicacao = new HashSet<>();
+
     /**
      * 
      * (Required)
@@ -144,7 +169,9 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Responsavel> responsavels = null;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adesaoARegistroDePrecos")
+    private Set<ResponsavelAdesao> responsaveis = new HashSet<>();
+
     /**
      * 
      * (Required)
@@ -153,7 +180,9 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<ParecerAdesao> parecerAdesao = null;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "adesaoARegistroDePrecos")
+    private Set<ParecerAdesao> parecerAdesao = new HashSet<>();
+
     /**
      * 
      * (Required)
@@ -162,182 +191,7 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<RecursoOrcamentarioAdesao> recursoOrcamentarioAdesao = null;
-
-    public enum CodNaturezaObjeto {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5),
-        _6(6),
-        _7(7),
-        _8(8),
-        _9(9),
-        _10(10),
-        _11(11),
-        _12(12),
-        _13(13),
-        _14(14),
-        _15(15),
-        _16(16),
-        _17(17),
-        _18(18),
-        _19(19),
-        _20(20),
-        _21(21),
-        _22(22),
-        _23(23),
-        _24(24),
-        _25(25),
-        _26(26),
-        _27(27),
-        _28(28),
-        _29(29),
-        _30(30),
-        _31(31),
-        _32(32),
-        _33(33),
-        _34(34),
-        _35(35),
-        _36(36),
-        _37(37),
-        _38(38),
-        _39(39),
-        _40(40),
-        _41(41),
-        _42(42),
-        _43(43),
-        _44(44),
-        _45(45),
-        _46(46),
-        _47(47),
-        _48(48),
-        _9999(9999);
-        private final Integer value;
-        private final static Map<Integer, CodNaturezaObjeto> CONSTANTS = new HashMap<Integer, CodNaturezaObjeto>();
-
-        static {
-            for (CodNaturezaObjeto c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodNaturezaObjeto(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodNaturezaObjeto fromValue(Integer value) {
-            CodNaturezaObjeto constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodTipoAdesao {
-
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodTipoAdesao> CONSTANTS = new HashMap<Integer, CodTipoAdesao>();
-
-        static {
-            for (CodTipoAdesao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoAdesao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoAdesao fromValue(Integer value) {
-            CodTipoAdesao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodUnidadeMedidaPrazoExecucao {
-
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodUnidadeMedidaPrazoExecucao> CONSTANTS = new HashMap<Integer, CodUnidadeMedidaPrazoExecucao>();
-
-        static {
-            for (CodUnidadeMedidaPrazoExecucao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodUnidadeMedidaPrazoExecucao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodUnidadeMedidaPrazoExecucao fromValue(Integer value) {
-            CodUnidadeMedidaPrazoExecucao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adesaoARegistroDePrecos")
+    private Set<RecursoOrcamentarioAdesao> recursoOrcamentarioAdesao = new HashSet<>();
 
 }

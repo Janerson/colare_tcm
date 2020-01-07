@@ -1,21 +1,22 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_de_preco;
 
-import com.dom.colare.core.entidades.shared.Parecer;
+import com.dom.colare.core.entidades.shared.Responsavel;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+
 /**
- * parecer
+ * responsaveis
  * <p>
- * Parecer da adesão a registro de preços
+ * Responsáveis pela adesão ao registro de preços
  * 
  */
 @Entity
 @Data
-public class ParecerAdesao extends Parecer {
+public class ResponsavelAdesao extends Responsavel {
 
     @ManyToOne
     private AdesaoARegistroDePrecos adesaoARegistroDePrecos;
