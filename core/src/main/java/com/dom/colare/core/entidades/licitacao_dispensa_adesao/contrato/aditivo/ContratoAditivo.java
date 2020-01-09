@@ -1,14 +1,17 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.aditivo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -17,7 +20,9 @@ import javax.validation.constraints.Size;
  * Dados do contrato aditivo
  * 
  */
-public class ContratoAditivo {
+@Entity
+@Data
+public class ContratoAditivo extends BaseEntityID {
 
     /**
      * ID do contrato original previamente informado.
@@ -25,14 +30,18 @@ public class ContratoAditivo {
      * 
      */
     @NotNull
+    @Column
     public Integer idContratoOriginal;
+
     /**
      * Número do contrato
      * (Required)
      * 
      */
     @NotNull
+    @Column
     public String numeroContrato;
+
     /**
      * Ano do contrato
      * (Required)
@@ -41,51 +50,66 @@ public class ContratoAditivo {
     @DecimalMin("2010")
     @DecimalMax("2050")
     @NotNull
+    @Column
     public Integer anoContrato;
+
     /**
      * Tipo de contrato aditivo
      * (Required)
      * 
      */
     @NotNull
-    public ContratoAditivo.CodTipoAditivo codTipoAditivo;
+    @Column
+    public Integer codTipoAditivo;
+
     /**
      * Data da firmatura do documento
      * (Required)
      * 
      */
     @NotNull
+    @Column
     public String dataFirmatura;
+
     /**
      * Prazo a ser adicionado ao original
      * 
      */
     @DecimalMin("0")
+    @Column
     public Integer prazoAdicional;
+
     /**
      * Unidade de medida do prazo para entrega do objeto ou execução do contrato
      * 
      */
-    public CodUnidadeMedidaPrazoExecucao codUnidadeMedidaPrazoExecucao;
+    @Column
+    public Integer codUnidadeMedidaPrazoExecucao;
+
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
+    @Column
     public String idDocumentoPDF;
+
     /**
      * Código do Tipo de Envio
      * (Required)
      * 
      */
     @NotNull
-    public ContratoAditivo.CodTipoEnvio codTipoEnvio;
+    public Integer codTipoEnvio;
+
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
+    @Column
     public String motivoAtualizacaoCorrecao;
+
     /**
      * 
      * (Required)
@@ -94,9 +118,13 @@ public class ContratoAditivo {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<PublicacaoAditivo> publicacaoAditivo = null;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
+    public Set<PublicacaoAditivo> publicacaoAditivo = new HashSet<>();
+
     @Valid
-    public Set<Empenho> empenho = null;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
+    public Set<EmpenhoAditivo> empenhoAditivo = new HashSet<>();
+
     /**
      * contratado
      * <p>
@@ -106,7 +134,9 @@ public class ContratoAditivo {
      */
     @Valid
     @NotNull
-    public Contratado contratado;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
+    public ContratadoAditivo contratadoAditivo;
+
     /**
      * contratoOriginal
      * <p>
@@ -114,112 +144,7 @@ public class ContratoAditivo {
      * 
      */
     @Valid
-    public ContratoOriginal contratoOriginal;
-
-    public enum CodTipoAditivo {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5),
-        _6(6),
-        _7(7),
-        _8(8),
-        _9(9),
-        _10(10),
-        _11(11);
-        private final Integer value;
-        private final static Map<Integer, CodTipoAditivo> CONSTANTS = new HashMap<Integer, CodTipoAditivo>();
-
-        static {
-            for (CodTipoAditivo c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoAditivo(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoAditivo fromValue(Integer value) {
-            CodTipoAditivo constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodUnidadeMedidaPrazoExecucao {
-
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodUnidadeMedidaPrazoExecucao> CONSTANTS = new HashMap<Integer, CodUnidadeMedidaPrazoExecucao>();
-
-        static {
-            for (CodUnidadeMedidaPrazoExecucao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodUnidadeMedidaPrazoExecucao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodUnidadeMedidaPrazoExecucao fromValue(Integer value) {
-            CodUnidadeMedidaPrazoExecucao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
+    public ContratoOriginalAditivo contratoOriginalAditivo;
 
 }

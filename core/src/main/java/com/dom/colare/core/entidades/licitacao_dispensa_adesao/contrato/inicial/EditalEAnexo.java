@@ -1,8 +1,11 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Edital do Credenciamento / Chamada Pública - Preenchimento exclusivo e obrigatório se tipoProcesso = 1 ou 3 (Credenciamento ou chamada pública). Arquivos PDF do Edital e seus Anexos.
  * 
  */
-public class EditalEAnexo {
+@Entity
+@Data
+public class EditalEAnexo extends BaseEntityID {
 
     /**
      * Código do tipo de documento enviado - Edital e Anexos, conforme tabela
@@ -20,7 +25,7 @@ public class EditalEAnexo {
      * 
      */
     @NotNull
-    public EditalEAnexo.CodTipoEditalAnexos codTipoEditalAnexos;
+    public Integer codTipoEditalAnexos;
     /**
      * Descrição
      * (Required)
@@ -36,36 +41,10 @@ public class EditalEAnexo {
     @NotNull
     public String idDocumentoPDF;
 
-    public enum CodTipoEditalAnexos {
+    @ManyToOne
+    private LicitacaoInicial licitacaoInicial;
 
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEditalAnexos> CONSTANTS = new HashMap<Integer, CodTipoEditalAnexos>();
-
-        static {
-            for (CodTipoEditalAnexos c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEditalAnexos(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEditalAnexos fromValue(Integer value) {
-            CodTipoEditalAnexos constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
+    @ManyToOne
+    private DispensaEInexigibilidadeAte2018 dispensaEInexigibilidade;
 
 }

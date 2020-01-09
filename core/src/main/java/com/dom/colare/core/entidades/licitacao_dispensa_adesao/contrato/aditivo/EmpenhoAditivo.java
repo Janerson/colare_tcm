@@ -1,22 +1,21 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.aditivo;
 
-import com.dom.colare.core.entidades.shared.Publicacao;
+import com.dom.colare.core.entidades.shared.Empenho;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-
 /**
- * publicacao
+ * empenho
  * <p>
- * Publicação do contrato aditivo
+ * Dados do empenho decorrente do contrato aditivo
  * 
  */
 @Entity
 @Data
-public class PublicacaoAditivo extends Publicacao {
+public class EmpenhoAditivo extends Empenho {
 
     @ManyToOne
     private ContratoAditivo contratoAditivo;

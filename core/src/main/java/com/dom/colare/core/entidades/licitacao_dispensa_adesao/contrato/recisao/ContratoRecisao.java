@@ -100,7 +100,7 @@ public class ContratoRecisao extends BaseEntityID {
      */
     @Valid
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoRecisao", cascade = CascadeType.ALL)
-    public ContratoOriginal contratoOriginal;
+    public ContratoOriginalRecisao contratoOriginalRecisao;
 
 
 }

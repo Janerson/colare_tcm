@@ -1,6 +1,11 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.aditivo;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +16,9 @@ import javax.validation.constraints.NotNull;
  * Dados dos itens aditivados
  * 
  */
-public class ItemAditivado {
+@Entity
+@Data
+public class ItemAditivado extends BaseEntityID {
 
     /**
      * Número do Lote
@@ -20,14 +27,14 @@ public class ItemAditivado {
      */
     @DecimalMin("0")
     @NotNull
-    public Integer numeroLote;
+    private Integer numeroLote;
     /**
      * Número do Item
      * (Required)
      * 
      */
     @NotNull
-    public Integer numeroItem;
+    private Integer numeroItem;
     /**
      * Valor unitário acrescido
      * (Required)
@@ -35,7 +42,7 @@ public class ItemAditivado {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorUnitarioAcrescido;
+    private Double valorUnitarioAcrescido;
     /**
      * Valor unitário decrescido
      * (Required)
@@ -43,7 +50,7 @@ public class ItemAditivado {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorUnitarioDecrescido;
+    private Double valorUnitarioDecrescido;
     /**
      * Quantidade acrescida
      * (Required)
@@ -51,7 +58,7 @@ public class ItemAditivado {
      */
     @DecimalMin("0")
     @NotNull
-    public Double quantidadeAcrescida;
+    private Double quantidadeAcrescida;
     /**
      * Quantidade decrescida
      * (Required)
@@ -59,6 +66,9 @@ public class ItemAditivado {
      */
     @DecimalMin("0")
     @NotNull
-    public Double quantidadeDecrescida;
+    private Double quantidadeDecrescida;
+    
+    @ManyToOne
+    private ContratadoAditivo contratadoAditivo;
 
 }

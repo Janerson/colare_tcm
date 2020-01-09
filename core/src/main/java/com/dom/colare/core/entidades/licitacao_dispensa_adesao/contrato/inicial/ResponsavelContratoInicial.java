@@ -1,7 +1,8 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
 
-import com.dom.colare.core.entidades.shared.Publicacao;
+import com.dom.colare.core.entidades.shared.Responsavel;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -9,14 +10,15 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 
 /**
- * publicacao
+ * responsaveis
  * <p>
- * Publicação do contrato.
+ * Responsáveis pelo contrato
  * 
  */
 @Entity
+@Data
 @PrimaryKeyJoinColumn(name = "id")
-public class PublicacaoInicial extends Publicacao {
+public class ResponsavelContratoInicial extends Responsavel {
 
     @ManyToOne
     private ContratoInicial contratoInicial;

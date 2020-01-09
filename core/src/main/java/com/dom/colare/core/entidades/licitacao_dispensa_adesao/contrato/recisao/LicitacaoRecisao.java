@@ -21,5 +21,5 @@ public class LicitacaoRecisao extends Licitacao {
 
     @OneToOne
     @MapsId
-    private ContratoOriginal contratoOriginal;
+    private ContratoOriginalRecisao contratoOriginalRecisao;
 }

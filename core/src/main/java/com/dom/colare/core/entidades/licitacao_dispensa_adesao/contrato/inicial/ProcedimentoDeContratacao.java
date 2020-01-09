@@ -1,6 +1,13 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -12,7 +19,9 @@ import javax.validation.constraints.NotNull;
  * Preencher exclusivamente e obrigatoriamente quando idProcedimento for igual a "-1", com os dados do Procedimento de contratação (Licitação, Dispensa/Inexigibilidade ou Adesão a Registro de Preços).
  * 
  */
-public class ProcedimentoDeContratacao {
+@Entity
+@Data
+public class ProcedimentoDeContratacao extends BaseEntityID {
 
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
@@ -29,7 +38,9 @@ public class ProcedimentoDeContratacao {
      * 
      */
     @Valid
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "procedimentoDeContratacao")
     public LicitacaoInicial licitacaoInicial;
+
     /**
      * dispensaEInexigibilidade
      * <p>
@@ -37,7 +48,8 @@ public class ProcedimentoDeContratacao {
      * 
      */
     @Valid
-    public DispensaEInexigibilidade dispensaEInexigibilidade;
+    public DispensaEInexigibilidadeAte2018 dispensaEInexigibilidadeAte2018;
+
     /**
      * adesaoARegistroDePrecos
      * <p>
@@ -45,6 +57,10 @@ public class ProcedimentoDeContratacao {
      * 
      */
     @Valid
-    public AdesaoARegistroDePrecos adesaoARegistroDePrecos;
+    public AdesaoARegistroDePrecosAte2018 adesaoARegistroDePrecosAte2018;
+
+    @OneToOne
+    @MapsId
+    private ContratoInicial contratoInicial;
 
 }

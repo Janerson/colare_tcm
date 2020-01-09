@@ -4,7 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial
 import com.dom.colare.core.entidades.shared.Licitacao;
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,7 +22,6 @@ import java.util.Set;
 @Data
 public class LicitacaoInicial extends Licitacao {
 
-
     /**
      * 
      * (Required)
@@ -31,7 +30,10 @@ public class LicitacaoInicial extends Licitacao {
     @Size(min = 1)
     @Valid
     @NotNull
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "licitacaoInicial")
     public Set<EditalEAnexo> editalEAnexos = new HashSet<>();
 
-
+    @OneToOne
+    @MapsId
+    private ProcedimentoDeContratacao procedimentoDeContratacao;
 }

@@ -1,6 +1,12 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -16,7 +22,9 @@ import java.util.Set;
  * Preencher exclusivamente e obrigatoriamente quando codTipoProcedimento for igual a "3-Adesão a registro de preços", com os dados da adesão da qual resultou o contrato.
  * 
  */
-public class AdesaoARegistroDePrecos {
+@Entity
+@Data
+public class AdesaoARegistroDePrecosAte2018 extends BaseEntityID {
 
     /**
      * Exercício em que foi iniciado o procedimento de adesão
@@ -70,6 +78,7 @@ public class AdesaoARegistroDePrecos {
     @Size(min = 1)
     @Valid
     @NotNull
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adesaoARegistroDePrecos")
     private Set<Documento> documentos = new HashSet<>();
 
     
