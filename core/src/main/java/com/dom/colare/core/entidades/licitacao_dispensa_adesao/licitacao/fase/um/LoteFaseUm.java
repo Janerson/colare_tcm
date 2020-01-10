@@ -5,6 +5,8 @@ import com.dom.colare.core.entidades.shared.Lote;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -26,6 +28,8 @@ public class LoteFaseUm extends Lote {
     @Size(min = 1)
     @Valid
     @NotNull
+    @OneToMany
+    @JoinColumn(name = "lote_id")
     public Set<ItemFaseUm> item = new HashSet<>();
 
 }

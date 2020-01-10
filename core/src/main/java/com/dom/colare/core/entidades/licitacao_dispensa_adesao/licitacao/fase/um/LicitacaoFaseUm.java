@@ -1,7 +1,5 @@
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.um;
 
-import com.dom.colare.core.entidades.dominio.NaturezaObjeto;
-import com.dom.colare.core.entidades.dominio.TipoEnvio;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -139,7 +137,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      */
     @NotNull
     @Column
-    private NaturezaObjeto codNaturezaObjeto;
+    private Integer codNaturezaObjeto;
 
     /**
      * ID do arquivo enviado contendo o documento digitalizado
@@ -154,7 +152,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      */
     @NotNull
     @Column
-    private TipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
 
     /**
      * Descreve o motivo da Atualização ou Correção
@@ -201,6 +199,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JoinColumn(name = "licitacao_um_id")
     private Set<LoteFaseUm> lote = new HashSet<>();
 
     /**
@@ -209,7 +208,11 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "licitacao_um_id")
     private Set<ResposanvelFaseUm> responsaveis = new HashSet<>();
 
     /**
@@ -218,7 +221,11 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "licitacao_um_id")
     private Set<ParecerFaseUm> parecerFaseUm = new HashSet<>();
     /**
      * (Required)
@@ -226,12 +233,17 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "licitacao_um_id")
     private Set<Comissao> comissao = new HashSet<>();
 
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
+    @OneToMany
+    @JoinColumn(name = "licitacao_um_id")
     private Set<RecursoOrcamentarioFaseUm> recursoOrcamentarios = new HashSet<>();
     /**
      * (Required)
@@ -239,7 +251,8 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "licitacaoFaseUm")
-    private Set<PublicacaoFaseUm> publicacoes = new HashSet<>();
+    @OneToMany
+    @JoinColumn(name = "licitacao_um_id")
+    private Set<PublicacaoFaseUm> publicacao = new HashSet<>();
 
 }

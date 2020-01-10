@@ -4,12 +4,11 @@ import com.dom.colare.core.entidades.shared.Responsavel;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @Data
+@PrimaryKeyJoinColumn(name = "id")
 public class ResposanvelFaseUm extends Responsavel {
 
-    @ManyToOne
-    private LicitacaoFaseUm licitacaoFaseUm;
 }

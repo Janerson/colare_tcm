@@ -1,15 +1,11 @@
 package com.dom.colare.core.entidades.shared;
 
-import com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.um.Dotacao;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
@@ -22,7 +18,10 @@ public abstract class RecursoOrcamentario extends BaseEntityID {
      *
      */
     @NotNull
-    public int codOrigemRecurso;
+    private int codOrigemRecurso;
+
+
+    private int idConvenio;
 
 
 

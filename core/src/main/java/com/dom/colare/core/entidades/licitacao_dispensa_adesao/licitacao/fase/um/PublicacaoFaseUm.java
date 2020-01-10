@@ -5,7 +5,7 @@ import com.dom.colare.core.entidades.shared.Publicacao;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 /**
@@ -16,8 +16,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @Data
+@PrimaryKeyJoinColumn(name = "id")
 public class PublicacaoFaseUm extends Publicacao {
 
-    @ManyToOne
-    private LicitacaoFaseUm licitacaoFaseUm;
 }

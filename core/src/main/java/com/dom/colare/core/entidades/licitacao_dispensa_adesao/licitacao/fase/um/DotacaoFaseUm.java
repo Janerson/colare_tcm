@@ -1,10 +1,11 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.um;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
+import com.dom.colare.core.entidades.shared.Dotacao;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 /**
@@ -15,7 +16,8 @@ import javax.persistence.Entity;
  */
 @Entity
 @Data
-public class Dotacao extends BaseEntityID {
+@PrimaryKeyJoinColumn(name = "id")
+public class DotacaoFaseUm extends Dotacao {
 
 
 

@@ -4,7 +4,7 @@ import com.dom.colare.core.entidades.shared.Parecer;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 /**
@@ -14,9 +14,8 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @Data
+@PrimaryKeyJoinColumn(name = "id")
 public class ParecerFaseUm extends Parecer {
 
-    @ManyToOne
-    private LicitacaoFaseUm licitacaoFaseUm;
 
 }

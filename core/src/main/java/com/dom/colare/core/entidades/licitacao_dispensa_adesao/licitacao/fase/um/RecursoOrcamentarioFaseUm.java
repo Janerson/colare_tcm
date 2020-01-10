@@ -1,11 +1,17 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.um;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
+import com.dom.colare.core.entidades.shared.RecursoOrcamentario;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -16,9 +22,13 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @Data
-public class RecursoOrcamentarioFaseUm extends BaseEntityID {
+@PrimaryKeyJoinColumn(name = "id")
+public class RecursoOrcamentarioFaseUm extends RecursoOrcamentario {
 
-    @ManyToOne
-    private LicitacaoFaseUm licitacaoFaseUm;
+    @Size(min = 1)
+    @NotNull
+    @OneToMany
+    @JoinColumn(name = "recurso_id")
+    private Set<DotacaoFaseUm> dotacao = new HashSet<>();
 
 }
