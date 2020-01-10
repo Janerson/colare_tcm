@@ -1,19 +1,23 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.dispensa_e_inexigibilidade;
 
-import com.dom.colare.core.entidades.shared.Publicacao;
+import com.dom.colare.core.entidades.shared.QuadroSocietario;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+
 /**
- * publicacao
+ * quadroSocietario
  * <p>
- * Publicação da Dispensa ou Inexigibilidade de Licitação
+ * Composição do Quadro Societário
  * 
  */
 @Entity
+@Data
 @PrimaryKeyJoinColumn(name = "id")
-public class PublicacaoDispensa extends Publicacao {
+public class QuadroSocietarioDispensa extends QuadroSocietario {
+
 
 }

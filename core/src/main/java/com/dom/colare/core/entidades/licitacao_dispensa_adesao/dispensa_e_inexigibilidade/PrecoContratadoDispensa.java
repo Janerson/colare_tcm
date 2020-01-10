@@ -1,19 +1,22 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.dispensa_e_inexigibilidade;
 
-import com.dom.colare.core.entidades.shared.Publicacao;
+import com.dom.colare.core.entidades.shared.PrecoContratado;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
- * publicacao
+ * precoContratado
  * <p>
- * Publicação da Dispensa ou Inexigibilidade de Licitação
+ * Preço contratado mediante dispensa de licitação
  * 
  */
 @Entity
+@Data
 @PrimaryKeyJoinColumn(name = "id")
-public class PublicacaoDispensa extends Publicacao {
+public class PrecoContratadoDispensa extends PrecoContratado {
+
 
 }
