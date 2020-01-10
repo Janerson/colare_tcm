@@ -1,11 +1,11 @@
 
-package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
+package com.dom.colare.core.entidades.shared;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
 
@@ -17,7 +17,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Data
-public class EditalEAnexo extends BaseEntityID {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class EditalEAnexo extends BaseEntityID {
 
     /**
      * Código do tipo de documento enviado - Edital e Anexos, conforme tabela
@@ -41,10 +42,5 @@ public class EditalEAnexo extends BaseEntityID {
     @NotNull
     public String idDocumentoPDF;
 
-    @ManyToOne
-    private LicitacaoInicial licitacaoInicial;
-
-    @ManyToOne
-    private DispensaEInexigibilidadeAte2018 dispensaEInexigibilidade;
 
 }

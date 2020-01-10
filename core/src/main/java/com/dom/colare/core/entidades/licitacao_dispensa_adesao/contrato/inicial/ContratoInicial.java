@@ -186,7 +186,7 @@ public class ContratoInicial extends BaseEntityID {
 
     @Valid
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "contratoInicial")
+    @OneToOne(cascade = CascadeType.ALL)
     private ContratadoInicial contratado;
 
     @Valid
@@ -209,7 +209,7 @@ public class ContratoInicial extends BaseEntityID {
      * 
      */
     @Valid
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "contratoInicial")
+    @OneToOne(fetch = FetchType.LAZY)
     private ProcedimentoDeContratacao procedimentoDeContratacao;
 
 

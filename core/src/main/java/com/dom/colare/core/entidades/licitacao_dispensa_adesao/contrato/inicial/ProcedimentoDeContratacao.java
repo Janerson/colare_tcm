@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
@@ -48,7 +47,8 @@ public class ProcedimentoDeContratacao extends BaseEntityID {
      * 
      */
     @Valid
-    public DispensaEInexigibilidadeAte2018 dispensaEInexigibilidadeAte2018;
+    @OneToOne
+    public DispensaEInexigibilidadeAte2018 dispensaEInexigibilidade;
 
     /**
      * adesaoARegistroDePrecos
@@ -57,10 +57,9 @@ public class ProcedimentoDeContratacao extends BaseEntityID {
      * 
      */
     @Valid
-    public AdesaoARegistroDePrecosAte2018 adesaoARegistroDePrecosAte2018;
-
     @OneToOne
-    @MapsId
-    private ContratoInicial contratoInicial;
+    public AdesaoARegistroDePrecosAte2018 adesaoARegistroDePrecos;
+
+
 
 }

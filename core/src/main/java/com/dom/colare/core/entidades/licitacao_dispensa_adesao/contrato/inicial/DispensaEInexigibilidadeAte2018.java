@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
@@ -39,8 +40,9 @@ public class DispensaEInexigibilidadeAte2018 extends BaseEntityID {
     public Integer exercicioProcesso;
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dispensaEInexigibilidade")
-    public Set<EditalEAnexo> editalEAnexos = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dispensa_id")
+    public Set<EditalEAnexoDispensa2018> editalEAnexos = new HashSet<>();
 
 
 }

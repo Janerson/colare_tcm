@@ -30,8 +30,9 @@ public class LicitacaoInicial extends Licitacao {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "licitacaoInicial")
-    public Set<EditalEAnexo> editalEAnexos = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "licitacao_id")
+    public Set<EditalEAnexoLicitacao> editalEAnexos = new HashSet<>();
 
     @OneToOne
     @MapsId

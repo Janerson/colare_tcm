@@ -77,8 +77,5 @@ public class ContratadoInicial extends Contratado {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "contratoInicial")
     private Set<QuadroSocietarioContratoInicial> quadroSocietario = new HashSet<>();
 
-    @OneToOne
-    @MapsId
-    private ContratoInicial contratoInicial;
 
 }

@@ -81,6 +81,4 @@ public class AdesaoARegistroDePrecosAte2018 extends BaseEntityID {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adesaoARegistroDePrecos")
     private Set<Documento> documentos = new HashSet<>();
 
-    
-
 }
