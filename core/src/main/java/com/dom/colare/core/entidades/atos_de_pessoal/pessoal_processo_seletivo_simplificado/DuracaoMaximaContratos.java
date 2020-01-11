@@ -1,8 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_processo_seletivo_simplificado;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa a Duracao Maxima dos Contratos
  * 
  */
-public class DuracaoMaximaContratos {
+@Entity
+@Data
+public class DuracaoMaximaContratos extends BaseEntityID {
 
     /**
      * Tipo de prazo
@@ -20,60 +24,28 @@ public class DuracaoMaximaContratos {
      * 
      */
     @NotNull
-    public DuracaoMaximaContratos.TipoPrazo tipoPrazo;
+    private Integer tipoPrazo;
     /**
      * Prazo de Duração
      * (Required)
      * 
      */
     @NotNull
-    public Integer prazoDeDuracao;
+    private Integer prazoDeDuracao;
     /**
      * Número do Item do Edital
      * (Required)
      * 
      */
     @NotNull
-    public String numeroItemDoEdital;
+    private String numeroItemDoEdital;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
-    public enum TipoPrazo {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, TipoPrazo> CONSTANTS = new HashMap<Integer, TipoPrazo>();
-
-        static {
-            for (TipoPrazo c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private TipoPrazo(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static TipoPrazo fromValue(Integer value) {
-            TipoPrazo constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

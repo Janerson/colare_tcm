@@ -1,16 +1,22 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_processo_seletivo_simplificado;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
 /**
- * detalhamentoExcepcionalInteressePublico
+ * detalhamentoExcepcionalInteresseprivateo
  * <p>
  * Informar os detalhes do excepcional interesse público para a realização do Processo Seletivo Simplificado.
  * 
  */
-public class DetalhamentoExcepcionalInteressePublico {
+@Entity
+@Data
+public class DetalhamentoExcepcionalInteressePublico extends BaseEntityID {
 
     /**
      * Identificação (ID) da legislação anteriormente enviada
@@ -18,20 +24,20 @@ public class DetalhamentoExcepcionalInteressePublico {
      * 
      */
     @NotNull
-    public Integer idPessoalLegislacao;
+    private Integer idPessoalLegislacao;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
 }

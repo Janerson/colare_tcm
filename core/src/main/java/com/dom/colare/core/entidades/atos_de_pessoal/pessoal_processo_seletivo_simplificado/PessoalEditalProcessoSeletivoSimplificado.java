@@ -1,13 +1,19 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_processo_seletivo_simplificado;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -16,7 +22,9 @@ import javax.validation.constraints.Size;
  * Dados do Edital de Processo Seletivo Simplificado
  * 
  */
-public class PessoalEditalProcessoSeletivoSimplificado {
+@Entity
+@Data
+public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
 
     /**
      * Código do Tipo de Envio
@@ -24,12 +32,12 @@ public class PessoalEditalProcessoSeletivoSimplificado {
      * 
      */
     @NotNull
-    public PessoalEditalProcessoSeletivoSimplificado.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * Número do Edital
      * (Required)
@@ -37,14 +45,14 @@ public class PessoalEditalProcessoSeletivoSimplificado {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroEdital;
+    private Integer numeroEdital;
     /**
      * Ano do Edital
      * (Required)
      * 
      */
     @NotNull
-    public Integer anoEdital;
+    private Integer anoEdital;
     /**
      * 
      * (Required)
@@ -53,7 +61,9 @@ public class PessoalEditalProcessoSeletivoSimplificado {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<TextoEdital> textoEdital = null;
+    @OneToMany
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private Set<TextoEditalSimplificado> textoEdital = new HashSet<>();
     /**
      * 
      * (Required)
@@ -62,7 +72,9 @@ public class PessoalEditalProcessoSeletivoSimplificado {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<DetalhamentoExcepcionalInteressePublico> detalhamentoExcepcionalInteressePublico = null;
+    @OneToMany
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private Set<DetalhamentoExcepcionalInteressePublico> detalhamentoExcepcionalInteressePublico = new HashSet<>();
     /**
      * 
      * (Required)
@@ -71,7 +83,9 @@ public class PessoalEditalProcessoSeletivoSimplificado {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<DetalhamentoPublicidadeExtratoEdital> detalhamentoPublicidadeExtratoEdital = null;
+    @OneToMany
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private Set<DetalhamentoPublicidadeExtratoEdital> detalhamentoPublicidadeExtratoEdital = new HashSet<>();
     /**
      * detalhamentoBancaExaminadora
      * <p>
@@ -79,9 +93,12 @@ public class PessoalEditalProcessoSeletivoSimplificado {
      * (Required)
      * 
      */
+
     @Valid
     @NotNull
-    public DetalhamentoBancaExaminadora detalhamentoBancaExaminadora;
+    @OneToOne
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private DetalhamentoBancaExaminadora detalhamentoBancaExaminadora;
     /**
      * 
      * (Required)
@@ -90,7 +107,9 @@ public class PessoalEditalProcessoSeletivoSimplificado {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<DetalhamentoFuncaoSelecao> detalhamentoFuncaoSelecao = null;
+    @OneToMany
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private Set<DetalhamentoFuncaoSelecao> detalhamentoFuncaoSelecao = new HashSet<>();
     /**
      * validadeProcessoSeletivo
      * <p>
@@ -100,7 +119,9 @@ public class PessoalEditalProcessoSeletivoSimplificado {
      */
     @Valid
     @NotNull
-    public ValidadeProcessoSeletivo validadeProcessoSeletivo;
+    @OneToOne
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private ValidadeProcessoSeletivo validadeProcessoSeletivo;
     /**
      * duracaoMaximaContratos
      * <p>
@@ -110,7 +131,9 @@ public class PessoalEditalProcessoSeletivoSimplificado {
      */
     @Valid
     @NotNull
-    public DuracaoMaximaContratos duracaoMaximaContratos;
+    @OneToOne
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private DuracaoMaximaContratos duracaoMaximaContratos;
     /**
      * periodoInscricaoConcurso
      * <p>
@@ -120,39 +143,8 @@ public class PessoalEditalProcessoSeletivoSimplificado {
      */
     @Valid
     @NotNull
-    public PeriodoInscricaoConcurso periodoInscricaoConcurso;
-
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
+    @OneToOne
+    @JoinColumn(name = "processo_sel_simpl_id")
+    private PeriodoInscricaoConcurso periodoInscricaoConcurso;
 
 }
