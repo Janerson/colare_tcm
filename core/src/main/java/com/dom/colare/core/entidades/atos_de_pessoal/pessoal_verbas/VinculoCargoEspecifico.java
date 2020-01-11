@@ -1,9 +1,15 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_verbas;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 /**
@@ -12,7 +18,9 @@ import javax.validation.constraints.NotNull;
  * Informa se a verba é vinculada a algum cargo em especifico.
  * 
  */
-public class VinculoCargoEspecifico {
+@Entity
+@Data
+public class VinculoCargoEspecifico extends BaseEntityID {
 
     /**
      * Vinculo com Cargo Especifico
@@ -21,33 +29,11 @@ public class VinculoCargoEspecifico {
      */
     @NotNull
     private Boolean haVinculoCargoEspecifico;
+
+
     @Valid
+    @OneToMany
+    @JoinColumn(name = "vinculo_cargo_id")
     private Set<DetalhamentoVinculoCargoEspecifico> detalhamentoVinculoCargoEspecifico = null;
-
-    /**
-     * Vinculo com Cargo Especifico
-     * (Required)
-     * 
-     */
-    public Boolean getHaVinculoCargoEspecifico() {
-        return haVinculoCargoEspecifico;
-    }
-
-    /**
-     * Vinculo com Cargo Especifico
-     * (Required)
-     * 
-     */
-    public void setHaVinculoCargoEspecifico(Boolean haVinculoCargoEspecifico) {
-        this.haVinculoCargoEspecifico = haVinculoCargoEspecifico;
-    }
-
-    public Set<DetalhamentoVinculoCargoEspecifico> getDetalhamentoVinculoCargoEspecifico() {
-        return detalhamentoVinculoCargoEspecifico;
-    }
-
-    public void setDetalhamentoVinculoCargoEspecifico(Set<DetalhamentoVinculoCargoEspecifico> detalhamentoVinculoCargoEspecifico) {
-        this.detalhamentoVinculoCargoEspecifico = detalhamentoVinculoCargoEspecifico;
-    }
 
 }
