@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -65,7 +66,7 @@ public class PessoalDadosPrevidenciarios extends BaseEntityID {
     @NotNull
     @OneToMany
     @JoinColumn(name = "pessoal_dados_prev_id")
-    private Set<DadosRgpsUnidadesGestora> dadosRgpsUnidadesGestoras = null;
+    private Set<DadosRgpsUnidadesGestora> dadosRgpsUnidadesGestoras = new HashSet<>();
 
    
 }
