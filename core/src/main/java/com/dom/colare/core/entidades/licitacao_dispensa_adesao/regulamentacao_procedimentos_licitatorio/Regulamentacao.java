@@ -4,10 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.regulamentacao_p
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -83,8 +80,8 @@ public class Regulamentacao extends BaseEntityID {
      * 
      */
     @Valid
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "regulamentacao")
-   // @JoinColumn(name = "id_detalhamentolc123", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "detalhamentolc123_id")
     private DetalhamentoLc123 detalhamentoLc123;
 
 

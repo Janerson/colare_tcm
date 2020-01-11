@@ -1,8 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * informar o Detalhamento da Nomeacao Sub Judice
  * 
  */
-public class DetalhamentoNomeacaoSubJudice {
+@Entity
+@Data
+public class DetalhamentoNomeacaoSubJudice extends BaseEntityID {
 
     /**
      * Informa o detalhamento da peça Decisão Judicial, conforme tabela.
@@ -20,7 +24,7 @@ public class DetalhamentoNomeacaoSubJudice {
      * 
      */
     @NotNull
-    private DetalhamentoNomeacaoSubJudice.DetalhamentoPecaJudicial detalhamentoPecaJudicial;
+    private Integer detalhamentoPecaJudicial;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
@@ -28,76 +32,5 @@ public class DetalhamentoNomeacaoSubJudice {
      */
     @NotNull
     private String idDocumentoPDF;
-
-    /**
-     * Informa o detalhamento da peça Decisão Judicial, conforme tabela.
-     * (Required)
-     * 
-     */
-    public DetalhamentoPecaJudicial getDetalhamentoPecaJudicial() {
-        return detalhamentoPecaJudicial;
-    }
-
-    /**
-     * Informa o detalhamento da peça Decisão Judicial, conforme tabela.
-     * (Required)
-     * 
-     */
-    public void setDetalhamentoPecaJudicial(DetalhamentoPecaJudicial detalhamentoPecaJudicial) {
-        this.detalhamentoPecaJudicial = detalhamentoPecaJudicial;
-    }
-
-    /**
-     * ID do arquivo enviado contendo o documento digitalizado
-     * (Required)
-     * 
-     */
-    public String getIdDocumentoPDF() {
-        return idDocumentoPDF;
-    }
-
-    /**
-     * ID do arquivo enviado contendo o documento digitalizado
-     * (Required)
-     * 
-     */
-    public void setIdDocumentoPDF(String idDocumentoPDF) {
-        this.idDocumentoPDF = idDocumentoPDF;
-    }
-
-    public enum DetalhamentoPecaJudicial {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5);
-        private final Integer value;
-        private final static Map<Integer, DetalhamentoPecaJudicial> CONSTANTS = new HashMap<Integer, DetalhamentoPecaJudicial>();
-
-        static {
-            for (DetalhamentoPecaJudicial c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private DetalhamentoPecaJudicial(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static DetalhamentoPecaJudicial fromValue(Integer value) {
-            DetalhamentoPecaJudicial constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

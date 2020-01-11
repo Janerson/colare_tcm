@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa se o servidor enquadra-se em situação de nepotismo no ato da posse, conforme Sumula nº 13 do STF. 
  * 
  */
-public class DeclaracaoNepotismo {
+@Entity
+@Data
+public class DeclaracaoNepotismo extends BaseEntityID {
 
     /**
      * ID do arquivo enviado contendo o documento digitalizado
@@ -26,41 +32,5 @@ public class DeclaracaoNepotismo {
      */
     @NotNull
     private Boolean enquadraSituacaoNepotismo;
-
-    /**
-     * ID do arquivo enviado contendo o documento digitalizado
-     * (Required)
-     * 
-     */
-    public String getIdDocumentoPDF() {
-        return idDocumentoPDF;
-    }
-
-    /**
-     * ID do arquivo enviado contendo o documento digitalizado
-     * (Required)
-     * 
-     */
-    public void setIdDocumentoPDF(String idDocumentoPDF) {
-        this.idDocumentoPDF = idDocumentoPDF;
-    }
-
-    /**
-     * Declara se o servidor possui vinculo familiar que caracterize nepotismo, nos termos da Sumula nº13 do STF.
-     * (Required)
-     * 
-     */
-    public Boolean getEnquadraSituacaoNepotismo() {
-        return enquadraSituacaoNepotismo;
-    }
-
-    /**
-     * Declara se o servidor possui vinculo familiar que caracterize nepotismo, nos termos da Sumula nº13 do STF.
-     * (Required)
-     * 
-     */
-    public void setEnquadraSituacaoNepotismo(Boolean enquadraSituacaoNepotismo) {
-        this.enquadraSituacaoNepotismo = enquadraSituacaoNepotismo;
-    }
 
 }

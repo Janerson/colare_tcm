@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar os dados do município goiano quando a acumulação de cargo for na esfera municipal.
  * 
  */
-public class MunicipioGoiano {
+@Entity
+@Data
+public class MunicipioGoiano extends BaseEntityID {
 
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
@@ -33,59 +39,5 @@ public class MunicipioGoiano {
      */
     @NotNull
     private Integer idPessoalCargo;
-
-    /**
-     * ID da Unidade Gestora conforme cadastro no sistema Passaporte
-     * (Required)
-     * 
-     */
-    public Integer getIdUnidadeGestora() {
-        return idUnidadeGestora;
-    }
-
-    /**
-     * ID da Unidade Gestora conforme cadastro no sistema Passaporte
-     * (Required)
-     * 
-     */
-    public void setIdUnidadeGestora(Integer idUnidadeGestora) {
-        this.idUnidadeGestora = idUnidadeGestora;
-    }
-
-    /**
-     * Informa o nome do Departamento ou Setor onde o servidor acumula cargo
-     * (Required)
-     * 
-     */
-    public String getNomeDepartamentoSetor() {
-        return nomeDepartamentoSetor;
-    }
-
-    /**
-     * Informa o nome do Departamento ou Setor onde o servidor acumula cargo
-     * (Required)
-     * 
-     */
-    public void setNomeDepartamentoSetor(String nomeDepartamentoSetor) {
-        this.nomeDepartamentoSetor = nomeDepartamentoSetor;
-    }
-
-    /**
-     * ID do Cargo 
-     * (Required)
-     * 
-     */
-    public Integer getIdPessoalCargo() {
-        return idPessoalCargo;
-    }
-
-    /**
-     * ID do Cargo 
-     * (Required)
-     * 
-     */
-    public void setIdPessoalCargo(Integer idPessoalCargo) {
-        this.idPessoalCargo = idPessoalCargo;
-    }
 
 }

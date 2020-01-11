@@ -1,10 +1,17 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -13,7 +20,9 @@ import javax.validation.constraints.Size;
  * Informar Acumulação de Cargo
  * 
  */
-public class AcumulacaoDeCargos {
+@Entity
+@Data
+public class AcumulacaoDeCargos extends BaseEntityID {
 
     /**
      * Informa se o servidor acumula cargo quando do momento da posse no serviço público.
@@ -37,60 +46,9 @@ public class AcumulacaoDeCargos {
     @Size(min = 1)
     @Valid
     @NotNull
-    private Set<DadosDaAcumulacao> dadosDaAcumulacao = null;
+    @OneToMany
+    @JoinColumn(name = "acumulacao_cargos_id")
+    private Set<DadosDaAcumulacao> dadosDaAcumulacao = new HashSet<>();
 
-    /**
-     * Informa se o servidor acumula cargo quando do momento da posse no serviço público.
-     * (Required)
-     * 
-     */
-    public Boolean getAcumulaCargo() {
-        return acumulaCargo;
-    }
-
-    /**
-     * Informa se o servidor acumula cargo quando do momento da posse no serviço público.
-     * (Required)
-     * 
-     */
-    public void setAcumulaCargo(Boolean acumulaCargo) {
-        this.acumulaCargo = acumulaCargo;
-    }
-
-    /**
-     * ID do arquivo enviado contendo o documento digitalizado
-     * (Required)
-     * 
-     */
-    public String getIdDocumentoPDF() {
-        return idDocumentoPDF;
-    }
-
-    /**
-     * ID do arquivo enviado contendo o documento digitalizado
-     * (Required)
-     * 
-     */
-    public void setIdDocumentoPDF(String idDocumentoPDF) {
-        this.idDocumentoPDF = idDocumentoPDF;
-    }
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public Set<DadosDaAcumulacao> getDadosDaAcumulacao() {
-        return dadosDaAcumulacao;
-    }
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public void setDadosDaAcumulacao(Set<DadosDaAcumulacao> dadosDaAcumulacao) {
-        this.dadosDaAcumulacao = dadosDaAcumulacao;
-    }
 
 }

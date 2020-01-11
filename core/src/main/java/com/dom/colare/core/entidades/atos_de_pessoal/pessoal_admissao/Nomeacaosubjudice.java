@@ -1,10 +1,17 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -13,7 +20,9 @@ import javax.validation.constraints.Size;
  * Informar os dados de nomeação Sub Judice
  * 
  */
-public class Nomeacaosubjudice {
+@Entity
+@Data
+public class Nomeacaosubjudice extends BaseEntityID {
 
     /**
      * Informa se a nomeação foi ordenada por decisão judicial.
@@ -30,42 +39,8 @@ public class Nomeacaosubjudice {
     @Size(min = 1)
     @Valid
     @NotNull
-    private Set<DetalhamentoNomeacaoSubJudice> detalhamentoNomeacaoSubJudice = null;
-
-    /**
-     * Informa se a nomeação foi ordenada por decisão judicial.
-     * (Required)
-     * 
-     */
-    public Boolean getCandidatoNomeacaoSubJudice() {
-        return candidatoNomeacaoSubJudice;
-    }
-
-    /**
-     * Informa se a nomeação foi ordenada por decisão judicial.
-     * (Required)
-     * 
-     */
-    public void setCandidatoNomeacaoSubJudice(Boolean candidatoNomeacaoSubJudice) {
-        this.candidatoNomeacaoSubJudice = candidatoNomeacaoSubJudice;
-    }
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public Set<DetalhamentoNomeacaoSubJudice> getDetalhamentoNomeacaoSubJudice() {
-        return detalhamentoNomeacaoSubJudice;
-    }
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public void setDetalhamentoNomeacaoSubJudice(Set<DetalhamentoNomeacaoSubJudice> detalhamentoNomeacaoSubJudice) {
-        this.detalhamentoNomeacaoSubJudice = detalhamentoNomeacaoSubJudice;
-    }
+    @OneToMany
+    @JoinColumn(name = "nomeacao_subjudice_id")
+    private Set<DetalhamentoNomeacaoSubJudice> detalhamentoNomeacaoSubJudice = new HashSet<>();
 
 }

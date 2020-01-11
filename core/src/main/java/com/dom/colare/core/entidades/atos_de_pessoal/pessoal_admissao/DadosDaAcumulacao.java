@@ -1,8 +1,12 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Informar dados de acumulação
  * 
  */
-public class DadosDaAcumulacao {
+@Entity
+@Data
+public class DadosDaAcumulacao extends BaseEntityID {
 
     /**
      * Informa qual a esfera a qual o servidor acumula cargo.
@@ -21,7 +27,7 @@ public class DadosDaAcumulacao {
      * 
      */
     @NotNull
-    private DadosDaAcumulacao.CodEsferaAcumulacao codEsferaAcumulacao;
+    private Integer codEsferaAcumulacao;
     /**
      * Informa o código do IBGE
      * (Required)
@@ -36,95 +42,9 @@ public class DadosDaAcumulacao {
      * 
      */
     @Valid
+    @OneToOne
+    @JoinColumn(name = "dados_acumulacao_id")
     private MunicipioGoiano municipioGoiano;
 
-    /**
-     * Informa qual a esfera a qual o servidor acumula cargo.
-     * (Required)
-     * 
-     */
-    public CodEsferaAcumulacao getCodEsferaAcumulacao() {
-        return codEsferaAcumulacao;
-    }
-
-    /**
-     * Informa qual a esfera a qual o servidor acumula cargo.
-     * (Required)
-     * 
-     */
-    public void setCodEsferaAcumulacao(CodEsferaAcumulacao codEsferaAcumulacao) {
-        this.codEsferaAcumulacao = codEsferaAcumulacao;
-    }
-
-    /**
-     * Informa o código do IBGE
-     * (Required)
-     * 
-     */
-    public String getCodIBGEDoEnteOndeHaAcumulacao() {
-        return codIBGEDoEnteOndeHaAcumulacao;
-    }
-
-    /**
-     * Informa o código do IBGE
-     * (Required)
-     * 
-     */
-    public void setCodIBGEDoEnteOndeHaAcumulacao(String codIBGEDoEnteOndeHaAcumulacao) {
-        this.codIBGEDoEnteOndeHaAcumulacao = codIBGEDoEnteOndeHaAcumulacao;
-    }
-
-    /**
-     * municipioGoiano
-     * <p>
-     * Informar os dados do município goiano quando a acumulação de cargo for na esfera municipal.
-     * 
-     */
-    public MunicipioGoiano getMunicipioGoiano() {
-        return municipioGoiano;
-    }
-
-    /**
-     * municipioGoiano
-     * <p>
-     * Informar os dados do município goiano quando a acumulação de cargo for na esfera municipal.
-     * 
-     */
-    public void setMunicipioGoiano(MunicipioGoiano municipioGoiano) {
-        this.municipioGoiano = municipioGoiano;
-    }
-
-    public enum CodEsferaAcumulacao {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodEsferaAcumulacao> CONSTANTS = new HashMap<Integer, CodEsferaAcumulacao>();
-
-        static {
-            for (CodEsferaAcumulacao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodEsferaAcumulacao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodEsferaAcumulacao fromValue(Integer value) {
-            CodEsferaAcumulacao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

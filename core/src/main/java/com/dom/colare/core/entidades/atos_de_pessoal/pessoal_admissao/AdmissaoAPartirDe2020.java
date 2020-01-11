@@ -1,8 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar dados da admissão se ocorridas a partir de 2020
  * 
  */
-public class AdmissaoAPartirDe2020 {
+@Entity
+@Data
+public class AdmissaoAPartirDe2020 extends BaseEntityID {
 
     /**
      * Informa o ID da Homologação
@@ -27,7 +31,7 @@ public class AdmissaoAPartirDe2020 {
      * 
      */
     @NotNull
-    private AdmissaoAPartirDe2020 .TipoListaClassificacao tipoListaClassificacao;
+    private Integer tipoListaClassificacao;
     /**
      * Informar a numero da classificação do candidato
      * (Required)
@@ -36,92 +40,5 @@ public class AdmissaoAPartirDe2020 {
     @NotNull
     private Integer numeroOrdemClassificacao;
 
-    /**
-     * Informa o ID da Homologação
-     * (Required)
-     * 
-     */
-    public Integer getIdPessoalHomologacao() {
-        return idPessoalHomologacao;
-    }
-
-    /**
-     * Informa o ID da Homologação
-     * (Required)
-     * 
-     */
-    public void setIdPessoalHomologacao(Integer idPessoalHomologacao) {
-        this.idPessoalHomologacao = idPessoalHomologacao;
-    }
-
-    /**
-     * Tipo de Lista de Classificacao
-     * (Required)
-     * 
-     */
-    public TipoListaClassificacao getTipoListaClassificacao() {
-        return tipoListaClassificacao;
-    }
-
-    /**
-     * Tipo de Lista de Classificacao
-     * (Required)
-     * 
-     */
-    public void setTipoListaClassificacao(TipoListaClassificacao tipoListaClassificacao) {
-        this.tipoListaClassificacao = tipoListaClassificacao;
-    }
-
-    /**
-     * Informar a numero da classificação do candidato
-     * (Required)
-     * 
-     */
-    public Integer getNumeroOrdemClassificacao() {
-        return numeroOrdemClassificacao;
-    }
-
-    /**
-     * Informar a numero da classificação do candidato
-     * (Required)
-     * 
-     */
-    public void setNumeroOrdemClassificacao(Integer numeroOrdemClassificacao) {
-        this.numeroOrdemClassificacao = numeroOrdemClassificacao;
-    }
-
-    public enum TipoListaClassificacao {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4);
-        private final Integer value;
-        private final static Map<Integer, TipoListaClassificacao> CONSTANTS = new HashMap<Integer, TipoListaClassificacao>();
-
-        static {
-            for (TipoListaClassificacao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private TipoListaClassificacao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static TipoListaClassificacao fromValue(Integer value) {
-            TipoListaClassificacao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }
