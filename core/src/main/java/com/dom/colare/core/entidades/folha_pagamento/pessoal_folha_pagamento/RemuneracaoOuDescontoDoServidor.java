@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_folha_pagamento;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Contem as informações referentes às Remunerações e Descontos do Servidor, exceto descontos Previdenciários (RPPS ou RGPS) e Tributário (IRRF)
  * 
  */
-public class RemuneracaoOuDescontoDoServidor {
+@Entity
+@Data
+public class RemuneracaoOuDescontoDoServidor extends BaseEntityID {
 
     /**
      * Informa o ID de uma entrega do Layout de Pessoal Concessão Vantagem Desconto

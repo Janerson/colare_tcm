@@ -1,14 +1,19 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_folha_pagamento;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -17,7 +22,9 @@ import javax.validation.constraints.Size;
  * Contém as informações relacionadas à Folha de Pagamento.
  * 
  */
-public class PessoalFolhaDePagamento {
+@Entity
+@Data
+public class PessoalFolhaDePagamento extends BaseEntityID {
 
     /**
      * Código do Tipo de Envio
@@ -25,12 +32,12 @@ public class PessoalFolhaDePagamento {
      * 
      */
     @NotNull
-    public PessoalFolhaDePagamento.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * Informar o mês de competência da folha de pagamento 
      * (Required)
@@ -39,7 +46,7 @@ public class PessoalFolhaDePagamento {
     @DecimalMin("1")
     @DecimalMax("13")
     @NotNull
-    public Integer mesCompetencia;
+    private Integer mesCompetencia;
     /**
      * Informar o ano de competência da Folha de Pagamento
      * (Required)
@@ -47,14 +54,14 @@ public class PessoalFolhaDePagamento {
      */
     @DecimalMin("2020")
     @NotNull
-    public Integer anoCompetencia;
+    private Integer anoCompetencia;
     /**
      * Informa o tipo de Unidade Gestora Responsável pela Folha, conforme tabela.
      * (Required)
      * 
      */
     @NotNull
-    public PessoalFolhaDePagamento.TipoUnidadeGestoraResponsavelFolha tipoUnidadeGestoraResponsavelFolha;
+    private Integer tipoUnidadeGestoraResponsavelFolha;
     /**
      * 
      * (Required)
@@ -63,76 +70,9 @@ public class PessoalFolhaDePagamento {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<FolhaDePagamento> folhaDePagamento = null;
+    @OneToMany
+    @JoinColumn(name = "pessoal_folha_id")
+    private Set<FolhaDePagamento> folhaDePagamento = new HashSet<>();
 
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum TipoUnidadeGestoraResponsavelFolha {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5),
-        _6(6),
-        _7(7);
-        private final Integer value;
-        private final static Map<Integer, TipoUnidadeGestoraResponsavelFolha> CONSTANTS = new HashMap<Integer, TipoUnidadeGestoraResponsavelFolha>();
-
-        static {
-            for (TipoUnidadeGestoraResponsavelFolha c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private TipoUnidadeGestoraResponsavelFolha(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static TipoUnidadeGestoraResponsavelFolha fromValue(Integer value) {
-            TipoUnidadeGestoraResponsavelFolha constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
+    
 }

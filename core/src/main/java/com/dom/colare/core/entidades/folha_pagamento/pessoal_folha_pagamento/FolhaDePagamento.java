@@ -1,10 +1,15 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_folha_pagamento;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -13,7 +18,9 @@ import javax.validation.constraints.Size;
  * Relação Folha Pagamento
  * 
  */
-public class FolhaDePagamento {
+@Entity
+@Data
+public class FolhaDePagamento extends BaseEntityID {
 
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
@@ -21,14 +28,14 @@ public class FolhaDePagamento {
      * 
      */
     @NotNull
-    public Integer idUnidadeGestora;
+    private Integer idUnidadeGestora;
     /**
      * Informa o número do CPF do Ordenador de Despesa
      * (Required)
      * 
      */
     @NotNull
-    public String numeroCPFOrdenadorDespesa;
+    private String numeroCPFOrdenadorDespesa;
     /**
      * 
      * (Required)
@@ -37,6 +44,6 @@ public class FolhaDePagamento {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<ServidorEmFolha> servidorEmFolha = null;
+    private Set<ServidorEmFolha> servidorEmFolha = new HashSet<>();
 
 }
