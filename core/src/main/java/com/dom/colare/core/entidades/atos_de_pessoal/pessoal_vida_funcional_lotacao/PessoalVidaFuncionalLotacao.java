@@ -1,8 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_vida_funcional_lotacao;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Dados de Lotação (Movimentação Interna)
  * 
  */
-public class PessoalVidaFuncionalLotacao {
+@Entity
+@Data
+public class PessoalVidaFuncionalLotacao extends BaseEntityID {
 
     /**
      * Código do Tipo de Envio
@@ -21,40 +25,40 @@ public class PessoalVidaFuncionalLotacao {
      * 
      */
     @NotNull
-    public PessoalVidaFuncionalLotacao.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * ID da Admissão Previamente Informada
      * (Required)
      * 
      */
     @NotNull
-    public Integer idPessoalAdmissao;
+    private Integer idPessoalAdmissao;
     /**
      * Data de Inicio
      * (Required)
      * 
      */
     @NotNull
-    public String dataInicio;
+    private String dataInicio;
     /**
      * Data fim
      * (Required)
      * 
      */
     @NotNull
-    public String dataFinal;
+    private String dataFinal;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
     /**
      * detalhamentoLotacao
      * <p>
@@ -64,39 +68,6 @@ public class PessoalVidaFuncionalLotacao {
      */
     @Valid
     @NotNull
-    public DetalhamentoLotacao detalhamentoLotacao;
-
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
+    private DetalhamentoLotacao detalhamentoLotacao;
 
 }
