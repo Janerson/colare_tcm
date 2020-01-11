@@ -1,6 +1,12 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_cadastro;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Informar detalhes Pessoa com Deficiência
  * 
  */
-public class Pcd {
+@Entity
+@Data
+public class Pcd extends BaseEntityID {
 
     /**
      * Pessoa com Deficiencia
@@ -27,44 +35,8 @@ public class Pcd {
      * 
      */
     @Valid
+    @OneToOne
+    @JoinColumn(name = "pcd_id")
     private DetalhamentoDeficiencia detalhamentoDeficiencia;
-
-    /**
-     * Pessoa com Deficiencia
-     * (Required)
-     * 
-     */
-    public Boolean getPcD() {
-        return pcD;
-    }
-
-    /**
-     * Pessoa com Deficiencia
-     * (Required)
-     * 
-     */
-    public void setPcD(Boolean pcD) {
-        this.pcD = pcD;
-    }
-
-    /**
-     * detalhamentoDeficiencia
-     * <p>
-     * Informa o detalhamento da deficiência.
-     * 
-     */
-    public DetalhamentoDeficiencia getDetalhamentoDeficiencia() {
-        return detalhamentoDeficiencia;
-    }
-
-    /**
-     * detalhamentoDeficiencia
-     * <p>
-     * Informa o detalhamento da deficiência.
-     * 
-     */
-    public void setDetalhamentoDeficiencia(DetalhamentoDeficiencia detalhamentoDeficiencia) {
-        this.detalhamentoDeficiencia = detalhamentoDeficiencia;
-    }
 
 }
