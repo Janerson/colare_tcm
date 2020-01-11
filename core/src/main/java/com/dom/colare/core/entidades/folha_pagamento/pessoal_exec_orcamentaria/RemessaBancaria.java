@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_exec_orcamentaria;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Contém o arquivo de Remessa Bancária
  * 
  */
-public class RemessaBancarium {
+@Entity
+@Data
+public class RemessaBancaria extends BaseEntityID {
 
     /**
      * ID do arquivo enviado contendo o documento digitalizado

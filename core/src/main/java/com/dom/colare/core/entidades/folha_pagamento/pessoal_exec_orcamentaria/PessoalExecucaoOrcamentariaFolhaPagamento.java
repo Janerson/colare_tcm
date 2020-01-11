@@ -1,12 +1,17 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_exec_orcamentaria;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -15,7 +20,9 @@ import javax.validation.constraints.Size;
  * Contém informações da Execução Orçamentária da Folha de Pagamento.
  * 
  */
-public class PessoalExecucaoOrcamentariaFolhaPagamento {
+@Entity
+@Data
+public class PessoalExecucaoOrcamentariaFolhaPagamento extends BaseEntityID {
 
     /**
      * Código do Tipo de Envio
@@ -23,19 +30,19 @@ public class PessoalExecucaoOrcamentariaFolhaPagamento {
      * 
      */
     @NotNull
-    public PessoalExecucaoOrcamentariaFolhaPagamento.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * ID da folha de pagamento previamente enviada
      * (Required)
      * 
      */
     @NotNull
-    public Integer idPessoalFolhaDePagamento;
+    private Integer idPessoalFolhaDePagamento;
     /**
      * 
      * (Required)
@@ -44,7 +51,9 @@ public class PessoalExecucaoOrcamentariaFolhaPagamento {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<NumeroEmpenho> numeroEmpenho = null;
+    @OneToMany
+    @JoinColumn(name = "pessoal_exec_id")
+    private Set<NumeroEmpenho> numeroEmpenho = new HashSet<>();
     /**
      * 
      * (Required)
@@ -53,39 +62,9 @@ public class PessoalExecucaoOrcamentariaFolhaPagamento {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Banco> banco = null;
+    @OneToMany
+    @JoinColumn(name = "pessoal_exec_id")
+    private Set<Banco> banco = new HashSet<>();
 
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

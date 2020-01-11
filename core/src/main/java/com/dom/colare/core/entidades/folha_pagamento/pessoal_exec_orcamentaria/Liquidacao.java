@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_exec_orcamentaria;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Contém as informações relativas às liquidaçãoes
  * 
  */
-public class Liquidacao {
+@Entity
+@Data
+public class Liquidacao extends BaseEntityID {
 
     /**
      * Número da liquidação
@@ -20,14 +26,14 @@ public class Liquidacao {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroLiquidacao;
+    private Integer numeroLiquidacao;
     /**
      * Data da liquidação
      * (Required)
      * 
      */
     @NotNull
-    public String dataLiquidacao;
+    private String dataLiquidacao;
     /**
      * Informa o valor da Liquidacao
      * (Required)
@@ -35,6 +41,6 @@ public class Liquidacao {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorLiquidacao;
+    private Double valorLiquidacao;
 
 }

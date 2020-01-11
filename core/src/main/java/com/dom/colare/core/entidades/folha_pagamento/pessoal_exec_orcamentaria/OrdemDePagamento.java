@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_exec_orcamentaria;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Contm as informações sobre as Ordens de Pagamento
  * 
  */
-public class OrdemDePagamento {
+@Entity
+@Data
+public class OrdemDePagamento extends BaseEntityID {
 
     /**
      * Número da Ordem de Pagamento
@@ -20,14 +26,14 @@ public class OrdemDePagamento {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroOP;
+    private Integer numeroOP;
     /**
      * Data do pagamento
      * (Required)
      * 
      */
     @NotNull
-    public String dataPagamento;
+    private String dataPagamento;
     /**
      * Informa o valor do pagamento
      * (Required)
@@ -35,6 +41,6 @@ public class OrdemDePagamento {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorPagamento;
+    private Double valorPagamento;
 
 }

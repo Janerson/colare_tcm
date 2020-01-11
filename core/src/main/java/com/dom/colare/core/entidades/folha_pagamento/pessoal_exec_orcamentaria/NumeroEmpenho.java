@@ -1,11 +1,18 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pessoal_exec_orcamentaria;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -14,7 +21,9 @@ import javax.validation.constraints.Size;
  * Informa os dados do empenho e seus desdobramentos.
  * 
  */
-public class NumeroEmpenho {
+@Entity
+@Data
+public class NumeroEmpenho extends BaseEntityID {
 
     /**
      * Número do empenho
@@ -23,7 +32,7 @@ public class NumeroEmpenho {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroEmpenho;
+    private Integer numeroEmpenho;
     /**
      * Valor do empenho
      * (Required)
@@ -31,14 +40,14 @@ public class NumeroEmpenho {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorEmpenho;
+    private Double valorEmpenho;
     /**
      * Data de emissão do empenho
      * (Required)
      * 
      */
     @NotNull
-    public String dataEmpenho;
+    private String dataEmpenho;
     /**
      * 
      * (Required)
@@ -47,7 +56,9 @@ public class NumeroEmpenho {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Liquidacao> liquidacao = null;
+    @OneToMany
+    @JoinColumn(name = "numero_empenho_id")
+    private Set<Liquidacao> liquidacao = new HashSet<>();
     /**
      * 
      * (Required)
@@ -56,6 +67,8 @@ public class NumeroEmpenho {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<OrdemDePagamento> ordemDePagamento = null;
+    @OneToMany
+    @JoinColumn(name = "numero_empenho_id")
+    private Set<OrdemDePagamento> ordemDePagamento = new HashSet<>();
 
 }
