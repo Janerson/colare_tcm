@@ -9,22 +9,22 @@ import javax.validation.constraints.NotNull;
 
 
 /**
- * normaOuLegislacaoRegulamentada
+ * listaUnidadesGestorasAplicaveis
  * <p>
- * Lista de Normas que a presente Norma regulamenta
+ * Informar todas as Unidades Gestoras, as quais a Norma/Legislação aplica-se.
  * 
  */
 @Entity
 @Data
-public class NormaOuLegislacaoRegulamentada extends BaseEntityID {
+public class ListaUnidadesGestorasAplicaveis extends BaseEntityID {
 
     /**
-     * Identificação (ID) da legislação anteriormente enviada
+     * ID da Unidade Gestora conforme cadastro no sistema Passaporte
      * (Required)
      * 
      */
     @NotNull
-    private Integer idPessoalLegislacao;
+    private Integer idUnidadeGestora;
 
 
 }
