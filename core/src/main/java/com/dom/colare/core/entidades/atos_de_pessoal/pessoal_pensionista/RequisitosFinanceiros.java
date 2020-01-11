@@ -1,12 +1,17 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_pensionista;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -15,7 +20,9 @@ import javax.validation.constraints.NotNull;
  * Contém os dados dos proventos do pensionista.
  * 
  */
-public class RequisitosFinanceiros {
+@Entity
+@Data
+public class RequisitosFinanceiros extends BaseEntityID {
 
     /**
      * Informa qual foi a fixação dos proventos de pensão, conforme tabela.
@@ -23,7 +30,7 @@ public class RequisitosFinanceiros {
      * 
      */
     @NotNull
-    public RequisitosFinanceiros.TipoFixacaoProventosPensao tipoFixacaoProventosPensao;
+    private Integer tipoFixacaoProventosPensao;
     /**
      * Informa o valor total dos proventos, que o pensionista receberá.
      * (Required)
@@ -31,52 +38,24 @@ public class RequisitosFinanceiros {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorTotalProventos;
+    private Double valorTotalProventos;
     /**
      * Informar o valor do redutor, para provento superiores ao teto RGPS
      * 
      */
     @DecimalMin("0")
-    public Double valorRedutorProvento;
+    private Double valorRedutorProvento;
     /**
      * Informa o percentual da utilizado para aplicação redutor.
      * 
      */
     @DecimalMin("0")
-    public Double percentualRedutor;
+    private Double percentualRedutor;
+
     @Valid
-    public Set<ComposicaoUltimaRemuneracao> composicaoUltimaRemuneracao = null;
+    @OneToMany
+    @JoinColumn(name = "requisito_finac_id")
+    private Set<ComposicaoUltimaRemuneracao> composicaoUltimaRemuneracao = new HashSet<>();
 
-    public enum TipoFixacaoProventosPensao {
-
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, TipoFixacaoProventosPensao> CONSTANTS = new HashMap<Integer, TipoFixacaoProventosPensao>();
-
-        static {
-            for (TipoFixacaoProventosPensao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private TipoFixacaoProventosPensao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static TipoFixacaoProventosPensao fromValue(Integer value) {
-            TipoFixacaoProventosPensao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

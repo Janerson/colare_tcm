@@ -1,13 +1,18 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_pensionista;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -16,7 +21,9 @@ import javax.validation.constraints.Size;
  * Contém os dados do requerimento inicial.
  * 
  */
-public class RequisitosAtoAdministrativo {
+@Entity
+@Data
+public class RequisitosAtoAdministrativo extends BaseEntityID {
 
     /**
      * Informa o tipo do Ato Administrativo
@@ -24,7 +31,7 @@ public class RequisitosAtoAdministrativo {
      * 
      */
     @NotNull
-    public RequisitosAtoAdministrativo.CodTipoAtoAdministrativo codTipoAtoAdministrativo;
+    private Integer codTipoAtoAdministrativo;
     /**
      * Informa o numero do Ato Administrativo
      * (Required)
@@ -32,49 +39,49 @@ public class RequisitosAtoAdministrativo {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroAtoAdministrativo;
+    private Integer numeroAtoAdministrativo;
     /**
      * Informa a data do Ato Administrativo
      * (Required)
      * 
      */
     @NotNull
-    public String dataAtoAdministrativo;
+    private String dataAtoAdministrativo;
     /**
      * Data de inicio do efeito financeiro
      * (Required)
      * 
      */
     @NotNull
-    public String dataInicioEfeitoFinanceiro;
+    private String dataInicioEfeitoFinanceiro;
     /**
      * Data da Publicação
      * (Required)
      * 
      */
     @NotNull
-    public String dataPublicacao;
+    private String dataPublicacao;
     /**
      * Informar a Certidão ou Comprovante de Publicação 
      * (Required)
      * 
      */
     @NotNull
-    public String certidaoDePublicacaoOuComprovante;
+    private String certidaoDePublicacaoOuComprovante;
     /**
      * Informa qual a forma de reajuste dos Proventos de Inativo Pensionista.
      * (Required)
      * 
      */
     @NotNull
-    public RequisitosAtoAdministrativo.CodFormaDeReajuste codFormaDeReajuste;
+    private Integer codFormaDeReajuste;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
     /**
      * 
      * (Required)
@@ -83,71 +90,9 @@ public class RequisitosAtoAdministrativo {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Numerocpfdoresponsavelpeloato> numerocpfdoresponsavelpeloato = null;
+    @OneToMany
+    @JoinColumn(name = "requitos_adm_id")
+    private Set<Numerocpfdoresponsavelpeloato> numerocpfdoresponsavelpeloato = new HashSet<>();
 
-    public enum CodFormaDeReajuste {
-
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodFormaDeReajuste> CONSTANTS = new HashMap<Integer, CodFormaDeReajuste>();
-
-        static {
-            for (CodFormaDeReajuste c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodFormaDeReajuste(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodFormaDeReajuste fromValue(Integer value) {
-            CodFormaDeReajuste constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodTipoAtoAdministrativo {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoAtoAdministrativo> CONSTANTS = new HashMap<Integer, CodTipoAtoAdministrativo>();
-
-        static {
-            for (CodTipoAtoAdministrativo c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoAtoAdministrativo(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoAtoAdministrativo fromValue(Integer value) {
-            CodTipoAtoAdministrativo constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

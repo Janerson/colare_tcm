@@ -1,8 +1,12 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_pensionista;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Dados de Pensionista
  * 
  */
-public class PessoalPensionista {
+@Entity
+@Data
+public class PessoalPensionista extends BaseEntityID {
 
     /**
      * Código do Tipo de Envio
@@ -21,33 +27,33 @@ public class PessoalPensionista {
      * 
      */
     @NotNull
-    public PessoalPensionista.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * Informa o Tipo de Pensão, conforme tabela.
      * (Required)
      * 
      */
     @NotNull
-    public PessoalPensionista.CodTipoPensao codTipoPensao;
+    private Integer codTipoPensao;
     /**
      * Informa se a pessoa era pensionista antes do exercício do 2020, ou seja, se ela foi informada ao TCMGO antes do COLARE PESSOAL. 
      * (Required)
      * 
      */
     @NotNull
-    public Boolean pensionistaAnterior2020;
+    private Boolean pensionistaAnterior2020;
     /**
      * Identificação (ID) da legislação anteriormente enviada
      * (Required)
      * 
      */
     @NotNull
-    public Integer idPessoalLegislacao;
+    private Integer idPessoalLegislacao;
     /**
      * dadosDaPensao
      * <p>
@@ -55,7 +61,9 @@ public class PessoalPensionista {
      * 
      */
     @Valid
-    public DadosDaPensao dadosDaPensao;
+    @OneToOne
+    @JoinColumn(name = "pessoal_pensionista_id")
+    private DadosDaPensao dadosDaPensao;
     /**
      * pensaoRpps
      * <p>
@@ -63,7 +71,9 @@ public class PessoalPensionista {
      * 
      */
     @Valid
-    public PensaoRpps pensaoRpps;
+    @OneToOne
+    @JoinColumn(name = "pessoal_pensionista_id")
+    private PensaoRpps pensaoRpps;
     /**
      * pensaoJudicial
      * <p>
@@ -71,7 +81,9 @@ public class PessoalPensionista {
      * 
      */
     @Valid
-    public PensaoJudicial pensaoJudicial;
+    @OneToOne
+    @JoinColumn(name = "pessoal_pensionista_id")
+    private PensaoJudicial pensaoJudicial;
     /**
      * pensaoMerce
      * <p>
@@ -79,7 +91,9 @@ public class PessoalPensionista {
      * 
      */
     @Valid
-    public PensaoMerce pensaoMerce;
+    @OneToOne
+    @JoinColumn(name = "pessoal_pensionista_id")
+    private PensaoMerce pensaoMerce;
     /**
      * requisitosFinanceiros
      * <p>
@@ -89,73 +103,9 @@ public class PessoalPensionista {
      */
     @Valid
     @NotNull
-    public RequisitosFinanceiros requisitosFinanceiros;
+    @OneToOne
+    @JoinColumn(name = "pessoal_pensionista_id")
+    private RequisitosFinanceiros requisitosFinanceiros;
 
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodTipoPensao {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4);
-        private final Integer value;
-        private final static Map<Integer, CodTipoPensao> CONSTANTS = new HashMap<Integer, CodTipoPensao>();
-
-        static {
-            for (CodTipoPensao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoPensao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoPensao fromValue(Integer value) {
-            CodTipoPensao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

@@ -9,29 +9,30 @@ import javax.validation.constraints.NotNull;
 
 
 /**
- * pensaoJudicial
+ * documentosComprobatoriosDependencia
  * <p>
- * Contém os dados das Pensões Judiciais.
+ * Contém os documento que comprovam vinculo do Dependente em relação ao Instituidor.
  * 
  */
 @Entity
 @Data
-public class PensaoJudicial extends BaseEntityID {
+public class DocumentosComprobatoriosDependencia extends BaseEntityID {
 
     /**
-     * Informa o detalhamento da peça Decisão Judicial, conforme tabela.
+     * Informa o tipo de documento que comprova a relação de dependência entre o pensionista e o instituidor, conforme tabela.
      * (Required)
      * 
      */
     @NotNull
-    private Integer detalhamentoPecaJudicial;
+    public Integer tipoDocumentoComprobatorio;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    private String idDocumentoPDF;
+    public String idDocumentoPDF;
+
 
 
 }

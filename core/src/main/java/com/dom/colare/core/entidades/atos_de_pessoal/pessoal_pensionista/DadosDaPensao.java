@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_pensionista;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa os dados da instituição Pensão de servidores anteriores a 2020.
  * 
  */
-public class DadosDaPensao {
+@Entity
+@Data
+public class DadosDaPensao extends BaseEntityID {
 
     /**
      * Informa o numero de protocolo do Processo Pe autuado no TCMGO, numero do processo composto por 5 dígitos + e ano em 4 dígitos.
@@ -18,34 +24,34 @@ public class DadosDaPensao {
      * 
      */
     @NotNull
-    public String numeroProcessoConcessaoPensao;
+    private String numeroProcessoConcessaoPensao;
     /**
      * Inserir o numero do Acordão do TCM
      * (Required)
      * 
      */
     @NotNull
-    public String numeroAcordaoTCM;
+    private String numeroAcordaoTCM;
     /**
      * Informa o nome do cargo paradigma registrado no TCMGO.
      * (Required)
      * 
      */
     @NotNull
-    public String nomeDoCargoParadigmaRegistrado;
+    private String nomeDoCargoParadigmaRegistrado;
     /**
      * Informa o numero ato concedeu a pensão.
      * (Required)
      * 
      */
     @NotNull
-    public Integer numeroAtoConcedeuPensao;
+    private Integer numeroAtoConcedeuPensao;
     /**
      * informa a data do ato que concedeu a pensão.
      * (Required)
      * 
      */
     @NotNull
-    public String dataAtoConcedeuPensao;
+    private String dataAtoConcedeuPensao;
 
 }
