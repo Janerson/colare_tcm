@@ -1,8 +1,12 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concessao_vantagem_desconto;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Contém o Detalhamento da Concessão
  * 
  */
-public class DetalhamentoConcessao {
+@Entity
+@Data
+public class DetalhamentoConcessao extends BaseEntityID {
 
     /**
      * Informa o tipo de concessão
@@ -21,7 +27,7 @@ public class DetalhamentoConcessao {
      * 
      */
     @NotNull
-    public DetalhamentoConcessao.TipoConcessao tipoConcessao;
+    private Integer tipoConcessao;
     /**
      * posicaoVencimentoCarreira
      * <p>
@@ -29,7 +35,9 @@ public class DetalhamentoConcessao {
      * 
      */
     @Valid
-    public PosicaoVencimentoCarreira posicaoVencimentoCarreira;
+    @OneToOne
+    @JoinColumn(name = "detalhamento_concessao_id")
+    private PosicaoVencimentoCarreira posicaoVencimentoCarreira;
     /**
      * verba
      * <p>
@@ -37,43 +45,8 @@ public class DetalhamentoConcessao {
      * 
      */
     @Valid
-    public Verba verba;
-
-    public enum TipoConcessao {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5),
-        _6(6),
-        _7(7);
-        private final Integer value;
-        private final static Map<Integer, TipoConcessao> CONSTANTS = new HashMap<Integer, TipoConcessao>();
-
-        static {
-            for (TipoConcessao c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private TipoConcessao(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static TipoConcessao fromValue(Integer value) {
-            TipoConcessao constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
+    @OneToOne
+    @JoinColumn(name = "detalhamento_concessao_id")
+    private Verba verba;
 
 }

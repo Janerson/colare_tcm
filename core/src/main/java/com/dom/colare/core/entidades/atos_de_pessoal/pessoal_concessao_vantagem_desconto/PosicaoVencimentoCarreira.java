@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concessao_vantagem_desconto;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Contém as informações sobre o posicionamento vencimental do servidor na carreira.
  * 
  */
-public class PosicaoVencimentoCarreira {
+@Entity
+@Data
+public class PosicaoVencimentoCarreira extends BaseEntityID {
 
     /**
      * ID do Cargo 
@@ -19,21 +25,21 @@ public class PosicaoVencimentoCarreira {
      * 
      */
     @NotNull
-    public Integer idPessoalCargo;
+    private Integer idPessoalCargo;
     /**
      * Codificação, interna do sistema de gestão, para a Classe
      * (Required)
      * 
      */
     @NotNull
-    public Integer codClasse;
+    private Integer codClasse;
     /**
      * Codificação, interna do sistema de gestão, para a Padrão ou Nível
      * (Required)
      * 
      */
     @NotNull
-    public Integer codPadraoNivel;
+    private Integer codPadraoNivel;
     /**
      * Valor do Vencimento/Subsídio do Cargo para o referido Classe e Padrão
      * (Required)
@@ -41,25 +47,25 @@ public class PosicaoVencimentoCarreira {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorVencimentoOuSubsidio;
+    private Double valorVencimentoOuSubsidio;
     /**
      * Data de Inicio
      * (Required)
      * 
      */
     @NotNull
-    public String dataInicio;
+    private String dataInicio;
     /**
      * Data fim
      * 
      */
-    public String dataFinal;
+    private String dataFinal;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
 
 }
