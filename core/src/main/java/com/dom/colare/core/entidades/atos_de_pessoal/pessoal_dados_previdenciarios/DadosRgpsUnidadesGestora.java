@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_dados_previdenciarios;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -12,7 +16,9 @@ import javax.validation.constraints.NotNull;
  * Informa os dados previdenciários do RGPS
  * 
  */
-public class DadosRgpsUnidadesGestora {
+@Entity
+@Data
+public class DadosRgpsUnidadesGestora extends BaseEntityID {
 
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
@@ -20,14 +26,14 @@ public class DadosRgpsUnidadesGestora {
      * 
      */
     @NotNull
-    public Integer idUnidadeGestora;
+    private Integer idUnidadeGestora;
     /**
      * Informa o numero do CNAE
      * (Required)
      * 
      */
     @NotNull
-    public Integer numeroCNAE;
+    private Integer numeroCNAE;
     /**
      * Informa a aliquota RAT
      * (Required)
@@ -36,13 +42,13 @@ public class DadosRgpsUnidadesGestora {
     @DecimalMin("1")
     @DecimalMax("3")
     @NotNull
-    public Double aliquotaRAT;
+    private Double aliquotaRAT;
     /**
      * Informa a aliquota FAP
      * (Required)
      * 
      */
     @NotNull
-    public Double aliquotaFAP;
+    private Double aliquotaFAP;
 
 }

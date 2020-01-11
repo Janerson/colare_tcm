@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_dados_previdenciarios;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa os dados previdenciários do RPPS
  * 
  */
-public class DadosPrevidenciariosRpps {
+@Entity
+@Data
+public class DadosPrevidenciariosRpps extends BaseEntityID {
 
     /**
      * Identificação (ID) da legislação anteriormente enviada
@@ -18,20 +24,20 @@ public class DadosPrevidenciariosRpps {
      * 
      */
     @NotNull
-    public Integer idPessoalLegislacao;
+    private Integer idPessoalLegislacao;
     /**
      * Informa alíquota da contribuição Patronal
      * (Required)
      * 
      */
     @NotNull
-    public Double aliquotaContribuicaoPatronal;
+    private Double aliquotaContribuicaoPatronal;
     /**
      * Informa a Aliquota de Contribuicao dos Servidores
      * (Required)
      * 
      */
     @NotNull
-    public Double aliquotaContribuicaoServidores;
+    private Double aliquotaContribuicaoServidores;
 
 }
