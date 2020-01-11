@@ -1,11 +1,17 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -14,7 +20,9 @@ import javax.validation.constraints.NotNull;
  * Participantes habilitáveis
  * 
  */
-public class Licitante {
+@Entity
+@Data
+public class Licitante extends BaseEntityID {
 
     /**
      * Identifica o tipo do documento
@@ -22,40 +30,47 @@ public class Licitante {
      * 
      */
     @NotNull
-    public Licitante.CodTipoDocumento codTipoDocumento;
+    private Integer codTipoDocumento;
     /**
      * Número do documento
      * (Required)
      * 
      */
     @NotNull
-    public String numeroDocumento;
+    private String numeroDocumento;
     /**
      * Número de Inscrição Estadual
      * 
      */
-    public String numeroInscricaoEstadual;
+    private String numeroInscricaoEstadual;
     /**
      * Código IBGE do Estado onde foi realizada a inscrição
      * 
      */
-    public String codIbgeInscricaoEstadual;
+    private String codIbgeInscricaoEstadual;
     /**
      * Número de inscrição municipal
      * 
      */
-    public String numeroInscricaoMunicipal;
+    private String numeroInscricaoMunicipal;
     /**
      * Informa se se trata de uma S/A de Capital Aberto e com registro na CVM
      * (Required)
      * 
      */
     @NotNull
-    public Boolean empresaDeCapitalAbertoCVM;
+    private Boolean empresaDeCapitalAbertoCVM;
+
     @Valid
-    public Set<QuadroSocietario> quadroSocietario = null;
+    @OneToMany
+    @JoinColumn(name = "licitante_id")
+    private Set<QuadroSocietarioFaseDois> quadroSocietarioFaseDois = new HashSet<>();
+
+
     @Valid
-    public Set<MapaDePreco> mapaDePrecos = null;
+    @OneToMany
+    @JoinColumn(name = "licitante_id")
+    private Set<MapaDePreco> mapaDePrecos = new HashSet<>();
     /**
      * habilitacao
      * <p>
@@ -65,7 +80,9 @@ public class Licitante {
      */
     @Valid
     @NotNull
-    public Habilitacao habilitacao;
+    @OneToOne
+    @JoinColumn(name = "licitante_id")
+    private Habilitacao habilitacao;
     /**
      * julgamento
      * <p>
@@ -75,39 +92,9 @@ public class Licitante {
      */
     @Valid
     @NotNull
-    public Julgamento julgamento;
+    @OneToOne
+    @JoinColumn(name = "licitante_id")
+    private Julgamento julgamento;
 
-    public enum CodTipoDocumento {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoDocumento> CONSTANTS = new HashMap<Integer, CodTipoDocumento>();
-
-        static {
-            for (CodTipoDocumento c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoDocumento(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoDocumento fromValue(Integer value) {
-            CodTipoDocumento constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
+   
 }

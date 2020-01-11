@@ -1,11 +1,12 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
-import com.dom.colare.core.entidades.dominio.TipoEnvio;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,21 +30,25 @@ public class LicitacaoFaseDois extends BaseEntityID {
      * 
      */
     @NotNull
-    public Integer idLicitacaoFase1;
+    private Integer idLicitacaoFase1;
     /**
      * Código do Tipo de Envio
      * (Required)
      * 
      */
     @NotNull
-    public TipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
+    
+    
     @Valid
-    public Set<Licitante> licitantes = new HashSet<>();
+    @OneToMany
+    @JoinColumn(name = "licitacao_dois_id")
+    private Set<Licitante> licitantes = new HashSet<>();
     /**
      * 
      * (Required)
@@ -52,11 +57,14 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<Resultado> resultado = null;
+    @OneToMany
+    @JoinColumn(name = "licitacao_dois_id")
+    private Set<Resultado> resultado = new HashSet<>();
 
-
     @Valid
-    public Set<ResponsaveisPelaLicitacao> responsaveisPelaLicitacao = new HashSet<>();
+    @OneToMany
+    @JoinColumn(name = "licitacao_dois_id")
+    private Set<ResponsaveisFaseDois> responsaveis = new HashSet<>();
     /**
      * 
      * (Required)
@@ -65,7 +73,9 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<ParecerFaseDois> parecerFaseDois = new HashSet<>();
+    @OneToMany
+    @JoinColumn(name = "licitacao_dois_id")
+    private Set<ParecerFaseDois> parecerFaseDois = new HashSet<>();
     /**
      * 
      * (Required)
@@ -74,7 +84,9 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<AtasLicitacao> atasLicitacao = new HashSet<>();
+    @OneToMany
+    @JoinColumn(name = "licitacao_dois_id")
+    private Set<AtasLicitacao> atasLicitacao = new HashSet<>();
 
 
 }

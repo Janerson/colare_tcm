@@ -1,8 +1,10 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Dados da(s) ata(s) da(s) sessão(ões)
  * 
  */
-public class AtasLicitacao {
+@Entity
+@Data
+public class AtasLicitacao extends BaseEntityID {
 
     /**
      * Código do tipo de ata.
@@ -20,7 +24,7 @@ public class AtasLicitacao {
      * 
      */
     @NotNull
-    public AtasLicitacao.CodTipoAta codTipoAta;
+    public Integer codTipoAta;
     /**
      * Data do evento
      * (Required)
@@ -35,40 +39,5 @@ public class AtasLicitacao {
      */
     @NotNull
     public String idDocumentoPDF;
-
-    public enum CodTipoAta {
-
-        _1(1),
-        _2(2),
-        _3(3),
-        _4(4),
-        _5(5);
-        private final Integer value;
-        private final static Map<Integer, CodTipoAta> CONSTANTS = new HashMap<Integer, CodTipoAta>();
-
-        static {
-            for (CodTipoAta c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoAta(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoAta fromValue(Integer value) {
-            CodTipoAta constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

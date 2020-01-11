@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Preço final dos itens licitados
  * 
  */
-public class PrecoFinal {
+@Entity
+@Data
+public class PrecoFinal extends BaseEntityID {
 
     /**
      * Número do Lote
@@ -20,7 +26,7 @@ public class PrecoFinal {
      */
     @DecimalMin("0")
     @NotNull
-    public Integer numeroLote;
+    private Integer numeroLote;
     /**
      * Número do Item
      * (Required)
@@ -28,26 +34,26 @@ public class PrecoFinal {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroItem;
+    private Integer numeroItem;
     /**
      * Valor Unitário
      * 
      */
     @DecimalMin("0")
-    public Double valorUnitario;
+    private Double valorUnitario;
     /**
      * Indica se o item foi deserto na licitação
      * (Required)
      * 
      */
     @NotNull
-    public Boolean itemDeserto;
+    private Boolean itemDeserto;
     /**
      * indica se o item foi fracassado na licitação.
      * (Required)
      * 
      */
     @NotNull
-    public Boolean itemFracassado;
+    private Boolean itemFracassado;
 
 }

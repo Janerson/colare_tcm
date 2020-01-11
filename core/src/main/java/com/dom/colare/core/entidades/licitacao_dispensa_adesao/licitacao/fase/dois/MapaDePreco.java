@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.licitacao.fase.dois;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +15,9 @@ import javax.validation.constraints.NotNull;
  * Melhor lance ou proposta apresentada por licitante, por item
  * 
  */
-public class MapaDePreco {
+@Entity
+@Data
+public class MapaDePreco extends BaseEntityID {
 
     /**
      * Número do Lote
