@@ -24,6 +24,6 @@ public class RemessaBancaria extends BaseEntityID {
      * 
      */
     @NotNull
-    public String docArquivoRemessa;
+    private String docArquivoRemessa;
 
 }
