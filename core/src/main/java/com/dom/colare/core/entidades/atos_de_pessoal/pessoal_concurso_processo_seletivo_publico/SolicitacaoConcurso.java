@@ -1,6 +1,9 @@
-
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +13,9 @@ import javax.validation.constraints.NotNull;
  * Informar a Solicitação Concurso, conforme Art. 7º, parágrafo único, I, a, da IN 10/15.
  * 
  */
-public class SolicitacaoConcurso {
+@Entity
+@Data
+public class SolicitacaoConcurso extends BaseEntityID {
 
     /**
      * Descrição
@@ -18,13 +23,13 @@ public class SolicitacaoConcurso {
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
 
 }

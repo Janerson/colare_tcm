@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar se o critério de idade, maior de 60 Anos, como primeiro critério de desempate.
  * 
  */
-public class DetalhamentoMaiorDe60AnosComoPrimeiroCriterio {
+@Entity
+@Data
+public class DetalhamentoMaiorDe60AnosComoPrimeiroCriterio extends BaseEntityID {
 
     /**
      * Número do Item do Edital
@@ -18,13 +24,13 @@ public class DetalhamentoMaiorDe60AnosComoPrimeiroCriterio {
      * 
      */
     @NotNull
-    public String numeroItemDoEdital;
+    private String numeroItemDoEdital;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
 }

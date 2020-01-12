@@ -1,36 +1,46 @@
-
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 /**
  * criteriosDeDesempate
  * <p>
  * Informar os critérios de desempate.
- * 
  */
-public class CriteriosDeDesempate {
+@Entity
+@Data
+public class CriteriosDeDesempate extends BaseEntityID {
 
     /**
      * Idade superior a 60 anos é estabelecido como primeiro critério de desempate.
      * (Required)
-     * 
      */
     @NotNull
-    public Boolean maiorDe60AnosComoPrimerioCriterio;
+    private Boolean maiorDe60AnosComoPrimerioCriterio;
     /**
      * Experiência no serviço publico constitui um critério de desempate
      * (Required)
-     * 
      */
     @NotNull
-    public Boolean experienciaNoServicoPublicoConstituiUmCriterio;
+    private Boolean experienciaNoServicoPublicoConstituiUmCriterio;
+
     @Valid
-    public Set<DetalhamentoMaiorDe60AnosComoPrimeiroCriterio> detalhamentoMaiorDe60AnosComoPrimeiroCriterio = null;
+    @OneToMany
+    @JoinColumn(name = "criterio_desempate_id")
+    private Set<DetalhamentoMaiorDe60AnosComoPrimeiroCriterio> detalhamentoMaiorDe60AnosComoPrimeiroCriterio = null;
+
     @Valid
-    public Set<DetalhamentoExperienciaNoServicoPublicoConstituiUmCriterio> detalhamentoExperienciaNoServicoPublicoConstituiUmCriterio = null;
+    @OneToMany
+    @JoinColumn(name = "criterio_desempate_id")
+    private Set<DetalhamentoExperienciaNoServicoPublicoConstituiUmCriterio> detalhamentoExperienciaNoServicoPublicoConstituiUmCriterio = null;
 
 }

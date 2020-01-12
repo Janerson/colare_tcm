@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar clausulas de arredondamento do numero de vagas para PCD, quando do calculo percentual de vagas destinadas a PCD.
  * 
  */
-public class DetalhamentoArredondamentoPcd {
+@Entity
+@Data
+public class DetalhamentoArredondamentoPcd extends BaseEntityID {
 
     /**
      * Número do Item do Edital
@@ -18,13 +24,13 @@ public class DetalhamentoArredondamentoPcd {
      * 
      */
     @NotNull
-    public String numeroItemDoEdital;
+    private String numeroItemDoEdital;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
 }

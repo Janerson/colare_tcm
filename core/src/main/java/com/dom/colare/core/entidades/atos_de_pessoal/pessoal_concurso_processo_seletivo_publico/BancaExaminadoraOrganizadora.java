@@ -1,8 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar Banca Examinadora Organizadora
  * 
  */
-public class BancaExaminadoraOrganizadora {
+@Entity
+@Data
+public class BancaExaminadoraOrganizadora extends BaseEntityID {
 
     /**
      * Código do tipo de Banca Examinadora
@@ -20,7 +24,7 @@ public class BancaExaminadoraOrganizadora {
      * 
      */
     @NotNull
-    public BancaExaminadoraOrganizadora.CodTipoBancaExaminadora codTipoBancaExaminadora;
+    public Integer codTipoBancaExaminadora;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
@@ -36,36 +40,5 @@ public class BancaExaminadoraOrganizadora {
     @NotNull
     public Integer idContratoOriginal;
 
-    public enum CodTipoBancaExaminadora {
-
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodTipoBancaExaminadora> CONSTANTS = new HashMap<Integer, CodTipoBancaExaminadora>();
-
-        static {
-            for (CodTipoBancaExaminadora c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoBancaExaminadora(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoBancaExaminadora fromValue(Integer value) {
-            CodTipoBancaExaminadora constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

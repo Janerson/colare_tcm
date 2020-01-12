@@ -1,9 +1,15 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 /**
@@ -12,7 +18,9 @@ import javax.validation.constraints.NotNull;
  * Informar as detalhamentos sobre a taxa de inscrição na Seleção.
  * 
  */
-public class TaxaDeInscricao {
+@Entity
+@Data
+public class TaxaDeInscricao extends BaseEntityID {
 
     /**
      * Existe previsão de isenção do pagamento da taxa de inscrição.
@@ -20,26 +28,35 @@ public class TaxaDeInscricao {
      * 
      */
     @NotNull
-    public Boolean existePrevisaoDeIsencao;
+    private Boolean existePrevisaoDeIsencao;
     /**
      * Existe previsão de devolução devido pagamento de taxa de inscrição em duplicidade.
      * (Required)
      * 
      */
     @NotNull
-    public Boolean existePrevisaoDeDevolucaoDevidoPagEmDuplicidade;
+    private Boolean existePrevisaoDeDevolucaoDevidoPagEmDuplicidade;
     /**
      * Existe previsão de Devolução da taxa de inscrição devido o cancelamento da Seleção.
      * (Required)
      * 
      */
     @NotNull
-    public Boolean existePrevisaoDeDevolucaoTaxaDevidoCancelamento;
+    private Boolean existePrevisaoDeDevolucaoTaxaDevidoCancelamento;
+
     @Valid
-    public Set<DetalhamentoPrevisaoDeIsencao> detalhamentoPrevisaoDeIsencao = null;
+    @OneToMany
+    @JoinColumn(name = "taxa_inscricao_id")
+    private Set<DetalhamentoPrevisaoDeIsencao> detalhamentoPrevisaoDeIsencao = null;
+
     @Valid
-    public Set<DetalhamentoPrevisaoDeDevolucao> detalhamentoPrevisaoDeDevolucao = null;
+    @OneToMany
+    @JoinColumn(name = "taxa_inscricao_id")
+    private Set<DetalhamentoPrevisaoDeDevolucao> detalhamentoPrevisaoDeDevolucao = null;
+
     @Valid
-    public Set<DetalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade> detalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade = null;
+    @OneToMany
+    @JoinColumn(name = "taxa_inscricao_id")
+    private Set<DetalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade> detalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade = null;
 
 }

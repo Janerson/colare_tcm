@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar o numero do item onde contem as clausulas de aprovação e apuração da nota final
  * 
  */
-public class DetalhamentoClausulaQueEstabelecaCriteriosParaAprovacaoEParaNotaFinal {
+@Entity
+@Data
+public class DetalhamentoClausulaQueEstabelecaCriteriosParaAprovacaoEParaNotaFinal extends BaseEntityID {
 
     /**
      * Número do Item do Edital
@@ -18,13 +24,13 @@ public class DetalhamentoClausulaQueEstabelecaCriteriosParaAprovacaoEParaNotaFin
      * 
      */
     @NotNull
-    public String numeroItemDoEdital;
+    private String numeroItemDoEdital;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
 }

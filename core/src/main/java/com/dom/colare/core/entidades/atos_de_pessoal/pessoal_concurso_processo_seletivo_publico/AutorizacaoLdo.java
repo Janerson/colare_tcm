@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa dados da autorização na LDO para realização da Seleção.
  * 
  */
-public class AutorizacaoLdo {
+@Entity
+@Data
+public class AutorizacaoLdo extends BaseEntityID {
 
     /**
      * Identificação (ID) da legislação anteriormente enviada
@@ -18,13 +24,13 @@ public class AutorizacaoLdo {
      * 
      */
     @NotNull
-    public Integer idPessoalLegislacao;
+    private Integer idPessoalLegislacao;
     /**
      * Artigo da Legislação ou Norma
      * (Required)
      * 
      */
     @NotNull
-    public String artigo;
+    private String artigo;
 
 }

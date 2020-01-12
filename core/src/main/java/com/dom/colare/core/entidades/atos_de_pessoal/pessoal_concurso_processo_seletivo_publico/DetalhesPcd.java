@@ -1,9 +1,15 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 /**
@@ -12,7 +18,9 @@ import javax.validation.constraints.NotNull;
  * informar dados relativos a PCD
  * 
  */
-public class DetalhesPcd {
+@Entity
+@Data
+public class DetalhesPcd extends BaseEntityID {
 
     /**
      * Existe Legislação Municipal para Reserva de Vagas para PCD.
@@ -20,26 +28,35 @@ public class DetalhesPcd {
      * 
      */
     @NotNull
-    public Boolean existeLegislacaoMunicipalReservaVagasPCD;
+    private Boolean existeLegislacaoMunicipalReservaVagasPCD;
     /**
      * Existe Clausula de Arredondamento de Percentual para numero vagas PCD
      * (Required)
      * 
      */
     @NotNull
-    public Boolean existeClausulaDeArreddondamentoDePercentual;
+    private Boolean existeClausulaDeArreddondamentoDePercentual;
     /**
      * Existe Vagas Destinadas a PCD.
      * (Required)
      * 
      */
     @NotNull
-    public Boolean haVagasDestinadasPCD;
+    private Boolean haVagasDestinadasPCD;
+   
     @Valid
-    public Set<DetalhamentoLeiPcd> detalhamentoLeiPcd = null;
+    @OneToMany
+    @JoinColumn(name = "detalhe_pcd_id")
+    private Set<DetalhamentoLeiPcd> detalhamentoLeiPcd = null;
+  
     @Valid
-    public Set<DetalhamentoArredondamentoPcd> detalhamentoArredondamentoPcd = null;
+    @OneToMany
+    @JoinColumn(name = "detalhe_pcd_id")
+    private Set<DetalhamentoArredondamentoPcd> detalhamentoArredondamentoPcd = null;
+  
     @Valid
-    public Set<DetalhamentoVagasPcd> detalhamentoVagasPcd = null;
+    @OneToMany
+    @JoinColumn(name = "detalhe_pcd_id")
+    private Set<DetalhamentoVagasPcd> detalhamentoVagasPcd = null;
 
 }

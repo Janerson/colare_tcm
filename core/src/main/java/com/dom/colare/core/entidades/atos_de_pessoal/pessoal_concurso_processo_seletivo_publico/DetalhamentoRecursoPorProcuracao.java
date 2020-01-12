@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa dados sobre a previsão de recurso ou impugnação por procuração
  * 
  */
-public class DetalhamentoRecursoPorProcuracao {
+@Entity
+@Data
+public class DetalhamentoRecursoPorProcuracao extends BaseEntityID {
 
     /**
      * Número do Item do Edital
@@ -18,13 +24,13 @@ public class DetalhamentoRecursoPorProcuracao {
      * 
      */
     @NotNull
-    public String numeroItemDoEdital;
+    private String numeroItemDoEdital;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
 }

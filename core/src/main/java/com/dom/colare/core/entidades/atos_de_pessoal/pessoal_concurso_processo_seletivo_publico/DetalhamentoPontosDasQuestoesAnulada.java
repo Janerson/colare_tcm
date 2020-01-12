@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informa a previsão de, no caso de anulação de alguma questão, atribuir-se pontuação a todos candidatos.
  * 
  */
-public class DetalhamentoPontosDasQuestoesAnulada {
+@Entity
+@Data
+public class DetalhamentoPontosDasQuestoesAnulada extends BaseEntityID {
 
     /**
      * Número do Item do Edital
@@ -18,13 +24,13 @@ public class DetalhamentoPontosDasQuestoesAnulada {
      * 
      */
     @NotNull
-    public String numeroItemDoEdital;
+    private String numeroItemDoEdital;
     /**
      * Descrição
      * (Required)
      * 
      */
     @NotNull
-    public String descricao;
+    private String descricao;
 
 }

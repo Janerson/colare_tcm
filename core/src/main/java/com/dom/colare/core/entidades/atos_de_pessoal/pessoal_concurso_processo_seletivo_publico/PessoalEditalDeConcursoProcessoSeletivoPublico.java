@@ -1,13 +1,20 @@
 
-package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
+package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_privateo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico.*;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -16,7 +23,9 @@ import javax.validation.constraints.Size;
  * Dados do Edital do Concurso ou Processo Seletivo Público
  * 
  */
-public class PessoalEditalDeConcursoProcessoSeletivoPublico {
+@Entity
+@Data
+public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID {
 
     /**
      * Código do Tipo de Envio
@@ -24,12 +33,12 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      * 
      */
     @NotNull
-    public PessoalEditalDeConcursoProcessoSeletivoPublico.CodTipoEnvio codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * Número do Edital
      * (Required)
@@ -37,7 +46,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroEdital;
+    private Integer numeroEdital;
     /**
      * Ano do Edital
      * (Required)
@@ -45,14 +54,14 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @DecimalMin("1950")
     @NotNull
-    public Integer anoEdital;
+    private Integer anoEdital;
     /**
      * Informar o tipo do edital de Seleção de Pessoal, conforme tabela.
      * (Required)
      * 
      */
     @NotNull
-    public PessoalEditalDeConcursoProcessoSeletivoPublico.CodTipoEditalSelecaoPessoal codTipoEditalSelecaoPessoal;
+    private Integer codTipoEditalSelecaoPessoal;
     /**
      * 
      * (Required)
@@ -61,7 +70,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<TextoDoEdital> textoDoEdital = null;
+    @OneToMany
+    @JoinColumn(name = "processo_seletivo_id")
+    private Set<TextoDoEditalProcessoSeletivo> textoDoEdital = new HashSet<>();
     /**
      * solicitacaoConcurso
      * <p>
@@ -71,7 +82,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public SolicitacaoConcurso solicitacaoConcurso;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private SolicitacaoConcurso solicitacaoConcurso;
     /**
      * comissaoOrganizadoraSelecao
      * <p>
@@ -81,7 +94,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public ComissaoOrganizadoraSelecao comissaoOrganizadoraSelecao;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private ComissaoOrganizadoraSelecao comissaoOrganizadoraSelecao;
     /**
      * bancaExaminadoraOrganizadora
      * <p>
@@ -91,7 +106,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public BancaExaminadoraOrganizadora bancaExaminadoraOrganizadora;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private BancaExaminadoraOrganizadora bancaExaminadoraOrganizadora;
     /**
      * 
      * (Required)
@@ -100,7 +117,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<DetalhamentoPublicidadeExtratoEdital> detalhamentoPublicidadeExtratoEdital = null;
+    @OneToMany
+    @JoinColumn(name = "processo_seletivo_id")
+    private Set<DetalhamentoPublicidadeExtratoEdital> detalhamentoPublicidadeExtratoEdital = new HashSet<>();
     /**
      * detalhesPcd
      * <p>
@@ -110,7 +129,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public DetalhesPcd detalhesPcd;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private DetalhesPcd detalhesPcd;
     /**
      * cadastroReserva
      * <p>
@@ -120,7 +141,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public CadastroReserva cadastroReserva;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private CadastroReserva cadastroReserva;
     /**
      * 
      * (Required)
@@ -129,7 +152,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<DetalhamentoCargosSelecaoProva> detalhamentoCargosSelecaoProva = null;
+    @OneToMany
+    @JoinColumn(name = "processo_seletivo_id")
+    private Set<DetalhamentoCargosSelecaoProva> detalhamentoCargosSelecaoProva = new HashSet<>();
     /**
      * criteriosDeDesempate
      * <p>
@@ -139,7 +164,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public CriteriosDeDesempate criteriosDeDesempate;
+    @OneToMany
+    @JoinColumn(name = "processo_seletivo_id")
+    private CriteriosDeDesempate criteriosDeDesempate;
     /**
      * taxaDeInscricao
      * <p>
@@ -149,7 +176,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public TaxaDeInscricao taxaDeInscricao;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private TaxaDeInscricao taxaDeInscricao;
     /**
      * periodoDeInscricao
      * <p>
@@ -159,7 +188,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public PeriodoDeInscricao periodoDeInscricao;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private PeriodoDeInscricao periodoDeInscricao;
     /**
      * validade
      * <p>
@@ -169,7 +200,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public Validade validade;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private Validade validade;
     /**
      * dadosRecursoImpugnacao
      * <p>
@@ -179,7 +212,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public DadosRecursoImpugnacao dadosRecursoImpugnacao;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private DadosRecursoImpugnacao dadosRecursoImpugnacao;
     /**
      * autorizacaoLdo
      * <p>
@@ -189,7 +224,9 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public AutorizacaoLdo autorizacaoLdo;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private AutorizacaoLdo autorizacaoLdo;
     /**
      * certidaoResponsabilidadeFiscal
      * <p>
@@ -199,71 +236,10 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico {
      */
     @Valid
     @NotNull
-    public CertidaoResponsabilidadeFiscal certidaoResponsabilidadeFiscal;
+    @OneToOne
+    @JoinColumn(name = "processo_seletivo_id")
+    private CertidaoResponsabilidadeFiscal certidaoResponsabilidadeFiscal;
 
-    public enum CodTipoEditalSelecaoPessoal {
 
-        _1(1),
-        _2(2);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEditalSelecaoPessoal> CONSTANTS = new HashMap<Integer, CodTipoEditalSelecaoPessoal>();
-
-        static {
-            for (CodTipoEditalSelecaoPessoal c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEditalSelecaoPessoal(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEditalSelecaoPessoal fromValue(Integer value) {
-            CodTipoEditalSelecaoPessoal constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum CodTipoEnvio {
-
-        _1(1),
-        _2(2),
-        _3(3);
-        private final Integer value;
-        private final static Map<Integer, CodTipoEnvio> CONSTANTS = new HashMap<Integer, CodTipoEnvio>();
-
-        static {
-            for (CodTipoEnvio c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private CodTipoEnvio(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static CodTipoEnvio fromValue(Integer value) {
-            CodTipoEnvio constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
-    }
 
 }

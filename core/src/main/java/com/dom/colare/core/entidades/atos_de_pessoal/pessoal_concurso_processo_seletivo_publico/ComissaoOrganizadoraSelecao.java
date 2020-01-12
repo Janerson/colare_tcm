@@ -1,10 +1,17 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
-import java.util.Set;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -13,7 +20,9 @@ import javax.validation.constraints.Size;
  * Comissão Organizadora da Seleção
  * 
  */
-public class ComissaoOrganizadoraSelecao {
+@Entity
+@Data
+public class ComissaoOrganizadoraSelecao extends BaseEntityID {
 
     /**
      * ID do arquivo enviado contendo o documento digitalizado
@@ -30,6 +39,8 @@ public class ComissaoOrganizadoraSelecao {
     @Size(min = 1)
     @Valid
     @NotNull
-    public Set<DetalhamentoMembrosComissao> detalhamentoMembrosComissao = null;
+    @OneToMany
+    @JoinColumn(name = "comissao_concurso_id")
+    public Set<DetalhamentoMembrosComissao> detalhamentoMembrosComissao = new HashSet<>();
 
 }
