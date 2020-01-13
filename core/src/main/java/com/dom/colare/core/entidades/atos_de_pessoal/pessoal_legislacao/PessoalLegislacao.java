@@ -23,7 +23,7 @@ import java.util.Set;
  * Legislação e Normas de Pessoal
  * 
  */
-@Entity
+@Entity(name ="PES_LEGISLACAO")
 @Data
 public class PessoalLegislacao extends BaseEntityID {
 
@@ -116,7 +116,7 @@ public class PessoalLegislacao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "pessoal_legislacao_id")
+    @JoinColumn(name = "PES_LEGISLACAO_ID")
     private Set<AssuntosDaNorma> assuntosDaNorma = new HashSet<>();
     /**
      * aNormaRegulamentaOutroIdpessoallegislacao
@@ -128,7 +128,7 @@ public class PessoalLegislacao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_legislacao_id")
+    @JoinColumn(name = "PES_REG_OUTROID_ID")
     private ANormaRegulamentaOutroIdpessoallegislacao aNormaRegulamentaOutroIdpessoallegislacao;
     /**
      * unidadesGestorasAplicaveis
@@ -140,7 +140,7 @@ public class PessoalLegislacao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_legislacao_id")
+    @JoinColumn(name = "PES_UG_APLICNOR_ID", insertable = false, updatable = false)
     private UnidadesGestorasAplicaveis unidadesGestorasAplicaveis;
     /**
      * 
@@ -151,7 +151,7 @@ public class PessoalLegislacao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "pessoal_legislacao_id")
+    @JoinColumn(name = "PES_LEGISLACAO_ID")
     private Set<TextoDaNormaOuLegislacao> textoDaNormaOuLegislacao = new HashSet<>();
 
 

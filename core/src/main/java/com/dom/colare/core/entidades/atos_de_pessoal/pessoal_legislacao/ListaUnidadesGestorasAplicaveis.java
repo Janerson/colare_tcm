@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar todas as Unidades Gestoras, as quais a Norma/Legislação aplica-se.
  * 
  */
-@Entity
+@Entity(name = "PES_UG_APLICAVE")
 @Data
 public class ListaUnidadesGestorasAplicaveis extends BaseEntityID {
 

@@ -20,7 +20,7 @@ import java.util.Set;
  * Contém as Informações dos Dependentes do Instituidor
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_DEPENT")
 @Data
 public class Dependente extends BaseEntityID {
 
@@ -61,7 +61,7 @@ public class Dependente extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "dependente_id")
+    @JoinColumn(name = "PES_PENS_DEPENT_ID")
     private Set<DocumentosComprobatoriosDependencia> documentosComprobatoriosDependencia = new HashSet<>();
 
 

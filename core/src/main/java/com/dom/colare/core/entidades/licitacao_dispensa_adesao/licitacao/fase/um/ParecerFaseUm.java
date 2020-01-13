@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * <p>
  * Parecer da Licitação
  */
-@Entity
+@Entity(name = "PAREC_FASE1")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ParecerFaseUm extends Parecer {

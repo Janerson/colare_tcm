@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contém o arquivo de Remessa Bancária
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXC_RMS")
 @Data
 public class RemessaBancaria extends BaseEntityID {
 

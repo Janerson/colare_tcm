@@ -4,6 +4,7 @@ package com.dom.colare.core.entidades.folha_pagamento.pessoal_exec_orcamentaria;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ import java.util.Set;
  * Contém informações da Execução Orçamentária da Folha de Pagamento.
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXC_ORCM")
 @Data
 public class PessoalExecucaoOrcamentariaFolhaPagamento extends BaseEntityID {
 
@@ -51,8 +52,8 @@ public class PessoalExecucaoOrcamentariaFolhaPagamento extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany
-    @JoinColumn(name = "pessoal_exec_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_FP_EXC_ORCM_ID")
     private Set<NumeroEmpenho> numeroEmpenho = new HashSet<>();
     /**
      * 
@@ -62,8 +63,8 @@ public class PessoalExecucaoOrcamentariaFolhaPagamento extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany
-    @JoinColumn(name = "pessoal_exec_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_FP_EXC_ORCM_ID")
     private Set<Banco> banco = new HashSet<>();
 
 

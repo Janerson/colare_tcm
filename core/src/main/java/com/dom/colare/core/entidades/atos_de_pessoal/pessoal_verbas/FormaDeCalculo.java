@@ -19,7 +19,7 @@ import java.util.Set;
  * Informar a Forma De Calculo
  * 
  */
-@Entity
+@Entity(name = "PES_VER_FORMCAL")
 @Data
 public class FormaDeCalculo extends BaseEntityID {
 
@@ -55,7 +55,7 @@ public class FormaDeCalculo extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "formula_calculo_id")
+    @JoinColumn(name = "PES_VER_FORMCAL_ID")
     private Set<DetalhamentoTipoCalculoCondicional> detalhamentoTipoCalculoCondicional = null;
 
 

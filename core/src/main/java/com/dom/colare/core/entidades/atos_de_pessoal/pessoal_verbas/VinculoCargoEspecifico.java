@@ -18,7 +18,7 @@ import java.util.Set;
  * Informa se a verba é vinculada a algum cargo em especifico.
  * 
  */
-@Entity
+@Entity(name = "PES_VER_VCES")
 @Data
 public class VinculoCargoEspecifico extends BaseEntityID {
 
@@ -33,7 +33,7 @@ public class VinculoCargoEspecifico extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "vinculo_cargo_id")
+    @JoinColumn(name = "PES_VER_VCES_ID")
     private Set<DetalhamentoVinculoCargoEspecifico> detalhamentoVinculoCargoEspecifico = null;
 
 }

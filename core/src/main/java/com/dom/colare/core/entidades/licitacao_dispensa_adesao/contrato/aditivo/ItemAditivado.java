@@ -5,7 +5,6 @@ import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -16,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Dados dos itens aditivados
  * 
  */
-@Entity
+@Entity(name = "ITEM_ADT")
 @Data
 public class ItemAditivado extends BaseEntityID {
 
@@ -68,7 +67,5 @@ public class ItemAditivado extends BaseEntityID {
     @NotNull
     private Double quantidadeDecrescida;
     
-    @ManyToOne
-    private ContratadoAditivo contratadoAditivo;
 
 }

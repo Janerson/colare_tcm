@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar o(s) CPF(s) do(s) responsáveis que assinaram o ato administrativo da concessão da pensão.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_RESPAT")
 @Data
 public class Numerocpfdoresponsavelpeloato extends BaseEntityID {
 

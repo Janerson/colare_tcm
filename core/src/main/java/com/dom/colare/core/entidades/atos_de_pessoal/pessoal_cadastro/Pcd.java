@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * Informar detalhes Pessoa com Deficiência
  * 
  */
-@Entity
+@Entity(name = "PES_CAD_PCD")
 @Data
 public class Pcd extends BaseEntityID {
 
@@ -36,7 +36,7 @@ public class Pcd extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "pcd_id")
+    @JoinColumn(name = "PES_CAD_DET_PCD_ID")
     private DetalhamentoDeficiencia detalhamentoDeficiencia;
 
 }

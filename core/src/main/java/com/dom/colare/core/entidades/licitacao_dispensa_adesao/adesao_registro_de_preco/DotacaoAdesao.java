@@ -5,7 +5,6 @@ import com.dom.colare.core.entidades.shared.Dotacao;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * dotacao
@@ -13,11 +12,7 @@ import javax.persistence.ManyToOne;
  * Dotação orçamentária
  * 
  */
-@Entity
+@Entity(name = "DOTACAO_ADESAO")
 @Data
 public class DotacaoAdesao extends Dotacao {
-
-    @ManyToOne
-    private RecursoOrcamentarioAdesao recursoOrcamentarioAdesao;
-
 }

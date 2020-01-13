@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Contém as informações sobre o posicionamento vencimental do servidor na carreira.
  * 
  */
-@Entity
+@Entity(name = "PES_POS_VNCT_CR")
 @Data
 public class PosicaoVencimentoCarreira extends BaseEntityID {
 

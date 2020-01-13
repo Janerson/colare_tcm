@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Contém as informações relativas às liquidaçãoes
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXC_LIQ")
 @Data
 public class Liquidacao extends BaseEntityID {
 

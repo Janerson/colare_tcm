@@ -18,7 +18,7 @@ import java.util.Set;
  * <p>
  * Detalhamento da composição da comissão de licitação / Pregoeiro - Equipe de Apoio
  */
-@Entity
+@Entity(name = "COMISSAO_FASE1")
 @Data
 public class Comissao extends BaseEntityID {
     /**
@@ -64,7 +64,7 @@ public class Comissao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "comissao_id")
+    @JoinColumn(name = "COMISSAO_FASE1_ID")
     private Set<Membro> membro = new HashSet<>();
 
 

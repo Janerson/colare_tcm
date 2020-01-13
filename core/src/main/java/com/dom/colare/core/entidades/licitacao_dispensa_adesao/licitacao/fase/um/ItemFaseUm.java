@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * <p>
  * Cadastro de Itens do Processo Licitatório
  */
-@Entity
+@Entity(name = "ITEM_FASE1")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ItemFaseUm extends Item {

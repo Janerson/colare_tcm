@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * Dados das Verbas, seja remuneração ou descontos.
  * 
  */
-@Entity
+@Entity(name = "PES_VERBAS")
 @Data
 public class PessoalVerbas extends BaseEntityID {
 
@@ -126,7 +126,7 @@ public class PessoalVerbas extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_verbas_id")
+    @JoinColumn(name = "PES_VER_VCES_ID")
     private VinculoCargoEspecifico vinculoCargoEspecifico;
     /**
      * formaDeCalculo
@@ -138,7 +138,7 @@ public class PessoalVerbas extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_verbas_id")
+    @JoinColumn(name = "PES_VER_FORMCAL_ID")
     private FormaDeCalculo formaDeCalculo;
     /**
      * codificacaoNaturezaDespesa
@@ -150,7 +150,7 @@ public class PessoalVerbas extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_verbas_id")
+    @JoinColumn(name = "PES_VER_ND_ID")
     private CodificacaoNaturezaDespesa codificacaoNaturezaDespesa;
 
 

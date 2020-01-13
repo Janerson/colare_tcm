@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contém os dados das Pensões Judiciais.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_P_JUD")
 @Data
 public class PensaoJudicial extends BaseEntityID {
 

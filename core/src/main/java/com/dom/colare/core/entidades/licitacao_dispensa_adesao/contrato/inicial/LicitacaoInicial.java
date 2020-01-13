@@ -18,7 +18,7 @@ import java.util.Set;
  * Preencher exclusivamente e obrigatoriamente quando codTipoProcedimento for igual a "1-Licitação", com os dados da licitação da qual resultou o contrato.
  * 
  */
-@Entity
+@Entity(name = "CONTR_PROC_LIC")
 @Data
 public class LicitacaoInicial extends Licitacao {
 
@@ -31,10 +31,7 @@ public class LicitacaoInicial extends Licitacao {
     @Valid
     @NotNull
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "licitacao_id")
-    public Set<EditalEAnexoLicitacao> editalEAnexos = new HashSet<>();
+    @JoinColumn(name = "CONTR_PROC_LIC_ID")
+    private Set<EditalEAnexoLicitacao> editalEAnexos = new HashSet<>();
 
-    @OneToOne
-    @MapsId
-    private ProcedimentoDeContratacao procedimentoDeContratacao;
 }

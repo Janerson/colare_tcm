@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contém os documento que comprovam vinculo do Dependente em relação ao Instituidor.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_DOCCOM")
 @Data
 public class DocumentosComprobatoriosDependencia extends BaseEntityID {
 

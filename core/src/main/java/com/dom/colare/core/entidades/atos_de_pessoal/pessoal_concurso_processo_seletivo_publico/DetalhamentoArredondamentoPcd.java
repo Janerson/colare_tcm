@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar clausulas de arredondamento do numero de vagas para PCD, quando do calculo percentual de vagas destinadas a PCD.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_ARRDPCD")
 @Data
 public class DetalhamentoArredondamentoPcd extends BaseEntityID {
 

@@ -1,22 +1,24 @@
 
-package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_processo_seletivo_simplificado;
+package com.dom.colare.core.entidades.shared;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
 
 /**
  * detalhamentoPublicidadeExtratoEdital
  * <p>
- * Informa o Detalhamento Publicidade Extrato Edital
+ * Detalhamento da Publicidade do  Extrato do Edital
  * 
  */
 @Entity
 @Data
-public class DetalhamentoPublicidadeExtratoEdital extends BaseEntityID {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class DetalhamentoPublicidadeExtratoEdital extends BaseEntityID {
 
     /**
      * ID do arquivo enviado contendo o documento digitalizado
@@ -25,6 +27,11 @@ public class DetalhamentoPublicidadeExtratoEdital extends BaseEntityID {
      */
     @NotNull
     private String idDocumentoPDF;
+    /**
+     * Descrição
+     * 
+     */
+    private String descricao;
     /**
      * Data da Publicação
      * (Required)
@@ -39,11 +46,5 @@ public class DetalhamentoPublicidadeExtratoEdital extends BaseEntityID {
      */
     @NotNull
     private Integer codVeiculoPublicacao;
-    /**
-     * Descrição
-     * 
-     */
-    private String descricao;
-
 
 }

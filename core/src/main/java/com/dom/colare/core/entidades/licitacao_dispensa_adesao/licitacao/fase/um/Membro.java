@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Membros da comissão de licitação
  * 
  */
-@Entity
+@Entity(name = "MEMBRO_FASE1")
 @Data
 public class Membro extends BaseEntityID {
 

@@ -1,13 +1,11 @@
 
-package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
+package com.dom.colare.core.entidades.shared;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
 
@@ -19,7 +17,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Data
-public class DetalhamentoProva extends BaseEntityID {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class DetalhamentoProva extends BaseEntityID {
 
     /**
      * Data da realização da prova
@@ -42,10 +41,6 @@ public class DetalhamentoProva extends BaseEntityID {
      * (Required)
      * 
      */
-    @Valid
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "detalhamento_prova_id")
-    private Caraterdaprova caraterdaprova;
+
 
 }

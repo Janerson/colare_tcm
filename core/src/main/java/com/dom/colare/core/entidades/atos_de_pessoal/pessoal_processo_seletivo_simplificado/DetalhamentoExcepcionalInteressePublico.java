@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar os detalhes do excepcional interesse público para a realização do Processo Seletivo Simplificado.
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_EXCEP")
 @Data
 public class DetalhamentoExcepcionalInteressePublico extends BaseEntityID {
 

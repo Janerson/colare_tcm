@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar os dados do município goiano quando a acumulação de cargo for na esfera municipal.
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_ACUM2")
 @Data
 public class MunicipioGoiano extends BaseEntityID {
 

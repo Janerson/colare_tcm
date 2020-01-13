@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Contém as informações referente ao desconto de IRRF, quando este ocorrer.
  * 
  */
-@Entity
+@Entity(name = "PES_FP_DESCIRRF")
 @Data
 public class DescontoIrrf extends BaseEntityID {
 

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Lista de Normas que a presente Norma regulamenta
  * 
  */
-@Entity
+@Entity(name = "PES_NOR_REG")
 @Data
 public class NormaOuLegislacaoRegulamentada extends BaseEntityID {
 

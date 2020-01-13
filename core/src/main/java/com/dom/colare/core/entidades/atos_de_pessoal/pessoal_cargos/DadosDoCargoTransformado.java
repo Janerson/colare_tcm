@@ -1,6 +1,10 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_cargos;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 
@@ -10,7 +14,9 @@ import javax.validation.constraints.NotNull;
  * Informar o IDPessoalCargo de todos cargos que por lei foram transformados no atual
  * 
  */
-public class DadosDoCargoTransformado {
+@Entity(name = "PES_CARGO_TRNSF")
+@Data
+public class DadosDoCargoTransformado extends BaseEntityID {
 
     /**
      * ID do Cargo 
@@ -19,23 +25,5 @@ public class DadosDoCargoTransformado {
      */
     @NotNull
     private Integer idPessoalCargo;
-
-    /**
-     * ID do Cargo 
-     * (Required)
-     * 
-     */
-    public Integer getIdPessoalCargo() {
-        return idPessoalCargo;
-    }
-
-    /**
-     * ID do Cargo 
-     * (Required)
-     * 
-     */
-    public void setIdPessoalCargo(Integer idPessoalCargo) {
-        this.idPessoalCargo = idPessoalCargo;
-    }
 
 }

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * Contém o Detalhamento da Concessão
  * 
  */
-@Entity
+@Entity(name = "PES_CONCESSAODT")
 @Data
 public class DetalhamentoConcessao extends BaseEntityID {
 
@@ -36,7 +36,7 @@ public class DetalhamentoConcessao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "detalhamento_concessao_id")
+    @JoinColumn(name = "PES_POS_VNCT_CR_ID")
     private PosicaoVencimentoCarreira posicaoVencimentoCarreira;
     /**
      * verba
@@ -46,7 +46,7 @@ public class DetalhamentoConcessao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "detalhamento_concessao_id")
+    @JoinColumn(name = "PES_CONCS_VERBA")
     private Verba verba;
 
 }

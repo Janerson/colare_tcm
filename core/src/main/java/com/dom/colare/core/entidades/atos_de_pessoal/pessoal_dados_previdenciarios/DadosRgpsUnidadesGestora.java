@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * Informa os dados previdenciários do RGPS
  * 
  */
-@Entity
+@Entity(name = "PES_DADOSRGPS")
 @Data
 public class DadosRgpsUnidadesGestora extends BaseEntityID {
 

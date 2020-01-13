@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * Dados de Pensionista
  * 
  */
-@Entity
+@Entity(name = "PES_PENSIONIST")
 @Data
 public class PessoalPensionista extends BaseEntityID {
 
@@ -62,7 +62,7 @@ public class PessoalPensionista extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "pessoal_pensionista_id")
+    @JoinColumn(name = "PES_PENS_DADOS_ID")
     private DadosDaPensao dadosDaPensao;
     /**
      * pensaoRpps
@@ -72,7 +72,7 @@ public class PessoalPensionista extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "pessoal_pensionista_id")
+    @JoinColumn(name = "PES_PENS_P_RPPS_ID")
     private PensaoRpps pensaoRpps;
     /**
      * pensaoJudicial
@@ -82,7 +82,7 @@ public class PessoalPensionista extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "pessoal_pensionista_id")
+    @JoinColumn(name = "PES_PENS_P_JUD_ID")
     private PensaoJudicial pensaoJudicial;
     /**
      * pensaoMerce
@@ -92,7 +92,7 @@ public class PessoalPensionista extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "pessoal_pensionista_id")
+    @JoinColumn(name = "PES_PENS_MERCE_ID")
     private PensaoMerce pensaoMerce;
     /**
      * requisitosFinanceiros
@@ -104,7 +104,7 @@ public class PessoalPensionista extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_pensionista_id")
+    @JoinColumn(name = "PES_PENS_FIN_ID")
     private RequisitosFinanceiros requisitosFinanceiros;
 
 

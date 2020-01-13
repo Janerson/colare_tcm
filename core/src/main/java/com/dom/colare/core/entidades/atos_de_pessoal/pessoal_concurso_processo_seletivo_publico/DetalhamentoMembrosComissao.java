@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar a composição da Comissão Organizadora da Seleção
  * 
  */
-@Entity
+@Entity(name = "PES_CON_MENBROS")
 @Data
 public class DetalhamentoMembrosComissao extends BaseEntityID {
 

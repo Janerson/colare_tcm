@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar se o critério de idade, maior de 60 Anos, como primeiro critério de desempate.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_DESMP1")
 @Data
 public class DetalhamentoMaiorDe60AnosComoPrimeiroCriterio extends BaseEntityID {
 

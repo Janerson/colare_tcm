@@ -20,7 +20,7 @@ import java.util.Set;
  * Contém os dados dos proventos do pensionista.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_FIN")
 @Data
 public class RequisitosFinanceiros extends BaseEntityID {
 
@@ -54,7 +54,7 @@ public class RequisitosFinanceiros extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "requisito_finac_id")
+    @JoinColumn(name = "PES_PENS_FIN_ID")
     private Set<ComposicaoUltimaRemuneracao> composicaoUltimaRemuneracao = new HashSet<>();
 
 

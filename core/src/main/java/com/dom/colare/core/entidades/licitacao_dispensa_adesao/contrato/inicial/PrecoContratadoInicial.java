@@ -5,7 +5,6 @@ import com.dom.colare.core.entidades.shared.PrecoContratado;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 
@@ -15,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Preço contratado por item
  * 
  */
-@Entity
+@Entity(name = "PRECO_CONTRAT")
 @Data
 public class PrecoContratadoInicial extends PrecoContratado {
 
@@ -27,7 +26,5 @@ public class PrecoContratadoInicial extends PrecoContratado {
     @NotNull
     public Integer numeroLote;
 
-    @ManyToOne
-    private ContratadoInicial contratadoInicial;
 
 }

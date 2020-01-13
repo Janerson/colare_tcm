@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Melhor lance ou proposta apresentada por licitante, por item
  * 
  */
-@Entity
+@Entity(name = "PROPOSTAS_FASE2")
 @Data
 public class MapaDePreco extends BaseEntityID {
 
@@ -26,7 +26,7 @@ public class MapaDePreco extends BaseEntityID {
      */
     @DecimalMin("0")
     @NotNull
-    public Integer numeroLote;
+    private Integer numeroLote;
     /**
      * Número do Item
      * (Required)
@@ -34,7 +34,7 @@ public class MapaDePreco extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroItem;
+    private Integer numeroItem;
     /**
      * Valor Unitário
      * (Required)
@@ -42,6 +42,6 @@ public class MapaDePreco extends BaseEntityID {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorUnitario;
+    private Double valorUnitario;
 
 }

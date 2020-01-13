@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Habilitação do licitante
  * 
  */
-@Entity
+@Entity(name = "HABILIT_FASE2")
 @Data
 public class Habilitacao extends BaseEntityID {
 
@@ -24,25 +24,25 @@ public class Habilitacao extends BaseEntityID {
      * 
      */
     @NotNull
-    public Boolean registrouEmAtaPresencaPrepostoDoLicitante;
+    private Boolean registrouEmAtaPresencaPrepostoDoLicitante;
     /**
      * Informar se o licitante renunciou ao prazo recursal
      * (Required)
      * 
      */
     @NotNull
-    public Boolean renunciaPrazoRecursal;
+    private Boolean renunciaPrazoRecursal;
     /**
      * Status da Habilitação
      * (Required)
      * 
      */
     @NotNull
-    public Integer statusHabilitacao;
+    private Integer statusHabilitacao;
     /**
      * Motivo da Inabilitação
      * 
      */
-    public String motivoDaInabilitacao;
+    private String motivoDaInabilitacao;
 
 }

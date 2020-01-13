@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Informa o texto do edital e anexo
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_TXTEDIT")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class TextoEditalSimplificado extends TextoEdital {

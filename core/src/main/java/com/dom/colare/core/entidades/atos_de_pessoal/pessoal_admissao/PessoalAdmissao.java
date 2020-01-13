@@ -4,10 +4,7 @@ package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_admissao;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,7 +18,7 @@ import java.util.Set;
  * Dados da Admissão
  * 
  */
-@Entity
+@Entity(name = "PES_ADMISSAO")
 @Data
 public class PessoalAdmissao extends BaseEntityID {
 
@@ -93,7 +90,7 @@ public class PessoalAdmissao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "pessoal_admissao_id")
+    @JoinColumn(name = "PES_ADMISSAO_ID")
     private Set<DocumentoPosse> documentoPosse = new HashSet<>();
     /**
      * nomeacaosubjudice
@@ -105,7 +102,7 @@ public class PessoalAdmissao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_admissao_id")
+    @JoinColumn(name = "PES_ADM_SUBJUDI_ID")
     private Nomeacaosubjudice nomeacaosubjudice;
     /**
      * acumulacaoDeCargos
@@ -117,12 +114,12 @@ public class PessoalAdmissao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_admissao_id")
+    @JoinColumn(name = "PES_ADM_ACUMULA_ID")
     private AcumulacaoDeCargos acumulacaoDeCargos;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "pessoal_admissao_id")
+    @JoinColumn(name = "PES_ADMISSAO_ID")
     private Set<DetalhamentoAdmissaoTemporarioSemProcessoSeletivo> detalhamentoAdmissaoTemporarioSemProcessoSeletivo
             = new HashSet<>();
     /**
@@ -135,7 +132,7 @@ public class PessoalAdmissao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_admissao_id")
+    @JoinColumn(name = "PES_ADM_VINCULO_ID")
     private VinculoAdmissao vinculoAdmissao;
     /**
      * dadosDaAdmissao
@@ -147,7 +144,7 @@ public class PessoalAdmissao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_admissao_id")
+    @JoinColumn(name = "PES_ADM_DADOADM_ID")
     private DadosDaAdmissao dadosDaAdmissao;
     /**
      * declaracaoNepotismo
@@ -158,8 +155,8 @@ public class PessoalAdmissao extends BaseEntityID {
      */
     @Valid
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "pessoal_admissao_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_ADM_NEPOTIS_ID")
     private DeclaracaoNepotismo declaracaoNepotismo;
 
 

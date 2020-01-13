@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa dados sobre a previsão de recurso ou impugnação por procuração
  * 
  */
-@Entity
+@Entity(name = "PES_CON_IMPUG3")
 @Data
 public class DetalhamentoRecursoPorProcuracao extends BaseEntityID {
 

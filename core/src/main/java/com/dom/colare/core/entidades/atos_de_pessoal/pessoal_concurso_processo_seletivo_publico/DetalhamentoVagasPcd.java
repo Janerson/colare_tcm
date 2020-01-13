@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa se haverá vagas para PCD.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_VAGAPCD")
 @Data
 public class DetalhamentoVagasPcd extends BaseEntityID {
 

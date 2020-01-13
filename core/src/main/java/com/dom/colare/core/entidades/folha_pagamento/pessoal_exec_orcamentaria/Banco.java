@@ -22,7 +22,7 @@ import java.util.Set;
  * Informa os dados do Banco oficial utilizado pela unidade gestora.
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXC_BANC")
 @Data
 public class Banco extends BaseEntityID {
 
@@ -34,7 +34,7 @@ public class Banco extends BaseEntityID {
     @DecimalMin("1")
     @DecimalMax("999")
     @NotNull
-    public Integer codigoBancoOficialPagamentos;
+    private Integer codigoBancoOficialPagamentos;
     /**
      * 
      * (Required)
@@ -44,8 +44,8 @@ public class Banco extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "banco_id")
-    public Set<RemessaBancaria> remessaBancaria = new HashSet<>();
+    @JoinColumn(name = "PES_FP_EXC_BANC_ID")
+    private Set<RemessaBancaria> remessaBancaria = new HashSet<>();
     /**
      * 
      * (Required)
@@ -55,7 +55,7 @@ public class Banco extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "banco_id")
-    public Set<RetornoBancario> retornoBancario = new HashSet<>();
+    @JoinColumn(name = "PES_FP_EXC_BANC_ID")
+    private Set<RetornoBancario> retornoBancario = new HashSet<>();
 
 }

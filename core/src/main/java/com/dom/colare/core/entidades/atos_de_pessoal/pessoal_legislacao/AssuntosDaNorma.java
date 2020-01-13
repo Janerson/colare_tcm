@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar todos os assuntos presentes na norma
  * 
  */
-@Entity
+@Entity(name = "PES_ASSUNTONORM")
 @Data
 public class AssuntosDaNorma extends BaseEntityID {
 

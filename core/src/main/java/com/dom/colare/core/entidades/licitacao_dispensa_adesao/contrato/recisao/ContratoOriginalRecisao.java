@@ -14,13 +14,10 @@ import javax.validation.Valid;
  * Preencher exclusivamente e obrigatoriamente quando idContratoOriginal for igual a -1, com os dados do contrato original que está sendo rescindido.
  * 
  */
-@Entity
+@Entity(name = "RESC_CONTR_ORIG")
 @Data
 public class ContratoOriginalRecisao extends BaseEntityID {
 
-    @OneToOne
-    @MapsId
-    private ContratoRecisao contratoRecisao;
 
     /**
      * licitacao
@@ -29,7 +26,8 @@ public class ContratoOriginalRecisao extends BaseEntityID {
      * 
      */
     @Valid
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoOriginalRecisao",cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "RESC_CONT_LICIT_ID")
     private LicitacaoRecisao licitacao;
 
 }

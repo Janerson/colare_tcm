@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os dados previdenciários do RPPS
  * 
  */
-@Entity
+@Entity(name = "PES_DADOSRPPS")
 @Data
 public class DadosPrevidenciariosRpps extends BaseEntityID {
 

@@ -4,7 +4,10 @@ package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concessao_vantagem
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -15,8 +18,8 @@ import javax.validation.constraints.NotNull;
  * Dados das concessões de Vantagens e Descontos, que repercutirão na Folha de Pagamento.
  * 
  */
+@Entity(name = "PES_CONCESSAO")
 @Data
-@Entity
 public class PessoalConcessaoVantagemDesconto extends BaseEntityID {
 
     /**
@@ -54,6 +57,8 @@ public class PessoalConcessaoVantagemDesconto extends BaseEntityID {
      */
     @Valid
     @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_CONCESSAODT_ID")
     private DetalhamentoConcessao detalhamentoConcessao;
 
     

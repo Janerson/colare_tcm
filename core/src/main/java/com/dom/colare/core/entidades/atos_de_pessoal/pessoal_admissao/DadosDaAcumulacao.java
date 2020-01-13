@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * Informar dados de acumulação
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_DADOSAC")
 @Data
 public class DadosDaAcumulacao extends BaseEntityID {
 
@@ -43,7 +43,7 @@ public class DadosDaAcumulacao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "dados_acumulacao_id")
+    @JoinColumn(name = "PES_ADM_ACUM2_ID")
     private MunicipioGoiano municipioGoiano;
 
 

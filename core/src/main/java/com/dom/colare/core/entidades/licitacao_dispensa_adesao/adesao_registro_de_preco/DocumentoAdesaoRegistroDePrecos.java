@@ -1,11 +1,10 @@
 
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_de_preco;
 
-import com.dom.colare.core.entidades.shared.BaseEntityID;
+import com.dom.colare.core.entidades.shared.Documento;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * documentos
@@ -13,10 +12,7 @@ import javax.persistence.ManyToOne;
  * Dados dos documentos relacionados à adesão
  * 
  */
-@Entity
+@Entity(name = "DOC_ADESAO")
 @Data
-public class DocumentoAdesaoRegistroDePrecos extends BaseEntityID {
-
-    @ManyToOne
-    private AdesaoARegistroDePrecos adesaoARegistroDePrecos;
+public class DocumentoAdesaoRegistroDePrecos extends Documento {
 }

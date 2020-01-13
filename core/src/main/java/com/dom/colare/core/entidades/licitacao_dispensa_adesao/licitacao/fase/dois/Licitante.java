@@ -20,7 +20,7 @@ import java.util.Set;
  * Participantes habilitáveis
  * 
  */
-@Entity
+@Entity(name = "LIC_FASE2")
 @Data
 public class Licitante extends BaseEntityID {
 
@@ -63,13 +63,13 @@ public class Licitante extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "licitante_id")
+    @JoinColumn(name = "LIC_FASE2_ID")
     private Set<QuadroSocietarioFaseDois> quadroSocietarioFaseDois = new HashSet<>();
 
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "licitante_id")
+    @JoinColumn(name = "LIC_FASE2_ID")
     private Set<MapaDePreco> mapaDePrecos = new HashSet<>();
     /**
      * habilitacao
@@ -81,7 +81,7 @@ public class Licitante extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "licitante_id")
+    @JoinColumn(name = "HABILIT_FASE2_ID")
     private Habilitacao habilitacao;
     /**
      * julgamento
@@ -93,7 +93,7 @@ public class Licitante extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "licitante_id")
+    @JoinColumn(name = "JULG_FASE2_ID")
     private Julgamento julgamento;
 
    

@@ -18,7 +18,7 @@ import java.util.Set;
  * Informar dados sobre cadastro de reserva.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_CADRES")
 @Data
 public class CadastroReserva extends BaseEntityID {
 
@@ -32,7 +32,7 @@ public class CadastroReserva extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "cadastro_reserva_id")
+    @JoinColumn(name = "PES_CON_CADRES_ID")
     public Set<DetalhamentoCadastroReserva> detalhamentoCadastroReserva = null;
 
 }

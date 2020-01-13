@@ -16,7 +16,7 @@ import java.util.Set;
  * <p>
  * Informar se a presente Norma, regulamenta outra Norma/Legislação
  */
-@Entity
+@Entity(name = "PES_REG_OUTROID")
 @Data
 public class ANormaRegulamentaOutroIdpessoallegislacao extends BaseEntityID {
 
@@ -29,7 +29,7 @@ public class ANormaRegulamentaOutroIdpessoallegislacao extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "norma_regulamento_outro_id")
+    @JoinColumn(name = "PES_REG_OUTROID_ID")
     private Set<NormaOuLegislacaoRegulamentada> normaOuLegislacaoRegulamentada = null;
 
 

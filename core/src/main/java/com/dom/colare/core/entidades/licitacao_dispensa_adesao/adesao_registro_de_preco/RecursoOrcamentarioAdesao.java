@@ -4,10 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 import com.dom.colare.core.entidades.shared.RecursoOrcamentario;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,13 +18,9 @@ import java.util.Set;
  * Recurso Orçamentário para a realização da adesão
  * 
  */
-@Entity
+@Entity(name = "RECORC_ADESAO")
 @Data
 public class RecursoOrcamentarioAdesao extends RecursoOrcamentario {
-
-    @ManyToOne
-    private AdesaoARegistroDePrecos adesaoARegistroDePrecos;
-
     /**
      *
      * (Required)
@@ -36,7 +29,8 @@ public class RecursoOrcamentarioAdesao extends RecursoOrcamentario {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch =  FetchType.EAGER, mappedBy = "recursoOrcamentarioAdesao")
+    @OneToMany(fetch =  FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "RECORC_ADESAO_ID")
     public Set<DotacaoAdesao> dotacao = new HashSet<>();
 
 }

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Contm as informações sobre as Ordens de Pagamento
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXEC_OP")
 @Data
 public class OrdemDePagamento extends BaseEntityID {
 

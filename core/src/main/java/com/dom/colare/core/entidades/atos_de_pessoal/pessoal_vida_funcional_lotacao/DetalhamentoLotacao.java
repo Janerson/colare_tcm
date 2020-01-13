@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Detalhamento da lotação do servidor
  * 
  */
-@Entity
+@Entity(name = "PES_LOTACAO_DET")
 @Data
 public class DetalhamentoLotacao extends BaseEntityID {
 

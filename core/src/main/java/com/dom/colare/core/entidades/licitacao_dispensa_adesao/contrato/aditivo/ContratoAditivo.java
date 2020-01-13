@@ -20,7 +20,7 @@ import java.util.Set;
  * Dados do contrato aditivo
  * 
  */
-@Entity
+@Entity(name = "CONTRATO_ADT")
 @Data
 public class ContratoAditivo extends BaseEntityID {
 
@@ -31,7 +31,7 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @NotNull
     @Column
-    public Integer idContratoOriginal;
+    private Integer idContratoOriginal;
 
     /**
      * Número do contrato
@@ -40,7 +40,7 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @NotNull
     @Column
-    public String numeroContrato;
+    private String numeroContrato;
 
     /**
      * Ano do contrato
@@ -51,7 +51,7 @@ public class ContratoAditivo extends BaseEntityID {
     @DecimalMax("2050")
     @NotNull
     @Column
-    public Integer anoContrato;
+    private Integer anoContrato;
 
     /**
      * Tipo de contrato aditivo
@@ -60,7 +60,7 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @NotNull
     @Column
-    public Integer codTipoAditivo;
+    private Integer codTipoAditivo;
 
     /**
      * Data da firmatura do documento
@@ -69,7 +69,7 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @NotNull
     @Column
-    public String dataFirmatura;
+    private String dataFirmatura;
 
     /**
      * Prazo a ser adicionado ao original
@@ -77,14 +77,14 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @DecimalMin("0")
     @Column
-    public Integer prazoAdicional;
+    private Integer prazoAdicional;
 
     /**
      * Unidade de medida do prazo para entrega do objeto ou execução do contrato
      * 
      */
     @Column
-    public Integer codUnidadeMedidaPrazoExecucao;
+    private Integer codUnidadeMedidaPrazoExecucao;
 
     /**
      * ID do arquivo enviado contendo o documento digitalizado
@@ -93,7 +93,7 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @NotNull
     @Column
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
 
     /**
      * Código do Tipo de Envio
@@ -101,14 +101,14 @@ public class ContratoAditivo extends BaseEntityID {
      * 
      */
     @NotNull
-    public Integer codTipoEnvio;
+    private Integer codTipoEnvio;
 
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
     @Column
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
 
     /**
      * 
@@ -118,12 +118,14 @@ public class ContratoAditivo extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
-    public Set<PublicacaoAditivo> publicacaoAditivo = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_ADT_ID")
+    private Set<PublicacaoAditivo> publicacaoAditivo = new HashSet<>();
 
     @Valid
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
-    public Set<EmpenhoAditivo> empenhoAditivo = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_ADT_ID")
+    private Set<EmpenhoAditivo> empenhoAditivo = new HashSet<>();
 
     /**
      * contratado
@@ -134,8 +136,9 @@ public class ContratoAditivo extends BaseEntityID {
      */
     @Valid
     @NotNull
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
-    public ContratadoAditivo contratadoAditivo;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATADO_ADT_ID")
+    private ContratadoAditivo contratadoAditivo;
 
     /**
      * contratoOriginal
@@ -144,7 +147,8 @@ public class ContratoAditivo extends BaseEntityID {
      * 
      */
     @Valid
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoAditivo")
-    public ContratoOriginalAditivo contratoOriginalAditivo;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ADTV_CONTR_ORIG_ID")
+    private ContratoOriginalAditivo contratoOriginalAditivo;
 
 }

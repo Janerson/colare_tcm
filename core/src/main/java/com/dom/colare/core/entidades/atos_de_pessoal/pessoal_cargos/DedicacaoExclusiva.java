@@ -1,6 +1,12 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_cargos;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Informar se o cargo é de dedicação exclusiva
  * 
  */
-public class DedicacaoExclusiva {
+@Entity(name = "PES_CARGO_DEDIC")
+@Data
+public class DedicacaoExclusiva extends BaseEntityID {
 
     /**
      * Informa se o cargo possui regime de dedicação exclusiva
@@ -27,44 +35,9 @@ public class DedicacaoExclusiva {
      * 
      */
     @Valid
+    @OneToOne
+    @JoinColumn(name = "PES_CARGO_DECEX_ID")
     private DetalhamentoDedicacaoExclusiva detalhamentoDedicacaoExclusiva;
 
-    /**
-     * Informa se o cargo possui regime de dedicação exclusiva
-     * (Required)
-     * 
-     */
-    public Boolean getCargoDedicacaoExclusiva() {
-        return cargoDedicacaoExclusiva;
-    }
-
-    /**
-     * Informa se o cargo possui regime de dedicação exclusiva
-     * (Required)
-     * 
-     */
-    public void setCargoDedicacaoExclusiva(Boolean cargoDedicacaoExclusiva) {
-        this.cargoDedicacaoExclusiva = cargoDedicacaoExclusiva;
-    }
-
-    /**
-     * detalhamentoDedicacaoExclusiva
-     * <p>
-     * Informar os detalhes da dedicação exclusiva
-     * 
-     */
-    public DetalhamentoDedicacaoExclusiva getDetalhamentoDedicacaoExclusiva() {
-        return detalhamentoDedicacaoExclusiva;
-    }
-
-    /**
-     * detalhamentoDedicacaoExclusiva
-     * <p>
-     * Informar os detalhes da dedicação exclusiva
-     * 
-     */
-    public void setDetalhamentoDedicacaoExclusiva(DetalhamentoDedicacaoExclusiva detalhamentoDedicacaoExclusiva) {
-        this.detalhamentoDedicacaoExclusiva = detalhamentoDedicacaoExclusiva;
-    }
 
 }

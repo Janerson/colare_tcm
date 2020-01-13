@@ -20,7 +20,7 @@ import java.util.Set;
  * Informar Acumulação de Cargo
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_ACUMULA")
 @Data
 public class AcumulacaoDeCargos extends BaseEntityID {
 
@@ -47,7 +47,7 @@ public class AcumulacaoDeCargos extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "acumulacao_cargos_id")
+    @JoinColumn(name = "PES_ADM_ACUMULA_ID")
     private Set<DadosDaAcumulacao> dadosDaAcumulacao = new HashSet<>();
 
 

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * informar o Detalhamento da Nomeacao Sub Judice
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_DETJUD")
 @Data
 public class DetalhamentoNomeacaoSubJudice extends BaseEntityID {
 

@@ -7,7 +7,6 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
@@ -18,14 +17,9 @@ import javax.validation.Valid;
  * Preencher exclusivamente e obrigatoriamente quando idContratoOriginal for igual a -1, com os dados do contrato original que está sendo aditivado.
  * 
  */
-@Entity
+@Entity(name = "ADTV_CONTR_ORIG")
 @Data
 public class ContratoOriginalAditivo extends ContratoOriginal {
-
-
-    @OneToOne
-    @MapsId
-    private ContratoAditivo contratoAditivo;
 
     /**
      * licitacao
@@ -35,7 +29,7 @@ public class ContratoOriginalAditivo extends ContratoOriginal {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "licitacao_id", referencedColumnName = "id")
+    @JoinColumn(name = "ADTV_CONT_LICIT_ID")
     public LicitacaoFaseUm licitacao;
 
 }

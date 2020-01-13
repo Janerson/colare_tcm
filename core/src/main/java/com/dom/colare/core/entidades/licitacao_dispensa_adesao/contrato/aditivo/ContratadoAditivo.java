@@ -18,7 +18,7 @@ import java.util.Set;
  * Dados do contratado
  * 
  */
-@Entity
+@Entity(name = "CONTRATADO_ADT")
 @Data
 public class ContratadoAditivo extends Contratado {
 
@@ -30,15 +30,14 @@ public class ContratadoAditivo extends Contratado {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratadoAditivo")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATADO_ADT_ID")
     public Set<ItemAditivado> itemAditivado = new HashSet<>();
 
     @Valid
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratadoAditivo")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATADO_ADT_ID")
     public Set<QuadroSocietarioAditivo> quadroSocietarioAditivo = null;
 
-    @OneToOne
-    @MapsId
-    private ContratoAditivo contratoAditivo;
 
 }

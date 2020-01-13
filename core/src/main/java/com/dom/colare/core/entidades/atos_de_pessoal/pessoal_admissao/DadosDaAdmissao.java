@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * informar dados da admissão de acordo com o período
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_DADOADM")
 @Data
 public class DadosDaAdmissao extends BaseEntityID {
 
@@ -36,7 +36,7 @@ public class DadosDaAdmissao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "dados_admissao_id")
+    @JoinColumn(name = "PES_ADM_ATE2019_ID")
     private AdmissaoAte2019 admissaoAte2019;
     /**
      * admissaoAPartirDe2020
@@ -46,7 +46,7 @@ public class DadosDaAdmissao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    @JoinColumn(name = "dados_admissao_id")
+    @JoinColumn(name = "PES_ADM_ADM2020_ID")
     private AdmissaoAPartirDe2020 admissaoAPartirDe2020;
 
 }

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  * Informar a Solicitação Concurso, conforme Art. 7º, parágrafo único, I, a, da IN 10/15.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_SOLCON")
 @Data
 public class SolicitacaoConcurso extends BaseEntityID {
 

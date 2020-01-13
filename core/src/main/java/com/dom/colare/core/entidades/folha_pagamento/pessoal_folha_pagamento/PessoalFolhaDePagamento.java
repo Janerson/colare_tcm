@@ -22,7 +22,7 @@ import java.util.Set;
  * Contém as informações relacionadas à Folha de Pagamento.
  * 
  */
-@Entity
+@Entity(name = "PES_FOLHAPAG")
 @Data
 public class PessoalFolhaDePagamento extends BaseEntityID {
 
@@ -71,7 +71,7 @@ public class PessoalFolhaDePagamento extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "pessoal_folha_id")
+    @JoinColumn(name = "PES_FOLHAPAG_ID")
     private Set<FolhaDePagamento> folhaDePagamento = new HashSet<>();
 
     

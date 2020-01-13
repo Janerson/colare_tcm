@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contem as informações Pensão Mercê.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_MERCE")
 @Data
 public class PensaoMerce extends BaseEntityID {
 

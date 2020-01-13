@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Dados de Desligamento ou Inatividade
  * 
  */
-@Entity
+@Entity(name = "PES_VF_DESL_INT")
 @Data
 public class PessoalVidaFuncionalDesligamentoInatividade extends BaseEntityID {
 

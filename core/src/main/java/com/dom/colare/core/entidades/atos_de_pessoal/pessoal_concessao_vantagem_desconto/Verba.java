@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Contém as Informações referente a Verba (Remuneração Desconto) aplicada ao Servidor Ativo, Inativo ou o Pensionista.
  * 
  */
-@Entity
+@Entity(name = "PES_CONCS_VERBA")
 @Data
 public class Verba extends BaseEntityID {
 

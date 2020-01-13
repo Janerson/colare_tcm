@@ -20,7 +20,7 @@ import java.util.Set;
  * Recurso Orçamentário para a realização da contratação por dispensa
  * 
  */
-@Entity
+@Entity(name = "RECORC_DISP")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class RecursoOrcamentarioDispensa extends RecursoOrcamentario {
@@ -28,6 +28,6 @@ public class RecursoOrcamentarioDispensa extends RecursoOrcamentario {
     @Size(min = 1)
     @NotNull
     @OneToMany
-    @JoinColumn(name ="recurso_id" )
-    private Set<DotacaoDispensa> dotacaoDispensaSet = new HashSet<>();
+    @JoinColumn(name ="RECORC_DISP_ID" )
+    private Set<DotacaoDispensa> dotacao = new HashSet<>();
 }

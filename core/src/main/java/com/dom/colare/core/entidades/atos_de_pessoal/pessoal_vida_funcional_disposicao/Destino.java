@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar o destino da disposição
  * 
  */
-@Entity
+@Entity(name = "PES_VF_DISP_DST")
 @Data
 public class Destino extends BaseEntityID {
 

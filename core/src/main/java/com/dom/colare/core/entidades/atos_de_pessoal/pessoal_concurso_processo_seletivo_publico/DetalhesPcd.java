@@ -18,7 +18,7 @@ import java.util.Set;
  * informar dados relativos a PCD
  * 
  */
-@Entity
+@Entity(name = "PES_CON_PCD")
 @Data
 public class DetalhesPcd extends BaseEntityID {
 
@@ -46,17 +46,17 @@ public class DetalhesPcd extends BaseEntityID {
    
     @Valid
     @OneToMany
-    @JoinColumn(name = "detalhe_pcd_id")
+    @JoinColumn(name = "PES_CON_PCD_ID")
     private Set<DetalhamentoLeiPcd> detalhamentoLeiPcd = null;
   
     @Valid
     @OneToMany
-    @JoinColumn(name = "detalhe_pcd_id")
+    @JoinColumn(name = "PES_CON_PCD_ID")
     private Set<DetalhamentoArredondamentoPcd> detalhamentoArredondamentoPcd = null;
   
     @Valid
     @OneToMany
-    @JoinColumn(name = "detalhe_pcd_id")
+    @JoinColumn(name = "PES_CON_PCD_ID")
     private Set<DetalhamentoVagasPcd> detalhamentoVagasPcd = null;
 
 }

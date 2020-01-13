@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contém a composição da ultima remuneração.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_ULTREM")
 @Data
 public class ComposicaoUltimaRemuneracao extends BaseEntityID {
 

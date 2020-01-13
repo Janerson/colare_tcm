@@ -22,7 +22,7 @@ import java.util.Set;
  * Dados do Edital de Processo Seletivo Simplificado
  * 
  */
-@Entity
+@Entity(name = "PES_PROCSELSIMP")
 @Data
 public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
 
@@ -62,7 +62,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PROCSELSIMP_ID")
     private Set<TextoEditalSimplificado> textoEdital = new HashSet<>();
     /**
      * 
@@ -73,7 +73,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PROCSELSIMP_ID")
     private Set<DetalhamentoExcepcionalInteressePublico> detalhamentoExcepcionalInteressePublico = new HashSet<>();
     /**
      * 
@@ -84,8 +84,8 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_sel_simpl_id")
-    private Set<DetalhamentoPublicidadeExtratoEdital> detalhamentoPublicidadeExtratoEdital = new HashSet<>();
+    @JoinColumn(name = "PES_PROCSELSIMP_ID")
+    private Set<DetalhamentoPublicidadeExtratoEditalSeletivoSimplificado> detalhamentoPublicidadeExtratoEditalSeletivoSimplificado = new HashSet<>();
     /**
      * detalhamentoBancaExaminadora
      * <p>
@@ -97,7 +97,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PSS_BANCA")
     private DetalhamentoBancaExaminadora detalhamentoBancaExaminadora;
     /**
      * 
@@ -108,7 +108,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PROCSELSIMP_ID")
     private Set<DetalhamentoFuncaoSelecao> detalhamentoFuncaoSelecao = new HashSet<>();
     /**
      * validadeProcessoSeletivo
@@ -120,7 +120,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PSS_VALID_ID")
     private ValidadeProcessoSeletivo validadeProcessoSeletivo;
     /**
      * duracaoMaximaContratos
@@ -132,7 +132,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PSS_DURACAO_ID")
     private DuracaoMaximaContratos duracaoMaximaContratos;
     /**
      * periodoInscricaoConcurso
@@ -144,7 +144,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_sel_simpl_id")
+    @JoinColumn(name = "PES_PSS_PRD_INS")
     private PeriodoInscricaoConcurso periodoInscricaoConcurso;
 
 }

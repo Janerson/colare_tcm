@@ -21,7 +21,7 @@ import java.util.Set;
  * Contém as informações sobre os pensionistas RPPS, (exceto Judicial e Merce)
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_P_RPPS")
 @Data
 public class PensaoRpps extends BaseEntityID {
 
@@ -63,7 +63,7 @@ public class PensaoRpps extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pensao_rpps_id")
+    @JoinColumn(name = "PES_PENS_REQ_ID")
     private RequisitosAtoAdministrativo requisitosAtoAdministrativo;
     /**
      * 
@@ -74,7 +74,7 @@ public class PensaoRpps extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "pensao_rpps_id")
+    @JoinColumn(name = "PES_PENS_P_RPPS_ID")
     private Set<Dependente> dependentes = new HashSet<>();
 
 

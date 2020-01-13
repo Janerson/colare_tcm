@@ -5,7 +5,6 @@ import com.dom.colare.core.entidades.shared.Parecer;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * parecer
@@ -13,10 +12,9 @@ import javax.persistence.ManyToOne;
  * Parecer da adesão a registro de preços
  * 
  */
-@Entity
+@Entity(name = "PAREC_ADESAO")
 @Data
 public class ParecerAdesao extends Parecer {
 
-    @ManyToOne
-    private AdesaoARegistroDePrecos adesaoARegistroDePrecos;
+
 }

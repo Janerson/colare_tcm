@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar admissões até 2019
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_ATE2019")
 @Data
 public class AdmissaoAte2019 extends BaseEntityID {
 

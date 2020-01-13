@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Informações sobre a regulamentação municipal do pregão, registro de preços e LC 123/06
  * 
  */
-@Entity
+@Entity(name = "REG_LICITACAO")
 @Data
 public class Regulamentacao extends BaseEntityID {
 
@@ -81,7 +81,7 @@ public class Regulamentacao extends BaseEntityID {
      */
     @Valid
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "detalhamentolc123_id")
+    @JoinColumn(name = "DETALHALC123_ID")
     private DetalhamentoLc123 detalhamentoLc123;
 
 

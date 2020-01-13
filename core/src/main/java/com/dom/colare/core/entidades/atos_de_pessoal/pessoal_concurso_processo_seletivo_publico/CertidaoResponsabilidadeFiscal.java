@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa a Certidão de Responsabilidade Fiscal
  * 
  */
-@Entity
+@Entity(name = "PES_CON_CERTRSF")
 @Data
 public class CertidaoResponsabilidadeFiscal extends BaseEntityID {
 
@@ -24,6 +24,6 @@ public class CertidaoResponsabilidadeFiscal extends BaseEntityID {
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
 
 }

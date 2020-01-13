@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * informar o Detalhamento da Lei que trata de reserva de vagas para PCD.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_DETPCD")
 @Data
 public class DetalhamentoLeiPcd extends BaseEntityID {
 

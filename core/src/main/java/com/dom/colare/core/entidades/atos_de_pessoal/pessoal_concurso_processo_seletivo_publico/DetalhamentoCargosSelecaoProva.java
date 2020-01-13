@@ -21,7 +21,7 @@ import java.util.Set;
  * Informar os Cargos vagas e provas vinculados a eles.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_CARGPRO")
 @Data
 public class DetalhamentoCargosSelecaoProva extends BaseEntityID {
 
@@ -113,7 +113,7 @@ public class DetalhamentoCargosSelecaoProva extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "detalhamento_cargo_selecao_id")
-    private Set<DetalhamentoProva> detalhamentoProva = new HashSet<>();
+    @JoinColumn(name = "PES_CON_CARGPRO_ID")
+    private Set<DetalhamentoProvaSeletivoPublico> detalhamentoProva = new HashSet<>();
 
 }

@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Pareceres Técnicos da Dispensa
  * 
  */
-@Entity
+@Entity(name = "PAREC_DISP")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ParecerDispensa extends Parecer {

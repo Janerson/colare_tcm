@@ -5,7 +5,6 @@ import com.dom.colare.core.entidades.shared.Publicacao;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * publicacao
@@ -13,10 +12,7 @@ import javax.persistence.ManyToOne;
  * Publicação do termo de adesão a registro de preços
  * 
  */
-@Entity
+@Entity(name = "PUB_ADESAO")
 @Data
 public class PublicacaoAdesao extends Publicacao {
-
-    @ManyToOne
-    private AdesaoARegistroDePrecos adesaoARegistroDePrecos;
 }

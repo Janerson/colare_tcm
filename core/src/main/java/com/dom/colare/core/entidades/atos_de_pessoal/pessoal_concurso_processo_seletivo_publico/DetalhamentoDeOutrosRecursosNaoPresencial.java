@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa a previsão e outros recursos não presenciais para interposição de recurso ou impugnação.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_IMPUG4")
 @Data
 public class DetalhamentoDeOutrosRecursosNaoPresencial extends BaseEntityID {
 

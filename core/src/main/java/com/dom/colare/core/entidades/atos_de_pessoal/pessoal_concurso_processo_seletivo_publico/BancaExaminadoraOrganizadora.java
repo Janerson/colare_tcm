@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar Banca Examinadora Organizadora
  * 
  */
-@Entity
+@Entity(name = "PES_CON_BANCA")
 @Data
 public class BancaExaminadoraOrganizadora extends BaseEntityID {
 
@@ -24,21 +24,21 @@ public class BancaExaminadoraOrganizadora extends BaseEntityID {
      * 
      */
     @NotNull
-    public Integer codTipoBancaExaminadora;
+    private Integer codTipoBancaExaminadora;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
     /**
      * ID do contrato original previamente informado.
      * (Required)
      * 
      */
     @NotNull
-    public Integer idContratoOriginal;
+    private Integer idContratoOriginal;
 
 
 }

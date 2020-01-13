@@ -20,7 +20,7 @@ import java.util.Set;
  * Informar os dados de nomeação Sub Judice
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_SUBJUDI")
 @Data
 public class Nomeacaosubjudice extends BaseEntityID {
 
@@ -40,7 +40,7 @@ public class Nomeacaosubjudice extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "nomeacao_subjudice_id")
+    @JoinColumn(name = "PES_ADM_SUBJUDI_ID")
     private Set<DetalhamentoNomeacaoSubJudice> detalhamentoNomeacaoSubJudice = new HashSet<>();
 
 }

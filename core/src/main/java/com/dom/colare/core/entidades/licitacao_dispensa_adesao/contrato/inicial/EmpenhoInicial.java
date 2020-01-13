@@ -4,7 +4,6 @@ import com.dom.colare.core.entidades.shared.Empenho;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
@@ -12,13 +11,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * <p>
  * Dados do empenho decorrente do contrato
  */
-@Entity
+@Entity(name = "EMP_CONTRAT_INI")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class EmpenhoInicial extends Empenho {
 
-    @ManyToOne
-    private ContratoInicial contratoInicial;
 
 
 }

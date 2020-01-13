@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Contém as informações referente ao desconto Previdênciario
  * 
  */
-@Entity
+@Entity(name = "PES_FP_DESCPREV")
 @Data
 public class DescontoPrevidenciario extends BaseEntityID {
 

@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Composição do Quadro Societário 
  * 
  */
-@Entity
+@Entity(name = "QUADSOC_FASE2")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class QuadroSocietarioFaseDois extends QuadroSocietario {

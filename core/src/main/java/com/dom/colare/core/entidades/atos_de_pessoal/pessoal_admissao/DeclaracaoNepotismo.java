@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa se o servidor enquadra-se em situação de nepotismo no ato da posse, conforme Sumula nº 13 do STF. 
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_NEPOTIS")
 @Data
 public class DeclaracaoNepotismo extends BaseEntityID {
 

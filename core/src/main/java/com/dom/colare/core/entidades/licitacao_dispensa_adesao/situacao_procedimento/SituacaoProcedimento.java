@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * Dados da situação do procedimento - Incidentes
  * 
  */
-@Entity
+@Entity(name = "SITUACAO_PROCED")
 @Data
 public class SituacaoProcedimento extends BaseEntityID {
 

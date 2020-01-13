@@ -21,7 +21,7 @@ import java.util.Set;
  * Contém os dados do requerimento inicial.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_REQ")
 @Data
 public class RequisitosAtoAdministrativo extends BaseEntityID {
 
@@ -91,7 +91,7 @@ public class RequisitosAtoAdministrativo extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "requitos_adm_id")
+    @JoinColumn(name = "PES_PENS_REQ_ID")
     private Set<Numerocpfdoresponsavelpeloato> numerocpfdoresponsavelpeloato = new HashSet<>();
 
 

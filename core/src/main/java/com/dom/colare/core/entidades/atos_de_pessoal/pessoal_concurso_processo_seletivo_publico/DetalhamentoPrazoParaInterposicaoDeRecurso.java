@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os dados sobre a previsão prazo para interposição de recurso.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_IMPUG2")
 @Data
 public class DetalhamentoPrazoParaInterposicaoDeRecurso extends BaseEntityID {
 

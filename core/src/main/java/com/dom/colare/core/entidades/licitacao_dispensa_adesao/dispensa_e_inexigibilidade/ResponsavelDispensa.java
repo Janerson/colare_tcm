@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Responsáveis pela Dispensa
  * 
  */
-@Entity
+@Entity(name = "RESP_DISP")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ResponsavelDispensa extends Responsavel {

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa a previsão de, no caso de anulação de alguma questão, atribuir-se pontuação a todos candidatos.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_IMPUG5")
 @Data
 public class DetalhamentoPontosDasQuestoesAnulada extends BaseEntityID {
 

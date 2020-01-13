@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os dados da previsão de devolução da taxa de inscrição no caso de pagamento em duplicidade.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_INSC4")
 @Data
 public class DetalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade extends BaseEntityID {
 

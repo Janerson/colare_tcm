@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa o detalhamento da previsão de devolução da taxa de inscrição no caso de cancelamento da Seleção.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_INSC3")
 @Data
 public class DetalhamentoPrevisaoDeDevolucao extends BaseEntityID {
 

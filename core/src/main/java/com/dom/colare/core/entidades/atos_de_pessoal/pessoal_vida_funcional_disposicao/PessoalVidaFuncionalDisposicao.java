@@ -4,7 +4,10 @@ package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_vida_funcional_dis
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +18,7 @@ import javax.validation.constraints.NotNull;
  * Dados de Disposição (Movimentação Externa)
  * 
  */
-@Entity
+@Entity(name = "PES_VF_DISP")
 @Data
 public class PessoalVidaFuncionalDisposicao extends BaseEntityID {
 
@@ -75,6 +78,8 @@ public class PessoalVidaFuncionalDisposicao extends BaseEntityID {
      */
     @Valid
     @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_VF_DISP_DST")
     private Destino destino;
 
   

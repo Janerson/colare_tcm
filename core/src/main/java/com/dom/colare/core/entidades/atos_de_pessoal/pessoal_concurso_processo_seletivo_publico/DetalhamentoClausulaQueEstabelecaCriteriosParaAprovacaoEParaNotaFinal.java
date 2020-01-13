@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar o numero do item onde contem as clausulas de aprovação e apuração da nota final
  * 
  */
-@Entity
+@Entity(name = "PES_CON_CARGCLA")
 @Data
 public class DetalhamentoClausulaQueEstabelecaCriteriosParaAprovacaoEParaNotaFinal extends BaseEntityID {
 

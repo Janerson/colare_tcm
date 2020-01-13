@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Informação de todas as publicações do Edital ou Convite
  * 
  */
-@Entity
+@Entity(name = "PUB_FASE1")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class PublicacaoFaseUm extends Publicacao {

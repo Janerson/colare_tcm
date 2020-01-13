@@ -5,7 +5,6 @@ import com.dom.colare.core.entidades.shared.Empenho;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * empenho
@@ -13,11 +12,8 @@ import javax.persistence.ManyToOne;
  * Dados do empenho decorrente do contrato aditivo
  * 
  */
-@Entity
+@Entity(name = "EMP_CONTRAT_ADT")
 @Data
 public class EmpenhoAditivo extends Empenho {
-
-    @ManyToOne
-    private ContratoAditivo contratoAditivo;
 
 }

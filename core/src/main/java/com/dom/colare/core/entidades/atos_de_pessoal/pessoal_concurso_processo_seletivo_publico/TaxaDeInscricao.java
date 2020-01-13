@@ -18,7 +18,7 @@ import java.util.Set;
  * Informar as detalhamentos sobre a taxa de inscrição na Seleção.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_INSCR")
 @Data
 public class TaxaDeInscricao extends BaseEntityID {
 
@@ -46,17 +46,17 @@ public class TaxaDeInscricao extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "taxa_inscricao_id")
+    @JoinColumn(name = "PES_CON_INSCR_ID")
     private Set<DetalhamentoPrevisaoDeIsencao> detalhamentoPrevisaoDeIsencao = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "taxa_inscricao_id")
+    @JoinColumn(name = "PES_CON_INSCR_ID")
     private Set<DetalhamentoPrevisaoDeDevolucao> detalhamentoPrevisaoDeDevolucao = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "taxa_inscricao_id")
+    @JoinColumn(name = "PES_CON_INSCR_ID")
     private Set<DetalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade> detalhamentoPrevisaoDeDevolucaoPagamentoEmDuplicidade = null;
 
 }

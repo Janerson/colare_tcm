@@ -4,9 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -18,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * Preencher exclusivamente e obrigatoriamente quando idProcedimento for igual a "-1", com os dados do Procedimento de contratação (Licitação, Dispensa/Inexigibilidade ou Adesão a Registro de Preços).
  * 
  */
-@Entity
+@Entity(name = "CONTRAT_PROCED")
 @Data
 public class ProcedimentoDeContratacao extends BaseEntityID {
 
@@ -29,7 +27,7 @@ public class ProcedimentoDeContratacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer idUnidadeGestora;
+    private Integer idUnidadeGestora;
     /**
      * licitacao
      * <p>
@@ -37,8 +35,9 @@ public class ProcedimentoDeContratacao extends BaseEntityID {
      * 
      */
     @Valid
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "procedimentoDeContratacao")
-    public LicitacaoInicial licitacaoInicial;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTR_PROC_LIC_ID")
+    private LicitacaoInicial licitacaoInicial;
 
     /**
      * dispensaEInexigibilidade
@@ -48,7 +47,8 @@ public class ProcedimentoDeContratacao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    public DispensaEInexigibilidadeAte2018 dispensaEInexigibilidade;
+    @JoinColumn(name = "CONTR_PROC_DISP_ID")
+    private DispensaEInexigibilidadeAte2018 dispensaEInexigibilidade;
 
     /**
      * adesaoARegistroDePrecos
@@ -58,7 +58,7 @@ public class ProcedimentoDeContratacao extends BaseEntityID {
      */
     @Valid
     @OneToOne
-    public AdesaoARegistroDePrecosAte2018 adesaoARegistroDePrecos;
+    private AdesaoARegistroDePrecosAte2018 adesaoARegistroDePrecos;
 
 
 

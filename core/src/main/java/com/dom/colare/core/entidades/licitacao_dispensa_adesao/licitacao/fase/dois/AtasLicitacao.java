@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Dados da(s) ata(s) da(s) sessão(ões)
  * 
  */
-@Entity
+@Entity(name = "ATAS_FASE2")
 @Data
 public class AtasLicitacao extends BaseEntityID {
 
@@ -24,20 +24,20 @@ public class AtasLicitacao extends BaseEntityID {
      * 
      */
     @NotNull
-    public Integer codTipoAta;
+    private Integer codTipoAta;
     /**
      * Data do evento
      * (Required)
      * 
      */
     @NotNull
-    public String data;
+    private String data;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      * 
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
 
 }

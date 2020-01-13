@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Detalhamento do Tipo Cálculo Condicional
  * 
  */
-@Entity
+@Entity(name = "PES_VER_FORMCA2")
 @Data
 public class DetalhamentoTipoCalculoCondicional extends BaseEntityID {
 

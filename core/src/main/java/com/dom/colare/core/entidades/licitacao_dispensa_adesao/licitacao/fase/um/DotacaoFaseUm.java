@@ -14,11 +14,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Dotação orçamentária
  * 
  */
-@Entity
+@Entity(name = "DOTACAO_FASE1")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class DotacaoFaseUm extends Dotacao {
-
-
-
 }

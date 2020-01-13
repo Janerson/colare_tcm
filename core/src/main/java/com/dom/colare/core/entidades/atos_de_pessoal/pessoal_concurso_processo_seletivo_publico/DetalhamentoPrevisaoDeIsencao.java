@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os dados sobre a possibilidade de isenção do pagamento de taxa de inscrição.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_INSC2")
 @Data
 public class DetalhamentoPrevisaoDeIsencao extends BaseEntityID {
 

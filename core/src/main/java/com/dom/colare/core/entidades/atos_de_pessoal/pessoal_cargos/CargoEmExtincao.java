@@ -1,6 +1,12 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_cargos;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +17,9 @@ import javax.validation.constraints.NotNull;
  * Informar se o cargo será extinto quando entrar em vacância.
  * 
  */
-public class CargoEmExtincao {
+@Entity(name = "PES_CARGO_EXTIN")
+@Data
+public class CargoEmExtincao extends BaseEntityID {
 
     /**
      * Informa se o cargo está em extinção
@@ -27,44 +35,9 @@ public class CargoEmExtincao {
      * 
      */
     @Valid
+    @OneToOne
+    @JoinColumn(name = "PES_CARGO_EXTF_ID")
     private DetalhamentoExtincao detalhamentoExtincao;
 
-    /**
-     * Informa se o cargo está em extinção
-     * (Required)
-     * 
-     */
-    public Boolean getCargoEmExtincao() {
-        return cargoEmExtincao;
-    }
-
-    /**
-     * Informa se o cargo está em extinção
-     * (Required)
-     * 
-     */
-    public void setCargoEmExtincao(Boolean cargoEmExtincao) {
-        this.cargoEmExtincao = cargoEmExtincao;
-    }
-
-    /**
-     * detalhamentoExtincao
-     * <p>
-     * Informar o detalhamento da extinção do cargo
-     * 
-     */
-    public DetalhamentoExtincao getDetalhamentoExtincao() {
-        return detalhamentoExtincao;
-    }
-
-    /**
-     * detalhamentoExtincao
-     * <p>
-     * Informar o detalhamento da extinção do cargo
-     * 
-     */
-    public void setDetalhamentoExtincao(DetalhamentoExtincao detalhamentoExtincao) {
-        this.detalhamentoExtincao = detalhamentoExtincao;
-    }
 
 }

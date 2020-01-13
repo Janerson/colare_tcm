@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa a Duracao Maxima dos Contratos
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_DURACAO")
 @Data
 public class DuracaoMaximaContratos extends BaseEntityID {
 

@@ -22,7 +22,7 @@ import java.util.Set;
  * Dispensas e inexigibilidades de procedimentos licitatórios
  * 
  */
-@Entity
+@Entity(name = "DISPENSA_INEXIG")
 @Data
 public class DispensaEInexigibilidade extends BaseEntityID {
 
@@ -34,40 +34,40 @@ public class DispensaEInexigibilidade extends BaseEntityID {
     @DecimalMin("2010")
     @DecimalMax("2050")
     @NotNull
-    public Integer exercicioProcesso;
+    private Integer exercicioProcesso;
     /**
      * Número do Processo Administrativo
      * (Required)
      * 
      */
     @NotNull
-    public String numeroProcessoAdministrativo;
+    private String numeroProcessoAdministrativo;
     /**
      * Tipo do processo de Dispensa
      * (Required)
      * 
      */
     @NotNull
-    public Integer codTipoProcesso;
+    private Integer codTipoProcesso;
     /**
      * Código da Natureza do Objeto
      * (Required)
      * 
      */
     @NotNull
-    public Integer codNaturezaObjeto;
+    private Integer codNaturezaObjeto;
     /**
      * Código do Tipo de Envio
      * (Required)
      * 
      */
     @NotNull
-    public Integer codTipoEnvio;
+    private Integer codTipoEnvio;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * 
      */
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
     /**
      * ID da Unidade Gestora conforme cadastro no sistema Passaporte
      * (Required)
@@ -75,37 +75,37 @@ public class DispensaEInexigibilidade extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer idUnidadeGestora;
+    private Integer idUnidadeGestora;
     /**
      * ID da remessa de Licitação-Fase2 fracassada
      * 
      */
     @DecimalMin("1")
-    public Integer idFase2DesertaFracassada;
+    private Integer idFase2DesertaFracassada;
     /**
      * Data de início do processo de dispensa
      * (Required)
      * 
      */
     @NotNull
-    public String dataInicioProcessoDispensa;
+    private String dataInicioProcessoDispensa;
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
      * 
      */
-    public String descricaoNaturezaObjetoOutros;
+    private String descricaoNaturezaObjetoOutros;
     /**
      * Trata-se de prestação de serviço a ser executado de forma contínua.
      * (Required)
      * 
      */
     @NotNull
-    public Boolean servicoContinuo;
+    private Boolean servicoContinuo;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * 
      * (Required)
@@ -115,8 +115,8 @@ public class DispensaEInexigibilidade extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "dispensa_id")
-    public Set<PublicacaoDispensa> publicacao = new HashSet<>();
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<PublicacaoDispensa> publicacao = new HashSet<>();
     /**
      * 
      * (Required)
@@ -126,14 +126,14 @@ public class DispensaEInexigibilidade extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "dispensa_id")
-    public Set<ItemDispensa> item = new HashSet<>();
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<ItemDispensa> item = new HashSet<>();
 
-
+    /**
     @Valid
     @OneToMany
-    @JoinColumn(name = "dispensa_id")
-    public Set<FornecedorContratado> fornecedorContratado = new HashSet<>();
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<FornecedorContratado> fornecedorContratado = new HashSet<>();**/
     /**
      * 
      * (Required)
@@ -143,14 +143,14 @@ public class DispensaEInexigibilidade extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name ="dispensa_id")
-    public Set<ResponsavelDispensa> responsaveis = new HashSet<>();
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<ResponsavelDispensa> responsaveis = new HashSet<>();
 
 
     @Valid
     @OneToMany
-    @JoinColumn(name ="dispensa_id")
-    public Set<RecursoOrcamentarioDispensa> recursoOrcamentario = new HashSet<>();
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<RecursoOrcamentarioDispensa> recursoOrcamentario = new HashSet<>();
     /**
      * 
      * (Required)
@@ -160,7 +160,24 @@ public class DispensaEInexigibilidade extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name ="dispensa_id")
-    public Set<ParecerDispensa> parecer = new HashSet<>();
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<ParecerDispensa> parecer = new HashSet<>();
 
+
+    @Valid
+    @OneToMany
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<EditalEAnexosDispensa> editalEAnexo = new HashSet<>();
+
+    /**
+     *
+     * (Required)
+     *
+     */
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    @OneToMany
+    @JoinColumn(name = "DISPENSA_INEXIG_ID")
+    private Set<NaturezaObjetoDetalhadaDispensa> naturezaObjetoDetalhadaDispensa = new HashSet<>();
 }

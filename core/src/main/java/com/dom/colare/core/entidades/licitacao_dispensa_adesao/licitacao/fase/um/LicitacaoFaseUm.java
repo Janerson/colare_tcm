@@ -18,7 +18,7 @@ import java.util.Set;
  * <p>
  * Envio inicial dos dados da licitação - Abertura da licitação
  */
-@Entity
+@Entity(name = "LICITACAOFASE1")
 @Data
 public class LicitacaoFaseUm extends BaseEntityID {
 
@@ -199,7 +199,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "licitacao_um_id")
+    @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<LoteFaseUm> lote = new HashSet<>();
 
     /**
@@ -212,7 +212,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "licitacao_um_id")
+    @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<ResposanvelFaseUm> responsaveis = new HashSet<>();
 
     /**
@@ -225,7 +225,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "licitacao_um_id")
+    @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<ParecerFaseUm> parecerFaseUm = new HashSet<>();
     /**
      * (Required)
@@ -237,13 +237,13 @@ public class LicitacaoFaseUm extends BaseEntityID {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "licitacao_um_id")
+    @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<Comissao> comissao = new HashSet<>();
 
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "licitacao_um_id")
+    @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<RecursoOrcamentarioFaseUm> recursoOrcamentarios = new HashSet<>();
     /**
      * (Required)
@@ -252,7 +252,21 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "licitacao_um_id")
-    private Set<PublicacaoFaseUm> publicacao = new HashSet<>();
+    @JoinColumn(name = "LICITACAOFASE1_ID")
+    private Set<PublicacaoFaseUm> publicacao = new HashSet<>();  /**
+    /*
+     * (Required)
+     */
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    @OneToMany
+    @JoinColumn(name = "LICITACAOFASE1_ID")
+    private Set<NaturezaObjetoDetalhadaFase1> naturezaObjetoDetalhada = new HashSet<>();
+
+    @Valid
+    @OneToMany
+    @JoinColumn(name = "LICITACAOFASE1_ID")
+    private Set<EditalEAnexoFase1> editalEAnexo = new HashSet<>();
 
 }

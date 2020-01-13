@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar o item do edital que contem a clausula que informa pontuação miníma para classificação.
  * 
  */
-@Entity
+@Entity(name = "PES_CONMENORPON")
 @Data
 public class DetalhamentoClausulaComAPontuacaoMinimaParaClassificacao extends BaseEntityID {
 

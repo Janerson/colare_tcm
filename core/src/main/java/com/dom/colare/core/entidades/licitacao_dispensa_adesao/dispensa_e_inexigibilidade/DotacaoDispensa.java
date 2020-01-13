@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Dotação orçamentária
  * 
  */
-@Entity
+@Entity(name = "DOTACAO_DISP")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class DotacaoDispensa extends Dotacao {

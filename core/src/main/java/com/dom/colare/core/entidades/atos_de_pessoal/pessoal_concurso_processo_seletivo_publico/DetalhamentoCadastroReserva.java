@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * <p>
  * Informar o detalhamento do Cadastro de Reserva
  */
-@Entity
+@Entity(name = "PES_CON_CADASTR")
 @Data
 public class DetalhamentoCadastroReserva extends BaseEntityID {
 

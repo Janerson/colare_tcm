@@ -20,7 +20,7 @@ import java.util.Set;
  * <p>
  * – Cadastro de Lotes do Processo Licitatório
  */
-@Entity
+@Entity(name = "LOTE_FASE1")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class LoteFaseUm extends Lote {
@@ -29,7 +29,7 @@ public class LoteFaseUm extends Lote {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "lote_id")
+    @JoinColumn(name = "LOTE_FASE1_ID")
     public Set<ItemFaseUm> item = new HashSet<>();
 
 }

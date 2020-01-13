@@ -18,7 +18,7 @@ import java.util.Set;
  * Informa todas as Unidades Gestoras, as quais a presente Norma/Legislação é Aplicável. 
  * 
  */
-@Entity
+@Entity(name = "PES_UG_APLICNOR")
 @Data
 public class UnidadesGestorasAplicaveis extends BaseEntityID {
 
@@ -32,7 +32,7 @@ public class UnidadesGestorasAplicaveis extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "unidades_gestoras_aplic_id")
+    @JoinColumn(name = "PES_UG_APLICNOR_ID")
     private Set<ListaUnidadesGestorasAplicaveis> listaUnidadesGestorasAplicaveis = null;
 
 }

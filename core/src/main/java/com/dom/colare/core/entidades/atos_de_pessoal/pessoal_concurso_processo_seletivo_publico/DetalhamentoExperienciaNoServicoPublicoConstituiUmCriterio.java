@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa se  Experiencia No Serviço Publico Constitui Um Criterio
  * 
  */
-@Entity
+@Entity(name = "PES_CON_DESEMP3")
 @Data
 public class DetalhamentoExperienciaNoServicoPublicoConstituiUmCriterio extends BaseEntityID {
 

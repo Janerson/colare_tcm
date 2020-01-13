@@ -1,4 +1,3 @@
-
 package com.dom.colare.core.entidades.licitacao_dispensa_adesao.contrato.inicial;
 
 import com.dom.colare.core.entidades.shared.BaseEntityID;
@@ -18,16 +17,14 @@ import java.util.Set;
  * contratoInicial
  * <p>
  * Dados do contrato
- * 
  */
-@Entity
+@Entity(name = "CONTRATO_INI")
 @Data
 public class ContratoInicial extends BaseEntityID {
 
     /**
      * Tipo do procedimento
      * (Required)
-     * 
      */
     @NotNull
     @Column
@@ -36,7 +33,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * ID do procedimento do qual decorre o contrato
      * (Required)
-     * 
      */
     @NotNull
     @Column
@@ -44,7 +40,6 @@ public class ContratoInicial extends BaseEntityID {
 
     /**
      * Número do contrato
-     * 
      */
     @Column
     private String numeroContrato;
@@ -52,7 +47,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Ano do contrato
      * (Required)
-     * 
      */
     @DecimalMin("2010")
     @DecimalMax("2050")
@@ -62,21 +56,18 @@ public class ContratoInicial extends BaseEntityID {
 
     /**
      * Data da firmatura do documento
-     * 
      */
     @Column
     private String dataFirmatura;
 
     /**
      * Data do início da vigência
-     * 
      */
     @Column
     private String inicioVigencia;
 
     /**
      * Data do fim da vigência
-     * 
      */
     @Column
     private String fimVigencia;
@@ -84,7 +75,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Código da Natureza do Objeto
      * (Required)
-     * 
      */
     @Column
     @NotNull
@@ -93,7 +83,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Objeto
      * (Required)
-     * 
      */
     @NotNull
     @Column
@@ -102,7 +91,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
-     * 
      */
     @NotNull
     @Column
@@ -111,14 +99,12 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Código do Tipo de Envio
      * (Required)
-     * 
      */
     @NotNull
     private Integer codTipoEnvio;
 
     /**
      * Descreve o motivo da Atualização ou Correção
-     * 
      */
     @Column
     private String motivoAtualizacaoCorrecao;
@@ -126,7 +112,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Tipo de formalização do contrato
      * (Required)
-     * 
      */
     @Column
     @NotNull
@@ -135,7 +120,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Descrição da forma de pagamento
      * (Required)
-     * 
      */
     @NotNull
     @Column
@@ -144,7 +128,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Unidade de medida do prazo para entrega do objeto ou execução do contrato
      * (Required)
-     * 
      */
     @NotNull
     @Column
@@ -152,7 +135,6 @@ public class ContratoInicial extends BaseEntityID {
     /**
      * Prazo para entrega do objeto ou execução do contrato
      * (Required)
-     * 
      */
     @DecimalMin("0")
     @NotNull
@@ -161,56 +143,62 @@ public class ContratoInicial extends BaseEntityID {
 
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
-     * 
      */
     @Column
     private String descricaoNaturezaObjetoOutros;
 
     /**
-     * 
      * (Required)
-     * 
      */
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contratoInicial")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_INI_ID")
     private Set<PublicacaoInicial> publicacao = new HashSet<>();
     /**
      * contratado
      * <p>
      * Dados do contratado
      * (Required)
-     * 
      */
 
     @Valid
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATADO_INI_ID")
     private ContratadoInicial contratado;
 
     @Valid
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contratoInicial")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_INI_ID")
     private Set<EmpenhoInicial> empenhoInicial = new HashSet<>();
     /**
-     * 
      * (Required)
-     * 
      */
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contratoInicial")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_INI_ID")
     private Set<ResponsavelContratoInicial> responsavel = new HashSet<>();
     /**
      * procedimentoDeContratacao
      * <p>
      * Preencher exclusivamente e obrigatoriamente quando idProcedimento for igual a "-1", com os dados do Procedimento de contratação (Licitação, Dispensa/Inexigibilidade ou Adesão a Registro de Preços).
-     * 
      */
     @Valid
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTRAT_PROCED_ID")
     private ProcedimentoDeContratacao procedimentoDeContratacao;
 
-
+    /**
+     * (Required)
+     */
+    @Size(min = 1)
+    @Valid
+    @NotNull
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_INI_ID")
+    private Set<NaturezaObjetoDetalhadaContratoInicial> naturezaObjetoDetalhada = new HashSet<>();
 }

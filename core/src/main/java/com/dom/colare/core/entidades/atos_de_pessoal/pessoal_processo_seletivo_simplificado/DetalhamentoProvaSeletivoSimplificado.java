@@ -14,17 +14,11 @@ import javax.validation.constraints.NotNull;
  * Informa o Detalhamento da Prova
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_FUNPROV")
 @Data
-public class DetalhamentoProva extends BaseEntityID {
+public class DetalhamentoProvaSeletivoSimplificado extends BaseEntityID {
 
-    /**
-     * Tipo de prova, conforme tabela.
-     * (Required)
-     * 
-     */
-    @NotNull
-    private Integer codTipoProva;
+
     /**
      * Caráter da prova, conforme tabela.
      * (Required)
@@ -32,12 +26,6 @@ public class DetalhamentoProva extends BaseEntityID {
      */
     @NotNull
     private Integer tipoCaraterProva;
-    /**
-     * Data da realização da prova
-     * (Required)
-     * 
-     */
-    @NotNull
-    private String dataRealizacaoProva;
+
 
 }

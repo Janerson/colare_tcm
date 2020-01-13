@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-@Entity
+@Entity(name = "CONT_LIC_EDITAL")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class EditalEAnexoLicitacao extends EditalEAnexo {

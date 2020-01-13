@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Preço final dos itens licitados
  * 
  */
-@Entity
+@Entity(name = "PRECO_FASE2")
 @Data
 public class PrecoFinal extends BaseEntityID {
 

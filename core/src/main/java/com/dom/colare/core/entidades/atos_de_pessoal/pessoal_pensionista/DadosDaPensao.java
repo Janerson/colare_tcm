@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os dados da instituição Pensão de servidores anteriores a 2020.
  * 
  */
-@Entity
+@Entity(name = "PES_PENS_DADOS")
 @Data
 public class DadosDaPensao extends BaseEntityID {
 

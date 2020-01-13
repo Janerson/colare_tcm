@@ -18,7 +18,7 @@ import java.util.Set;
  * Informa os dados sobre a recurso e impugnação dos atos e fases da seleção.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_IMPUG")
 @Data
 public class DadosRecursoImpugnacao extends BaseEntityID {
 
@@ -53,22 +53,22 @@ public class DadosRecursoImpugnacao extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "recurso_inpugnacao_id")
+    @JoinColumn(name = "PES_CON_IMPUG_ID")
     private Set<DetalhamentoPrazoParaInterposicaoDeRecurso> detalhamentoPrazoParaInterposicaoDeRecurso = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "recurso_inpugnacao_id")
+    @JoinColumn(name = "PES_CON_IMPUG_ID")
     private Set<DetalhamentoRecursoPorProcuracao> detalhamentoRecursoPorProcuracao = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "recurso_inpugnacao_id")
+    @JoinColumn(name = "PES_CON_IMPUG_ID")
     private Set<DetalhamentoDeOutrosRecursosNaoPresencial> detalhamentoDeOutrosRecursosNaoPresencials = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "recurso_inpugnacao_id")
+    @JoinColumn(name = "PES_CON_IMPUG_ID")
     private Set<DetalhamentoPontosDasQuestoesAnulada> detalhamentoPontosDasQuestoesAnuladas = null;
 
 }

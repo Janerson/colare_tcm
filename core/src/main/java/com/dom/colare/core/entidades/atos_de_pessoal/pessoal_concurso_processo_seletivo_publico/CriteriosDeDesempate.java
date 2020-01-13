@@ -16,7 +16,7 @@ import java.util.Set;
  * <p>
  * Informar os critérios de desempate.
  */
-@Entity
+@Entity(name = "PES_CON_DESEMPA")
 @Data
 public class CriteriosDeDesempate extends BaseEntityID {
 
@@ -35,12 +35,12 @@ public class CriteriosDeDesempate extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "criterio_desempate_id")
+    @JoinColumn(name = "PES_CON_DESEMPA_ID")
     private Set<DetalhamentoMaiorDe60AnosComoPrimeiroCriterio> detalhamentoMaiorDe60AnosComoPrimeiroCriterio = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "criterio_desempate_id")
+    @JoinColumn(name = "PES_CON_DESEMPA_ID")
     private Set<DetalhamentoExperienciaNoServicoPublicoConstituiUmCriterio> detalhamentoExperienciaNoServicoPublicoConstituiUmCriterio = null;
 
 }

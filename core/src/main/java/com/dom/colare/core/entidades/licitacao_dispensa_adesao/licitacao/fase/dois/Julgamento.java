@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Julgamento das propostas, por licitante
  * 
  */
-@Entity
+@Entity(name = "JULG_FASE2")
 @Data
 public class Julgamento extends BaseEntityID {
 
@@ -24,13 +24,13 @@ public class Julgamento extends BaseEntityID {
      * 
      */
     @NotNull
-    public Boolean registrouEmAtaPresencaPrepostoDoLicitante;
+    private Boolean registrouEmAtaPresencaPrepostoDoLicitante;
     /**
      * Informar se o licitante renunciou ao prazo recursal
      * (Required)
      * 
      */
     @NotNull
-    public Boolean renunciaPrazoRecursal;
+    private Boolean renunciaPrazoRecursal;
 
 }

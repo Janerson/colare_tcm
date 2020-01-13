@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Documentos para Posse
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_DOCPOSS")
 @Data
 public class DocumentoPosse extends BaseEntityID {
 

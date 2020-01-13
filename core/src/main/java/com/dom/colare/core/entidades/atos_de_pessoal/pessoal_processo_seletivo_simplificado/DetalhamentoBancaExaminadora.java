@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa Detalhamento Banca Examinadora
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_BANCA")
 @Data
 public class DetalhamentoBancaExaminadora extends BaseEntityID {
 

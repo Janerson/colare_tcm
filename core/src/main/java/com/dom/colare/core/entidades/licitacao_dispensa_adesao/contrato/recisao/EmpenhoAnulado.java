@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * Dados dos empenhos anulados em decorrência da rescisão do contrato
  * 
  */
-@Entity
+@Entity(name = "EMP_ANULADO_RES")
 @Data
 public class EmpenhoAnulado extends BaseEntityID {
 
@@ -64,7 +63,6 @@ public class EmpenhoAnulado extends BaseEntityID {
     @Column
     private String idDocumentoPDF;
     
-    @ManyToOne
-    private ContratoRecisao contratoRecisao;
+
 
 }

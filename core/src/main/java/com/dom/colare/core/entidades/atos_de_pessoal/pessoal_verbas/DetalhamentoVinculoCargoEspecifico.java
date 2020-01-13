@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Detalhamento Vinculo Cargo Especifico
  * 
  */
-@Entity
+@Entity(name = "PES_VERB_DETVIC")
 @Data
 public class DetalhamentoVinculoCargoEspecifico extends BaseEntityID {
 

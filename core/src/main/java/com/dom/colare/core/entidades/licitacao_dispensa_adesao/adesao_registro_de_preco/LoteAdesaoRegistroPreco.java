@@ -4,13 +4,11 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 import com.dom.colare.core.entidades.shared.Lote;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -20,7 +18,7 @@ import java.util.Set;
  * Dados do lote do registro de preços
  * 
  */
-@Entity
+@Entity(name = "LOTE_ADESAO")
 @Data
 public class LoteAdesaoRegistroPreco extends Lote {
 
@@ -32,9 +30,8 @@ public class LoteAdesaoRegistroPreco extends Lote {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "loteAdesaoRegistroPreco")
-    private Set<ItemAdesaoRegistroPreco> item = null;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "LOTE_ADESAO_ID")
+    private Set<ItemAdesaoRegistroPreco> item = new HashSet<>();
 
-    @ManyToOne
-    private OrgaoGerenciadorDaAdesao orgaoGerenciadorDaAdesao;
 }

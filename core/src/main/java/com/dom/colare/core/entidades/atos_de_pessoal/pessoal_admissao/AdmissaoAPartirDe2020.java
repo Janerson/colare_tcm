@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar dados da admissão se ocorridas a partir de 2020
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_ADM2020")
 @Data
 public class AdmissaoAPartirDe2020 extends BaseEntityID {
 

@@ -20,7 +20,7 @@ import java.util.Set;
  * <p>
  * Preencher exclusivamente e obrigatoriamente quando codTipoProcedimento for igual a "2-Dispensa", com os dados da dispensa/inexigibilidade da qual resultou o contrato.
  */
-@Entity
+@Entity(name = "CONTR_PROC_DISP")
 @Data
 public class DispensaEInexigibilidadeAte2018 extends BaseEntityID {
 
@@ -29,7 +29,7 @@ public class DispensaEInexigibilidadeAte2018 extends BaseEntityID {
      * (Required)
      */
     @NotNull
-    public Integer codTipoProcesso;
+    private Integer codTipoProcesso;
     /**
      * Exercício do Processo de Dispensa
      * (Required)
@@ -37,12 +37,12 @@ public class DispensaEInexigibilidadeAte2018 extends BaseEntityID {
     @DecimalMin("1990")
     @DecimalMax("2018")
     @NotNull
-    public Integer exercicioProcesso;
+    private Integer exercicioProcesso;
 
     @Valid
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dispensa_id")
-    public Set<EditalEAnexoDispensa2018> editalEAnexos = new HashSet<>();
+    @JoinColumn(name = "CONTR_PROC_DISP_ID")
+    private Set<EditalEAnexoDispensa2018> editalEAnexos = new HashSet<>();
 
 
 }

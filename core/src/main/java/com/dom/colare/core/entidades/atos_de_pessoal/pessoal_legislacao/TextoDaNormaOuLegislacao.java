@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Anexar os arquivos (Formato PDF-A) referentes ao Texto e/ou Anexos da Norma/Legislação
  * 
  */
-@Entity
+@Entity(name = "PES_TEXT_NORMA")
 @Data
 public class TextoDaNormaOuLegislacao extends BaseEntityID {
 

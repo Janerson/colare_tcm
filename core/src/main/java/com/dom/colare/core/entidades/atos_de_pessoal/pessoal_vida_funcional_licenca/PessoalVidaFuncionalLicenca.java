@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Dados de Licença
  * 
  */
-@Entity
+@Entity(name = "PES_VF_LICENCA")
 @Data
 public class PessoalVidaFuncionalLicenca extends BaseEntityID {
 

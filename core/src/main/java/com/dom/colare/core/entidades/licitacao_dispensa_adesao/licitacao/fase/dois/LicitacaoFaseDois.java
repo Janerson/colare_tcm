@@ -20,7 +20,7 @@ import java.util.Set;
  * Habilitação, Julgamento, Adjudicação e Homologação do processo licitatório
  * 
  */
-@Entity
+@Entity(name = "LICITACAOFASE2")
 @Data
 public class LicitacaoFaseDois extends BaseEntityID {
 
@@ -47,7 +47,7 @@ public class LicitacaoFaseDois extends BaseEntityID {
     
     @Valid
     @OneToMany
-    @JoinColumn(name = "licitacao_dois_id")
+    @JoinColumn(name = "LICITACAOFASE2_ID")
     private Set<Licitante> licitantes = new HashSet<>();
     /**
      * 
@@ -58,12 +58,12 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "licitacao_dois_id")
+    @JoinColumn(name = "LICITACAOFASE2_ID")
     private Set<Resultado> resultado = new HashSet<>();
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "licitacao_dois_id")
+    @JoinColumn(name = "LICITACAOFASE2_ID")
     private Set<ResponsaveisFaseDois> responsaveis = new HashSet<>();
     /**
      * 
@@ -74,7 +74,7 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "licitacao_dois_id")
+    @JoinColumn(name = "LICITACAOFASE2_ID")
     private Set<ParecerFaseDois> parecerFaseDois = new HashSet<>();
     /**
      * 
@@ -85,7 +85,7 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "licitacao_dois_id")
+    @JoinColumn(name = "LICITACAOFASE2_ID")
     private Set<AtasLicitacao> atasLicitacao = new HashSet<>();
 
 

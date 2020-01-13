@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-@Entity
+@Entity(name = "RESP_FASE1")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ResposanvelFaseUm extends Responsavel {

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa dados da autorização na LDO para realização da Seleção.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_AUT_LDO")
 @Data
 public class AutorizacaoLdo extends BaseEntityID {
 

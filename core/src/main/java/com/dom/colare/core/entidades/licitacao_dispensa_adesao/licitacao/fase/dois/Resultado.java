@@ -20,7 +20,7 @@ import java.util.Set;
  * Dados do resultado (vencedor) da licitação (após negociação)
  * 
  */
-@Entity
+@Entity(name = "RESULTADO_FASE2")
 @Data
 public class Resultado extends BaseEntityID {
 
@@ -53,7 +53,7 @@ public class Resultado extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "resultado_id")
+    @JoinColumn(name = "RESULTADO_FASE2_ID")
     private Set<PrecoFinal> precoFinal = new HashSet<>();
 
 }

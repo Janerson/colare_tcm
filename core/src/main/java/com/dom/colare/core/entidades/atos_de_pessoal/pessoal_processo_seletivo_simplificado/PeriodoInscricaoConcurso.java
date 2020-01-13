@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa Periodo Inscrição da Seleção
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_PRD_INS")
 @Data
 public class PeriodoInscricaoConcurso extends BaseEntityID {
 

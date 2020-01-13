@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar o Vinculo da Admissão
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_VINCULO")
 @Data
 public class VinculoAdmissao extends BaseEntityID {
 

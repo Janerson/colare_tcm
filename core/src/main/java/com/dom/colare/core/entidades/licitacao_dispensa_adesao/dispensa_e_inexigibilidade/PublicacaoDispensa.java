@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * Publicação da Dispensa ou Inexigibilidade de Licitação
  * 
  */
-@Entity
+@Entity(name = "PUB_DISPENSA")
 @PrimaryKeyJoinColumn(name = "id")
 public class PublicacaoDispensa extends Publicacao {
 

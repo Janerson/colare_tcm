@@ -18,7 +18,7 @@ import java.util.Set;
  * Informar detalhes sobre o caráter da prova e clausulas sobre pontuação da prova. 
  * 
  */
-@Entity
+@Entity(name = "PES_CON_CARPROV")
 @Data
 public class Caraterdaprova extends BaseEntityID {
 
@@ -46,12 +46,12 @@ public class Caraterdaprova extends BaseEntityID {
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "carater_prova_id")
+    @JoinColumn(name = "PES_CON_CARPROV_ID")
     private Set<DetalhamentoClausulaComAPontuacaoMinimaParaClassificacao> detalhamentoClausulaComAPontuacaoMinimaParaClassificacao = null;
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "carater_prova_id")
+    @JoinColumn(name = "PES_CON_CARPROV_ID")
     private Set<DetalhamentoClausulaQueEstabelecaCriteriosParaAprovacaoEParaNotaFinal> detalhamentoClausulaQueEstabelecaCriteriosParaAprovacaoEParaNotaFinal = null;
 
 

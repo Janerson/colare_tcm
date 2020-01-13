@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  * Parecer da Licitação
  * 
  */
-@Entity
+@Entity(name = "PAREC_FASE2")
 @Data
 public class ParecerFaseDois extends Parecer {
 }

@@ -20,7 +20,7 @@ import java.util.Set;
  * Comissão Organizadora da Seleção
  * 
  */
-@Entity
+@Entity(name = "PES_CON_COMISSA")
 @Data
 public class ComissaoOrganizadoraSelecao extends BaseEntityID {
 
@@ -40,7 +40,7 @@ public class ComissaoOrganizadoraSelecao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "comissao_concurso_id")
+    @JoinColumn(name = "PES_CON_COMISSA_ID")
     public Set<DetalhamentoMembrosComissao> detalhamentoMembrosComissao = new HashSet<>();
 
 }

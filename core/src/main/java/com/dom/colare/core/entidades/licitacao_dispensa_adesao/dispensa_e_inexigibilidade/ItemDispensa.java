@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * Item(s) dispensado(s) de Licitação
  * 
  */
-@Entity
+@Entity(name = "ITEM_DISP")
 @Data
 @PrimaryKeyJoinColumn(name = "id")
 public class ItemDispensa extends Item {

@@ -20,15 +20,15 @@ import java.util.Set;
  * Detalhamento dos Recursos Orçamentários
  * 
  */
-@Entity
+@Entity(name = "RECORC_FASE1")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "ID")
 public class RecursoOrcamentarioFaseUm extends RecursoOrcamentario {
 
     @Size(min = 1)
     @NotNull
     @OneToMany
-    @JoinColumn(name = "recurso_id")
+    @JoinColumn(name = "RECORC_FASE1_ID")
     private Set<DotacaoFaseUm> dotacao = new HashSet<>();
 
 }

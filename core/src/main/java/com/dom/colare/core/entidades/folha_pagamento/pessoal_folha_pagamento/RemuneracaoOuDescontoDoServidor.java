@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contem as informações referentes às Remunerações e Descontos do Servidor, exceto descontos Previdenciários (RPPS ou RGPS) e Tributário (IRRF)
  * 
  */
-@Entity
+@Entity(name = "PES_FP_REMDES")
 @Data
 public class RemuneracaoOuDescontoDoServidor extends BaseEntityID {
 
@@ -24,13 +24,13 @@ public class RemuneracaoOuDescontoDoServidor extends BaseEntityID {
      * 
      */
     @NotNull
-    public Integer idPessoalConcessaoVantagemDesconto;
+    private Integer idPessoalConcessaoVantagemDesconto;
     /**
      * Código da fonte de recursos
      * (Required)
      * 
      */
     @NotNull
-    public Integer codFonteRecursos;
+    private Integer codFonteRecursos;
 
 }

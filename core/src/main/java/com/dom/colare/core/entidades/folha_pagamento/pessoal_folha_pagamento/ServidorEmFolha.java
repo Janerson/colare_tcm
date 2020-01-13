@@ -4,6 +4,7 @@ package com.dom.colare.core.entidades.folha_pagamento.pessoal_folha_pagamento;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ import java.util.Set;
  * Informa os servidores que estão em folha e suas verbas (remuneratórias ou descontos)
  * 
  */
-@Entity
+@Entity(name = "PES_FOLPAG_SERV")
 @Data
 public class ServidorEmFolha extends BaseEntityID {
 
@@ -46,8 +47,8 @@ public class ServidorEmFolha extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany
-    @JoinColumn(name = "servidor_folha_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_FOLPAG_SERV_ID")
     private Set<RemuneracaoOuDescontoDoServidor> remuneracaoOuDescontoDoServidor = new HashSet<>();
     /**
      * 
@@ -57,14 +58,14 @@ public class ServidorEmFolha extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany
-    @JoinColumn(name = "servidor_folha_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_FOLPAG_SERV_ID")
     private Set<DescontoPrevidenciario> descontoPrevidenciario = new HashSet<>();
 
 
     @Valid
-    @OneToMany
-    @JoinColumn(name = "servidor_folha_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_FOLPAG_SERV_ID")
     private Set<DescontoIrrf> descontoIrrf = null;
 
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa o detalhamento da deficiência.
  * 
  */
-@Entity
+@Entity(name = "PES_CAD_DET_PCD")
 @Data
 public class DetalhamentoDeficiencia extends BaseEntityID {
 

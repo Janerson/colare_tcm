@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * Dados da cotação de preços para a adesão
  * 
  */
-@Entity
+@Entity(name = "COTACAO_ADESAO")
 @Data
 public class CotacaoPropria extends BaseEntityID {
 
@@ -25,14 +25,14 @@ public class CotacaoPropria extends BaseEntityID {
      * 
      */
     @Column
-    public Integer codTipoDocumento;
+    private Integer codTipoDocumento;
 
     /**
      * Número do documento
      * 
      */
     @Column
-    public String numeroDocumento;
+    private String numeroDocumento;
 
     /**
      * Data da cotação
@@ -41,7 +41,7 @@ public class CotacaoPropria extends BaseEntityID {
      */
     @NotNull
     @Column
-    public String dataCotacao;
+    private String dataCotacao;
 
     /**
      * Valor Unitário
@@ -51,7 +51,7 @@ public class CotacaoPropria extends BaseEntityID {
     @DecimalMin("0")
     @NotNull
     @Column
-    public Double valorUnitario;
+    private Double valorUnitario;
 
     /**
      * Quantidade
@@ -61,7 +61,7 @@ public class CotacaoPropria extends BaseEntityID {
     @DecimalMin("0")
     @NotNull
     @Column
-    public Double quantidade;
+    private Double quantidade;
 
     /**
      * Código da origem do valor de referência
@@ -70,14 +70,14 @@ public class CotacaoPropria extends BaseEntityID {
      */
     @NotNull
     @Column
-    public Integer codOrigemValorReferencia;
+    private Integer codOrigemValorReferencia;
 
     /**
      * Descreve onde foi obtido o valor de referência.
      * 
      */
     @Column
-    public String descricaoOrigemValorReferencia;
+    private String descricaoOrigemValorReferencia;
 
 
 }

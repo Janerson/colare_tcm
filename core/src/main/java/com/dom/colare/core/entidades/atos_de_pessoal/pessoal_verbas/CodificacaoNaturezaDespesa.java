@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os Dados da Codificação Natureza Despesa
  * 
  */
-@Entity
+@Entity(name = "PES_VER_ND")
 @Data
 public class CodificacaoNaturezaDespesa extends BaseEntityID {
 

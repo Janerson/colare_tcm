@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa Registro Profissional
  * 
  */
-@Entity
+@Entity(name = "PES_CAD_REGPROF")
 @Data
 public class RegistroProfissional extends BaseEntityID {
 

@@ -21,7 +21,7 @@ import java.util.Set;
  * Informa os dados do empenho e seus desdobramentos.
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXC_EMP")
 @Data
 public class NumeroEmpenho extends BaseEntityID {
 
@@ -57,7 +57,7 @@ public class NumeroEmpenho extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "numero_empenho_id")
+    @JoinColumn(name = "PES_FP_EXC_EMP_ID")
     private Set<Liquidacao> liquidacao = new HashSet<>();
     /**
      * 
@@ -68,7 +68,7 @@ public class NumeroEmpenho extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "numero_empenho_id")
+    @JoinColumn(name = "PES_FP_EXC_EMP_ID")
     private Set<OrdemDePagamento> ordemDePagamento = new HashSet<>();
 
 }

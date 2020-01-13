@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Contém o arquivo de retorno bancário
  * 
  */
-@Entity
+@Entity(name = "PES_FP_EXC_RETN")
 @Data
 public class RetornoBancario extends BaseEntityID {
 

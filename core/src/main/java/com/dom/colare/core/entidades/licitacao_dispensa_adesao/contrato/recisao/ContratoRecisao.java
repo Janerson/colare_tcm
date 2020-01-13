@@ -17,7 +17,7 @@ import java.util.Set;
  * <p>
  * Dados da rescisão contratual.
  */
-@Entity
+@Entity(name = "CONTRATO_RESC")
 @Data
 public class ContratoRecisao extends BaseEntityID {
 
@@ -86,12 +86,14 @@ public class ContratoRecisao extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratoRecisao")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_RESC_ID")
     public Set<PublicacaoRecisao> publicacaoRecisao = new HashSet<>();
 
 
     @Valid
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contratoRecisao")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTRATO_RESC_ID")
     public Set<EmpenhoAnulado> empenhoAnulado = new HashSet<>();
     /**
      * contratoOriginal
@@ -99,7 +101,8 @@ public class ContratoRecisao extends BaseEntityID {
      * Preencher exclusivamente e obrigatoriamente quando idContratoOriginal for igual a -1, com os dados do contrato original que está sendo rescindido.
      */
     @Valid
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "contratoRecisao", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "RESC_CONTR_ORIG_ID")
     public ContratoOriginalRecisao contratoOriginalRecisao;
 
 

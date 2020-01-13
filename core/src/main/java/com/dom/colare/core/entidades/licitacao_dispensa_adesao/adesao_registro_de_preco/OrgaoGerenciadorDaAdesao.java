@@ -4,10 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -23,7 +20,7 @@ import java.util.Set;
  * Dados do Gerenciador da Adesão
  * 
  */
-@Entity
+@Entity(name = "ORG_GER_ADESAO")
 @Data
 public class OrgaoGerenciadorDaAdesao extends BaseEntityID {
 
@@ -138,7 +135,8 @@ public class OrgaoGerenciadorDaAdesao extends BaseEntityID {
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orgaoGerenciadorDaAdesao")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name ="ORG_GER_ADESAO_ID")
     private Set<LoteAdesaoRegistroPreco> loteAdesaoRegistroPreco = new HashSet<>();
 
 

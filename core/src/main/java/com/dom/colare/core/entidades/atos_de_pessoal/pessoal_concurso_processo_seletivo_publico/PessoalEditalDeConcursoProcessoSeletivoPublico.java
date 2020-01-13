@@ -1,7 +1,5 @@
+package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico;
 
-package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_privateo;
-
-import com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_seletivo_publico.*;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -23,7 +21,7 @@ import java.util.Set;
  * Dados do Edital do Concurso ou Processo Seletivo Público
  * 
  */
-@Entity
+@Entity(name = "PES_CON_PSP")
 @Data
 public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID {
 
@@ -71,7 +69,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_PSP_ID")
     private Set<TextoDoEditalProcessoSeletivo> textoDoEdital = new HashSet<>();
     /**
      * solicitacaoConcurso
@@ -83,7 +81,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_SOLCON_ID")
     private SolicitacaoConcurso solicitacaoConcurso;
     /**
      * comissaoOrganizadoraSelecao
@@ -95,7 +93,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_COMISSA_ID")
     private ComissaoOrganizadoraSelecao comissaoOrganizadoraSelecao;
     /**
      * bancaExaminadoraOrganizadora
@@ -107,7 +105,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_BANCA_ID")
     private BancaExaminadoraOrganizadora bancaExaminadoraOrganizadora;
     /**
      * 
@@ -118,8 +116,8 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_seletivo_id")
-    private Set<DetalhamentoPublicidadeExtratoEdital> detalhamentoPublicidadeExtratoEdital = new HashSet<>();
+    @JoinColumn(name = "PES_CON_PSP_ID")
+    private Set<DetalhamentoPublicidadeExtratoEditalSeletivoPublico> detalhamentoPublicidadeExtratoEditalSeletivoPublico = new HashSet<>();
     /**
      * detalhesPcd
      * <p>
@@ -130,7 +128,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_PCD_ID")
     private DetalhesPcd detalhesPcd;
     /**
      * cadastroReserva
@@ -142,7 +140,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_CADRES_ID")
     private CadastroReserva cadastroReserva;
     /**
      * 
@@ -153,7 +151,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_PSP_ID")
     private Set<DetalhamentoCargosSelecaoProva> detalhamentoCargosSelecaoProva = new HashSet<>();
     /**
      * criteriosDeDesempate
@@ -164,8 +162,8 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
      */
     @Valid
     @NotNull
-    @OneToMany
-    @JoinColumn(name = "processo_seletivo_id")
+    @OneToOne
+    @JoinColumn(name = "PES_CON_DESEMPA_ID")
     private CriteriosDeDesempate criteriosDeDesempate;
     /**
      * taxaDeInscricao
@@ -177,7 +175,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_INSCR_ID")
     private TaxaDeInscricao taxaDeInscricao;
     /**
      * periodoDeInscricao
@@ -189,7 +187,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_PRDINSC_ID")
     private PeriodoDeInscricao periodoDeInscricao;
     /**
      * validade
@@ -201,7 +199,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_VALIDAD_ID")
     private Validade validade;
     /**
      * dadosRecursoImpugnacao
@@ -213,7 +211,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_IMPUG_ID")
     private DadosRecursoImpugnacao dadosRecursoImpugnacao;
     /**
      * autorizacaoLdo
@@ -225,7 +223,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_AUT_LDO_ID")
     private AutorizacaoLdo autorizacaoLdo;
     /**
      * certidaoResponsabilidadeFiscal
@@ -237,7 +235,7 @@ public class PessoalEditalDeConcursoProcessoSeletivoPublico extends BaseEntityID
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "processo_seletivo_id")
+    @JoinColumn(name = "PES_CON_CERTRSF_ID")
     private CertidaoResponsabilidadeFiscal certidaoResponsabilidadeFiscal;
 
 

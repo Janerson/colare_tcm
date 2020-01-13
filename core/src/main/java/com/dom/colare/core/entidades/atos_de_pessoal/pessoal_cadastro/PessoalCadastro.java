@@ -19,7 +19,7 @@ import java.util.Set;
  * Dados Cadastrais
  * 
  */
-@Entity
+@Entity(name = "PES_CADASTRO")
 @Data
 public class PessoalCadastro extends BaseEntityID {
 
@@ -98,13 +98,13 @@ public class PessoalCadastro extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne
-    @JoinColumn(name = "pessoal_cadastro_id")
+    @JoinColumn(name = "PES_CAD_PCD_ID")
     private Pcd pcd;
 
 
     @Valid
     @OneToMany
-    @JoinColumn(name = "pessoal_cadastro_id")
+    @JoinColumn(name = "PES_CADASTRO_ID")
     private Set<RegistroProfissional> registroProfissional = null;
 
 }

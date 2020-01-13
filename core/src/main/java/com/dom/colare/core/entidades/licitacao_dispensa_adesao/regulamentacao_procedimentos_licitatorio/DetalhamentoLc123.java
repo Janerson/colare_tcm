@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * <p>
  * Detalhamento da regulamentação do Artigo 47 da Lei Complementar 123/06
  */
-@Entity
+@Entity(name = "DETALHALC123")
 @Data
 public class DetalhamentoLc123 extends BaseEntityID {
 

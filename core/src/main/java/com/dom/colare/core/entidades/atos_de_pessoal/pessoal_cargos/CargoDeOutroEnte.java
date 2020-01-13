@@ -1,6 +1,13 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_cargos;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import lombok.Data;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +18,9 @@ import javax.validation.constraints.NotNull;
  * Informar se o cargo pertence a outro ente federado
  * 
  */
-public class CargoDeOutroEnte {
+@Entity(name = "PES_CARGO_ENTE")
+@Data
+public class CargoDeOutroEnte extends BaseEntityID {
 
     /**
      * Informa se o cargo pertence a outro Ente Federado
@@ -27,44 +36,8 @@ public class CargoDeOutroEnte {
      * 
      */
     @Valid
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PES_CARGO_OUTEN_ID")
     private DetalhamentoCargoDeOutroEnte detalhamentoCargoDeOutroEnte;
-
-    /**
-     * Informa se o cargo pertence a outro Ente Federado
-     * (Required)
-     * 
-     */
-    public Boolean getCargoDeOutroEnte() {
-        return cargoDeOutroEnte;
-    }
-
-    /**
-     * Informa se o cargo pertence a outro Ente Federado
-     * (Required)
-     * 
-     */
-    public void setCargoDeOutroEnte(Boolean cargoDeOutroEnte) {
-        this.cargoDeOutroEnte = cargoDeOutroEnte;
-    }
-
-    /**
-     * detalhamentoCargoDeOutroEnte
-     * <p>
-     * Informa o detalhamento do ente de origem do cargo
-     * 
-     */
-    public DetalhamentoCargoDeOutroEnte getDetalhamentoCargoDeOutroEnte() {
-        return detalhamentoCargoDeOutroEnte;
-    }
-
-    /**
-     * detalhamentoCargoDeOutroEnte
-     * <p>
-     * Informa o detalhamento do ente de origem do cargo
-     * 
-     */
-    public void setDetalhamentoCargoDeOutroEnte(DetalhamentoCargoDeOutroEnte detalhamentoCargoDeOutroEnte) {
-        this.detalhamentoCargoDeOutroEnte = detalhamentoCargoDeOutroEnte;
-    }
 
 }

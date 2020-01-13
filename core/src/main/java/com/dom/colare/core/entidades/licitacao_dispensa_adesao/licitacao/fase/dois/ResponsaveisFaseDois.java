@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * Responsáveis pela licitação
  * 
  */
-@Entity
+@Entity(name = "RESP_FASE2")
 @Data
 public class ResponsaveisFaseDois extends Responsavel {
 

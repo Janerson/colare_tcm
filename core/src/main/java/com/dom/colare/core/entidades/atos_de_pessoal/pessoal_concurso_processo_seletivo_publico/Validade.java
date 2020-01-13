@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informar a dados da validade da Seleção.
  * 
  */
-@Entity
+@Entity(name = "PES_CON_VALIDAD")
 @Data
 public class Validade extends BaseEntityID {
 

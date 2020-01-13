@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa os detalhamentos do ingresso do servidor temporário sem processo seletivo 
  * 
  */
-@Entity
+@Entity(name = "PES_ADM_TEMPSEM")
 @Data
 public class DetalhamentoAdmissaoTemporarioSemProcessoSeletivo extends BaseEntityID {
 

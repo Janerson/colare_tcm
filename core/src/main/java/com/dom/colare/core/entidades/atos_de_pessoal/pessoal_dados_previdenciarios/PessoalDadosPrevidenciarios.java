@@ -18,7 +18,7 @@ import java.util.Set;
  * Dados Previdenciários
  * 
  */
-@Entity
+@Entity(name = "PES_DADOS_PREV")
 @Data
 public class PessoalDadosPrevidenciarios extends BaseEntityID {
 
@@ -51,7 +51,7 @@ public class PessoalDadosPrevidenciarios extends BaseEntityID {
     @Valid
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pessoal_dados_prev_id")
+    @JoinColumn(name = "PES_DADOSRPPS_ID")
     private DadosPrevidenciariosRpps dadosPrevidenciariosRpps = new DadosPrevidenciariosRpps();
     /**
      * 
@@ -62,7 +62,7 @@ public class PessoalDadosPrevidenciarios extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "pessoal_dados_prev_id")
+    @JoinColumn(name = "PES_DADOS_PREV_ID")
     private Set<DadosRgpsUnidadesGestora> dadosRgpsUnidadesGestoras = new HashSet<>();
 
    

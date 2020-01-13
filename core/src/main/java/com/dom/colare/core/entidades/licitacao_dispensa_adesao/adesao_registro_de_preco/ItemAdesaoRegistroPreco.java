@@ -4,10 +4,7 @@ package com.dom.colare.core.entidades.licitacao_dispensa_adesao.adesao_registro_
 import com.dom.colare.core.entidades.shared.Item;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -22,7 +19,7 @@ import java.util.Set;
  * Itens aderidos
  * 
  */
-@Entity
+@Entity(name = "ITEM_ADESAO")
 @Data
 public class ItemAdesaoRegistroPreco extends Item {
 
@@ -91,11 +88,6 @@ public class ItemAdesaoRegistroPreco extends Item {
     @Valid
     @NotNull
     @OneToMany
+    @JoinColumn(name = "ITEM_ADESAO_ID")
     private Set<CotacaoPropria> cotacaoPropria = new HashSet<>();
-
-    @ManyToOne
-    private LoteAdesaoRegistroPreco loteAdesaoRegistroPreco;
-
-
-
 }

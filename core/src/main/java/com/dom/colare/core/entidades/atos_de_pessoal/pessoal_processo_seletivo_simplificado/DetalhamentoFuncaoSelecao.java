@@ -20,7 +20,7 @@ import java.util.Set;
  * Informa os Dados Detalhamento Função Seleção
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_FUNCAO")
 @Data
 public class DetalhamentoFuncaoSelecao extends BaseEntityID {
 
@@ -75,7 +75,7 @@ public class DetalhamentoFuncaoSelecao extends BaseEntityID {
     @Valid
     @NotNull
     @OneToMany
-    @JoinColumn(name = "detalhamento_funcao_id")
-    private Set<DetalhamentoProva> detalhamentoProva = new HashSet<>();
+    @JoinColumn(name = "PES_PSS_FUNCAO_ID")
+    private Set<DetalhamentoProvaSeletivoSimplificado> detalhamentoProvumSeletivoSimplificados = new HashSet<>();
 
 }

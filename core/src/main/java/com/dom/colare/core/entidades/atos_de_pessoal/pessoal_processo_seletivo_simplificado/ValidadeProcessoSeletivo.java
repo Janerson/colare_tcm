@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * Informa Validade Processo Seletivo
  * 
  */
-@Entity
+@Entity(name = "PES_PSS_VALID")
 @Data
 public class ValidadeProcessoSeletivo extends BaseEntityID {
 

@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * Contem os documentos relativos ao corpo do Edital e seus Anexos
  * 
  */
-@Entity
+@Entity(name = "PES_CON_TXT")
 @Data
 public class TextoDoEditalProcessoSeletivo extends TextoEdital {
 
