@@ -4,6 +4,7 @@ package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_concurso_processo_
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -35,6 +36,7 @@ public class Caraterdaprova extends BaseEntityID {
      * 
      */
     @NotNull
+    @Column(name = "HA_PONTUACAO_MINIMA")
     private Boolean haClausulaComAPontuacaoMinimaParaClassificacao;
     /**
      * Há clausula que estabeleça critérios de aprovação para nota final.
@@ -42,6 +44,7 @@ public class Caraterdaprova extends BaseEntityID {
      * 
      */
     @NotNull
+    @Column(name = "HA_CLAUSULA_CRI_APROV")
     private Boolean haClausulaQueEstabelecaCriteriosDeAprovacaoParaNotaFinal;
 
     @Valid
