@@ -4,6 +4,8 @@ package com.dom.colare.core.entidades.shared;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
 
@@ -15,6 +17,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class QuadroSocietario extends BaseEntityID {
 
     /**

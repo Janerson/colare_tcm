@@ -3,11 +3,14 @@ package com.dom.colare.core.entidades.shared;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Empenho extends BaseEntityID {
 
     /**
@@ -17,19 +20,19 @@ public abstract class Empenho extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer numeroEmpenho;
+    private Integer numeroEmpenho;
     /**
      * Data de emissão do empenho
      * (Required)
      *
      */
     @NotNull
-    public String dataEmpenho;
+    private String dataEmpenho;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      *
      */
     @NotNull
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
 }

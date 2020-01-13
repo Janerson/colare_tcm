@@ -3,11 +3,14 @@ package com.dom.colare.core.entidades.shared;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Dotacao extends BaseEntityID {
     /**
      * Código do órgão
@@ -16,7 +19,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer codOrgao;
+    private Integer codOrgao;
     /**
      * Código da unidade orçamentária
      * (Required)
@@ -24,7 +27,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer codUnidadeOrcamentaria;
+    private Integer codUnidadeOrcamentaria;
 
     /**
      * Código da função
@@ -33,7 +36,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer codFuncao;
+    private Integer codFuncao;
     /**
      * Código da Subfunção
      * (Required)
@@ -41,7 +44,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer codSubFuncao;
+    private Integer codSubFuncao;
     /**
      * Código do programa
      * (Required)
@@ -49,7 +52,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer codPrograma;
+    private Integer codPrograma;
 
 
     /**
@@ -59,7 +62,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer naturezaAcao;
+    private Integer naturezaAcao;
     /**
      * Número do Projeto de Atividade
      * (Required)
@@ -67,7 +70,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer nroProjAtiv;
+    private Integer nroProjAtiv;
     /**
      * Código da natureza da despesa
      * (Required)
@@ -75,7 +78,7 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer naturezaDespesa;
+    private Integer naturezaDespesa;
 
 
     /**
@@ -83,7 +86,7 @@ public abstract class Dotacao extends BaseEntityID {
      *
      */
     @DecimalMin("1")
-    public Integer subelemento;
+    private Integer subelemento;
     /**
      * Código da fonte de recursos
      * (Required)
@@ -91,14 +94,14 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("1")
     @NotNull
-    public Integer codFonteRecursos;
+    private Integer codFonteRecursos;
     /**
      * Saldo atual da dotação orçamentária
      * (Required)
      *
      */
     @NotNull
-    public Double saldoAtualDaDotacao;
+    private Double saldoAtualDaDotacao;
     /**
      * Valor a ser utilizado
      * (Required)
@@ -106,5 +109,5 @@ public abstract class Dotacao extends BaseEntityID {
      */
     @DecimalMin("0")
     @NotNull
-    public Double valorASerUtilizado;
+    private Double valorASerUtilizado;
 }

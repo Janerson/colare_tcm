@@ -16,6 +16,4 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "id")
 public class EmpenhoInicial extends Empenho {
 
-
-
 }
