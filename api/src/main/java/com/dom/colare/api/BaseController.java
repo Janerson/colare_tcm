@@ -28,23 +28,23 @@ public abstract class BaseController<T , ID, R extends PagingAndSortingRepositor
         return new ResponseEntity<>(repository.save(t), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<T> buscarPeloID(@PathVariable("id") ID id){
+    @GetMapping("/{ID}")
+    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") ID id){
 
         return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public void apagarPorId(@PathVariable("id") ID id){
+    @DeleteMapping("/{ID}")
+    public void apagarPorId(@PathVariable("ID") ID id){
         repository.deleteById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/ALL")
     public ResponseEntity<List<T>> listar(){
         return new ResponseEntity(repository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/paging")
+    @GetMapping("/PAGING")
     public Page<T> paginado(Pageable pageable){
         return repository.findAll(pageable);
     }
