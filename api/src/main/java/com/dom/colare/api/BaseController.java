@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *
+ * @param <T> Tipo Objeto
+ * @param <ID> Tipo Chave primaria
+ * @param <R> Repository
+ */
 public abstract class BaseController<T , ID, R extends PagingAndSortingRepository<T,ID>> {
 
     private R repository;

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//https://virtual.tcm.go.gov.br/recepcao/LIC/REG_LICITACAO/01/2020
 @RestController
 @RequestMapping("${lic.regulamentacao}")
 public class RegulamentacaoController extends BaseController<Regulamentacao, Long, RegulamentacaoRepository> {
