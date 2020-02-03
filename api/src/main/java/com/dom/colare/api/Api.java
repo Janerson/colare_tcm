@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {
-        "com.dom.colare.api"
+        "com.dom.colare.api",
+        "com.dom.colare.security"
 })
 @EntityScan({"com.dom.colare.core"})
 @EnableJpaRepositories({"com.dom.colare.data"})
