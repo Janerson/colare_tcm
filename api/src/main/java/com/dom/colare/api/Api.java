@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "com.dom.colare.api",
         "com.dom.colare.security"
 })
-@EntityScan({"com.dom.colare.core"})
+@EntityScan({
+        "com.dom.colare.core","com.dom.colare.domain"
+})
 @EnableJpaRepositories({"com.dom.colare.data"})
 public class Api {
     public static void main(String[] args) {

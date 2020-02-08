@@ -1,4 +1,4 @@
-package com.dom.colare.core.entidades.dominio;
+package com.dom.colare.domain.tcm;
 
 import lombok.Data;
 

@@ -1,7 +1,6 @@
 
 package com.dom.colare.core.entidades.shared;
 
-import com.dom.colare.core.entidades.dominio.TipoResponsabilidade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,9 +22,7 @@ public abstract class Responsavel extends BaseEntityID {
      * 
      */
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "codTipoResponsabilidade", referencedColumnName = "codigo")
-    public TipoResponsabilidade codTipoResponsabilidade;
+    public int codTipoResponsabilidade;
     /**
      * Número do CPF
      * (Required)

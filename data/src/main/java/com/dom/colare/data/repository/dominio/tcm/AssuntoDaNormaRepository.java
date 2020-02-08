@@ -1,4 +1,4 @@
-package com.dom.colare.data.repository.dominio;
+package com.dom.colare.data.repository.dominio.tcm;
 
 import com.dom.colare.core.entidades.atos_de_pessoal.pessoal_legislacao.AssuntosDaNorma;
 import org.springframework.data.repository.PagingAndSortingRepository;

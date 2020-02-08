@@ -1,8 +1,5 @@
 package com.dom.colare.api.endpoints.dominio;
 
-import com.dom.colare.api.BaseController;
-import com.dom.colare.core.entidades.atos_de_pessoal.pessoal_legislacao.AssuntosDaNorma;
-import com.dom.colare.data.repository.dominio.AssuntoDaNormaRepository;
 import com.dom.colare.dto.dominio.TipoDominio;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.http.HttpStatus;
@@ -18,11 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("${dominio.assunto-da-norma}")
-public class AssuntoDaNormaController extends BaseController<AssuntosDaNorma, Long, AssuntoDaNormaRepository> {
-    public AssuntoDaNormaController(AssuntoDaNormaRepository repository) {
-        super(repository);
-    }
+@RequestMapping("${dominio.processar-json}")
+public class ProcessarJsonController {
 
     @PostMapping("/file")
     public ResponseEntity<List<TipoDominio>> processarJson(@RequestParam("file") MultipartFile file) throws IOException {
