@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  *
  * @param <T> Tipo Objeto
@@ -30,7 +28,6 @@ public abstract class BaseController<T , ID, R extends PagingAndSortingRepositor
 
     @GetMapping("/{ID}")
     public ResponseEntity<T> buscarPeloID(@PathVariable("ID") ID id){
-
         return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
     }
 
@@ -40,8 +37,8 @@ public abstract class BaseController<T , ID, R extends PagingAndSortingRepositor
     }
 
     @GetMapping("/ALL")
-    public ResponseEntity<List<T>> listar(){
-        return new ResponseEntity(repository.findAll(), HttpStatus.OK);
+    public ResponseEntity<?> listar(){
+        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/PAGING")

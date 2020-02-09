@@ -3,9 +3,10 @@ package com.dom.colare.domain.api;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "menu")
+@Entity(name = "Menu")
 @Data
 public class Menu {
 
@@ -17,15 +18,16 @@ public class Menu {
     private String url;
     private String icon;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MENU_ID")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "BADGE_ID")
     private Badge badge;
 
     private Boolean title;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_id")
-    private List<Menu> children;
+    private List<Menu> children = new ArrayList<>();
+
     private String variant;
     private Boolean divider;
     private String classe;
