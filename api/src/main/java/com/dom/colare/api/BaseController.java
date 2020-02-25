@@ -1,48 +1,61 @@
 package com.dom.colare.api;
 
+import com.dom.colare.domain.dto.BaseDTO;
+import com.dom.colare.domain.services.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 /**
- *
- * @param <T> Tipo Objeto
+ * @param <T>  Objeto DTO
  * @param <ID> Tipo Chave primaria
- * @param <R> Repository
+ * @param <S>  Service
  */
-public abstract class BaseController<T , ID, R extends PagingAndSortingRepository<T,ID>> {
+public abstract class BaseController<T extends BaseDTO, ID, S extends BaseService<T, ID, ?>> {
 
-    private R repository;
+    private S service;
 
-    public BaseController(R repository) {
-        this.repository = repository;
+    public BaseController(S service) {
+        this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<T> gravar(@RequestBody T t){
-        return new ResponseEntity<>(repository.save(t), HttpStatus.OK);
+    public ResponseEntity<T> gravar(@RequestBody T t) {
+        T t1 = service.gravar(t);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{seqID}")
+                .buildAndExpand(t1.getSeqID()).toUri();
+        return ResponseEntity.created(uri).body(t1);
     }
 
     @GetMapping("/{ID}")
-    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") ID id){
-        return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
+    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") ID id) throws Exception {
+        return new ResponseEntity<>(service.buscarPeloId(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{ID}")
+    public ResponseEntity<T> atualizar(@PathVariable("ID") ID id, @RequestBody T t) throws Exception {
+        return ResponseEntity.ok(service.atualizar(id, t));
     }
 
     @DeleteMapping("/{ID}")
-    public void apagarPorId(@PathVariable("ID") ID id){
-        repository.deleteById(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void apagarPorId(@PathVariable("ID") ID id) throws Exception {
+        service.apagarPorId(id);
     }
 
     @GetMapping("/ALL")
-    public ResponseEntity<?> listar(){
-        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
+    public ResponseEntity<?> listar() {
+        //TODO - Retornar STATUS NO_CONTENT quando array vazio.
+        return new ResponseEntity<>(service.listar(), HttpStatus.OK);
     }
 
-    @GetMapping("/PAGING")
-    public Page<T> paginado(Pageable pageable){
-        return repository.findAll(pageable);
+    @GetMapping("/PAGED")
+    public Page<T> paginado(Pageable pageable) {
+        return service.paginado(pageable);
     }
 }

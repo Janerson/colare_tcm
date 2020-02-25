@@ -41,6 +41,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 headers, HttpStatus.BAD_REQUEST, request);
     }
 
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
@@ -91,7 +92,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         String msgUser = msgResource != null ? messageSource.getMessage(msgResource, null, LocaleContextHolder.getLocale())
                 : ex.getLocalizedMessage();
         String msgDev = request == null ? ExceptionUtils.getRootCauseMessage(ex) : ExceptionUtils.getRootCauseMessage(ex)
-                + " for " + ((ServletWebRequest) request).getRequest().getRequestURI();
+                + "/nRequest: " + ((ServletWebRequest) request).getRequest().getRequestURI();
         return Arrays.asList(new Erro(msgUser, msgDev));
     }
 

@@ -14,8 +14,12 @@ public abstract class BaseEntityID extends Object implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "cod_seq")
+    private long seqID;
 
+    /**
+     * ID DE RETORNO DO TCM - COLARE
+     */
     @Column
-    private Long idTCM;
+    private Long id;
 }

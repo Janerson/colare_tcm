@@ -1,6 +1,6 @@
 package com.dom.colare.api.endpoints.dominio;
 
-import com.dom.colare.dto.dominio.TipoDominio;
+import com.dom.colare.core.entidades.tcm.TipoDominio;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

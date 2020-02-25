@@ -1,6 +1,6 @@
 package com.dom.colare.data.repository.dominio.api;
 
-import com.dom.colare.domain.api.Menu;
+import com.dom.colare.core.entidades.api.Menu;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
