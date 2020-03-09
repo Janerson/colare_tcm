@@ -9,15 +9,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
- * @param <D> Pojo DTO
- * @param <PK>  Classe de Entidade
- * @param <T>   Entidade de Persistência
+ * @param <D>  Pojo DTO
+ * @param <PK> Tipo Chave Primária
+ * @param <T>  Entidade de Persistência
  */
 @Data
-public abstract class BaseService<D, PK, T> implements IBaseService<T,D> {
+public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
 
     private PagingAndSortingRepository<T, PK> repository;
 
@@ -27,41 +26,41 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T,D> {
     @Autowired
     private ModelMapper mapper;
 
-    public BaseService(PagingAndSortingRepository<T, PK> repository, Class<D>  dtoClass, Class<T> entityClass) {
+    public BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
         this.repository = repository;
         this.dtoClass = dtoClass;
         this.entityClass = entityClass;
     }
 
-    public D gravar(D D) {
-        T t = mapFromDTO(D,entityClass);
-        return mapToDTO(repository.save(t),dtoClass);
+    public D gravar(D d) {
+        T t = mapFromDTO(d, entityClass);
+        return mapToDTO(repository.save(t), dtoClass);
     }
 
-    public D buscarPeloId(PK pk) throws Exception {
-        return mapToDTO(repository.findById(pk).
-                orElseThrow(() -> new NoSuchElementException("No value present for id:"+pk)),dtoClass);
+    public D buscarPeloId(PK pk) {
+        return repository.findById(pk).isPresent() ?
+                mapToDTO(repository.findById(pk).get(), dtoClass) : null;
     }
 
-    public D atualizar(PK id, D d) throws Exception {
+    public D atualizar(PK id, D d) {
         D saved = buscarPeloId(id);
-        BeanUtils.copyProperties(d,saved,"seqID");
+        BeanUtils.copyProperties(d, saved, "seqID");
         return gravar(saved);
     }
 
-    public D apagarPorId(PK pk) throws Exception {
-        D D = buscarPeloId(pk);
+    public D apagarPorId(PK pk) {
+        D d = buscarPeloId(pk);
         repository.deleteById(pk);
-        return D;
+        return d;
     }
 
     public List<D> listar() {
-        return mapAll(repository.findAll(),dtoClass);
+        return mapAll(repository.findAll(), dtoClass);
     }
 
     public Page<D> paginado(Pageable pageable) {
         return repository.findAll(pageable)
-                .map(entity -> mapToDTO(entity,dtoClass));
+                .map(entity -> mapToDTO(entity, dtoClass));
     }
 
 

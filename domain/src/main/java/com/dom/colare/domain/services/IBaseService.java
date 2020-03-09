@@ -49,10 +49,10 @@ public interface IBaseService<T, D> {
      *
      * @param source      object to map from
      * @param destination object to map to
-     */
+
 
     default <S> D map(final S source, D destination) {
         modelMapper.map(source, destination);
         return destination;
-    }
+    }*/
 }
