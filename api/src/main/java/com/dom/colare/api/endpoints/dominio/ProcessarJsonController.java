@@ -29,7 +29,7 @@ public class ProcessarJsonController {
     }
 
     @GetMapping("ALL/{tabela}/{status}")
-    public List<Dominio> listar(@PathVariable("tabela") String tabela,@PathVariable("status") Boolean status){
+    public List<Dominio> listar(@PathVariable("tabela") String tabela, @PathVariable("status") Boolean status) {
         return service.listar(tabela, status);
     }
 
@@ -41,10 +41,10 @@ public class ProcessarJsonController {
             throw new RuntimeException("Nenhum arquivo enviado ou recebido.");
         }
 
-        List<TipoDominio> tipoDominio = Arrays.asList(new JsonMapper().readValue(file.getInputStream(), TipoDominio[].class));
+        List<TipoDominio> tipoDominio = Arrays.asList(new JsonMapper().readValue(file.getInputStream(),TipoDominio[].class));
 
-        if(!tabela.equals(tipoDominio.get(0).getNomeTipoDominio())){
-            throw new Exception("Arquivo de importação não corresponde com a tabela: "+tabela);
+        if (!tabela.trim().equalsIgnoreCase(tipoDominio.get(0).getNomeTipoDominio().trim())) {
+            throw new Exception("Arquivo de importação não corresponde com a tabela: " + tabela);
         }
 
         return new ResponseEntity<>(service.gravar(tipoDominio.get(0)), HttpStatus.OK);
