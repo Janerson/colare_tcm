@@ -18,51 +18,51 @@ public class RegLicitacaoDTO extends BaseDTO {
      * (Required)
      * 
      */
-    public int codTipoRegulamentacao;
+    private int codTipoRegulamentacao;
     /**
      * Informa a existência ou não de regulamentação municipal
      * (Required)
      * 
      */
-    public Boolean existeRegulamentacaoMunicipal;
+    private Boolean existeRegulamentacaoMunicipal;
     /**
      * Número do Decreto Municipal Regulamentador do Pregão, Registro de Preços ou da LC 123-06
      * 
      */
-    public String numeroDecretoMunicipal;
+    private String numeroDecretoMunicipal;
     /**
      * Data do Decreto Municipal
      * 
      */
-    public String dataDecretoMunicipal;
+    private String dataDecretoMunicipal;
     /**
      * Data da Publicação
      * 
      */
-    public String dataPublicacao;
+    private String dataPublicacao;
     /**
      * ID do arquivo enviado contendo o documento digitalizado
      * 
      */
-    public String idDocumentoPDF;
+    private String idDocumentoPDF;
     /**
      * Código do Tipo de Envio
      * (Required)
      * 
      */
-    public int codTipoEnvio;
+    private int codTipoEnvio;
     /**
      * Descreve o motivo da Atualização ou Correção
      * 
      */
-    public String motivoAtualizacaoCorrecao;
+    private String motivoAtualizacaoCorrecao;
     /**
      * detalhamentoLc123
      * <p>
      * Detalhamento da regulamentação do Artigo 47 da Lei Complementar 123/06
      * 
      */
-    public DetalhamentoLc123DTO detalhamentoLc123;
+    private DetalhamentoLc123DTO detalhamentoLc123;
 
 
 }

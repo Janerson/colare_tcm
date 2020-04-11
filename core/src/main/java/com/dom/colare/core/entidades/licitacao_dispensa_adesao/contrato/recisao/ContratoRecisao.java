@@ -88,7 +88,7 @@ public class ContratoRecisao extends BaseEntityID {
     @NotNull
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTRATO_RESC_ID")
-    public Set<PublicacaoRecisao> publicacaoRecisao = new HashSet<>();
+    public Set<PublicacaoRecisao> publicacao = new HashSet<>();
 
 
     @Valid
@@ -103,7 +103,7 @@ public class ContratoRecisao extends BaseEntityID {
     @Valid
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "RESC_CONTR_ORIG_ID")
-    public ContratoOriginalRecisao contratoOriginalRecisao;
+    public ContratoOriginalRecisao contratoOriginal;
 
 
 }

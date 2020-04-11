@@ -1,9 +1,7 @@
 package com.dom.colare.domain.services;
 
 import lombok.Data;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -23,8 +21,8 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
     private Class<D> dtoClass;
     private Class<T> entityClass;
 
-    @Autowired
-    private ModelMapper mapper;
+  /*  @Autowired
+    private ModelMapper mapper;*/
 
     public BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
         this.repository = repository;
@@ -33,7 +31,7 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
     }
 
     public D gravar(D d) {
-        T t = mapFromDTO(d, entityClass);
+       T t = mapFromDTO(d, entityClass);
         return mapToDTO(repository.save(t), dtoClass);
     }
 

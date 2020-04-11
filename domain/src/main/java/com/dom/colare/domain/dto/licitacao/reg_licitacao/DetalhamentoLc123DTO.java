@@ -18,59 +18,59 @@ public class DetalhamentoLc123DTO {
      * (Required)
      * 
      */
-    public Boolean regulamentouParticipExclusivaMEEPP;
+    private Boolean regulamentouParticipExclusivaMEEPP;
     /**
      * Artigo que regulamenta a participação exclusiva de ME e EPP
      * 
      */
-    public String artigoRegulamentouParticipExclusivaMEEPP;
+    private String artigoRegulamentouParticipExclusivaMEEPP;
     /**
      * Valor Limite da regulamentação da participação exclusiva de ME e EPP.
      * 
      */
-    public Double valorLimiteRegParticipExclusivaMEEPP;
+    private Double valorLimiteRegParticipExclusivaMEEPP;
     /**
      * Identifica se o município estabeleceu procedimentos para a subcontratação de ME e EPP
      * (Required)
      * 
      */
-    public Boolean regulamentouProcSubContratacaoMEEPP;
+    private Boolean regulamentouProcSubContratacaoMEEPP;
     /**
      * Artigo dos procedimentos de subcontratação de ME e EPP
      * 
      */
-    public String artigoProcSubContratacaoMEEPP;
+    private String artigoProcSubContratacaoMEEPP;
     /**
      * Percentual estabelecido para subcontratação de ME e EPP
      * 
      */
-    public Double percentualSubContratacaoMEEPP;
+    private Double percentualSubContratacaoMEEPP;
     /**
      * Identifica se o município estabeleceu critérios para empenho e pagamento a ME e EPP
      * (Required)
      * 
      */
-    public Boolean regulamentouCriteriosEmpenhoPagamentoMEEPP;
+    private Boolean regulamentouCriteriosEmpenhoPagamentoMEEPP;
     /**
      * Artigo relativo aos critérios para empenho e pagamento a ME e EPP
      * 
      */
-    public String artigoEmpenhoPagamentoMEEPP;
+    private String artigoEmpenhoPagamentoMEEPP;
     /**
      * Identifica se o município estabeleceu reserva de percentual do objeto para a contratação de ME e EPP
      * (Required)
      * 
      */
-    public Boolean regulamentouPercObjetoContratacaoMEEPP;
+    private Boolean regulamentouPercObjetoContratacaoMEEPP;
     /**
      * Artigo do percentual do objeto para contratação de ME e EPP
      * 
      */
-    public String artigoPercObjetoContratacaoMEEPP;
+    private String artigoPercObjetoContratacaoMEEPP;
     /**
      * Percentual do objeto estabelecido para contratação de ME e EPP
      * 
      */
-    public Double percentualObjetoContratacaoMEEPP;
+    private Double percentualObjetoContratacaoMEEPP;
 
 }

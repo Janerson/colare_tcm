@@ -1,6 +1,7 @@
 package com.dom.colare.domain.services;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +14,17 @@ import java.util.stream.Collectors;
  */
 public interface IBaseService<T, D> {
 
-    ModelMapper modelMapper = new ModelMapper();
+
+
+    default ModelMapper modelMapper(){
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration()
+                .setMatchingStrategy(MatchingStrategies.STRICT);
+        return modelMapper;
+    }
+
+
+
     /**
      * <p>Note: outClass object must have default constructor with no arguments</p>
      *
@@ -22,11 +33,12 @@ public interface IBaseService<T, D> {
      * @return new object of <code>outClass</code> type.
      */
     default D mapToDTO(final T entity, Class<D> outClass) {
-        return modelMapper.map(entity, outClass);
+
+        return modelMapper().map(entity, outClass);
     }
 
     default T mapFromDTO(final D entityDTO, Class<T> outClass) {
-        return modelMapper.map(entityDTO, outClass);
+        return modelMapper().map(entityDTO, outClass);
     }
 
     /**
@@ -49,10 +61,10 @@ public interface IBaseService<T, D> {
      *
      * @param source      object to map from
      * @param destination object to map to
-
+     **/
 
     default <S> D map(final S source, D destination) {
-        modelMapper.map(source, destination);
+        modelMapper().map(source, destination);
         return destination;
-    }*/
+    }
 }
