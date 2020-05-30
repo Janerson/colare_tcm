@@ -1,6 +1,6 @@
 package com.dom.colare.data.repository.folha_de_pagamento;
 
-import com.dom.colare.core.entidades.folha_pagamento.pessoal_folha_pagamento.PessoalFolhaDePagamento;
+import com.dom.colare.core.entidades.folha_pagamento.pes_folhapag.PessoalFolhaDePagamento;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

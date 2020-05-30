@@ -36,8 +36,7 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
     }
 
     public D buscarPeloId(PK pk) {
-        return repository.findById(pk).isPresent() ?
-                mapToDTO(repository.findById(pk).get(), dtoClass) : null;
+        return mapToDTO(repository.findById(pk).get(), dtoClass);
     }
 
     public D atualizar(PK id, D d) {

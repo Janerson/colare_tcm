@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotNull;
 public abstract class NaturezaObjetoDetalhada extends BaseEntityID {
 
     @NotNull
-    @NotBlank
     private Integer codNaturezaObjetoDetalhada;
 
     private String descricaoNaturezaObjetoOutros;

@@ -2,6 +2,8 @@
 package com.dom.colare.core.entidades.shared;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@Data
 public abstract class Responsavel extends BaseEntityID {
 
     /**
@@ -22,14 +25,14 @@ public abstract class Responsavel extends BaseEntityID {
      * 
      */
     @NotNull
-    public int codTipoResponsabilidade;
+    private int codTipoResponsabilidade;
     /**
      * Número do CPF
      * (Required)
      * 
      */
     @NotNull
-    public String numeroCpf;
+    private String numeroCpf;
 
 
 
