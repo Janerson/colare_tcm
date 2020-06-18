@@ -1,1 +1,1 @@
-web: java -jar api/colare-api.jar
+web: java -jar ./api/colare-api.jar
