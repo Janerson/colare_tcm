@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar /api/colare-api.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/colare-api.jar

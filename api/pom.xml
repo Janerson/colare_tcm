@@ -54,16 +54,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.4.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
+<!--
+                            <goal>run</goal>
+-->
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
+                            <!--<classifier>spring-boot</classifier>-->
                             <mainClass>
                                 com.dom.colare.api.Api
                             </mainClass>
+                            <outputDirectory>../target</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
