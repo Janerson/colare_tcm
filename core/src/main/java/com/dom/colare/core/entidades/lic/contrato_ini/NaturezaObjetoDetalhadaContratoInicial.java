@@ -8,6 +8,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "CONTR_NATOBJDET")
 @Data
-@PrimaryKeyJoinColumn(name = "ID")
+@PrimaryKeyJoinColumn(name = "uuid")
 public class NaturezaObjetoDetalhadaContratoInicial extends NaturezaObjetoDetalhada {
 }

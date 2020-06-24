@@ -2,17 +2,17 @@ package com.dom.colare.data.repository.dominio.tcm;
 
 import com.dom.colare.core.entidades.dominio.Dominio;
 import com.dom.colare.core.entidades.dominio.TipoDominio;
+import com.dom.colare.data.repository.BaseRespository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface TipoDominioRepository extends PagingAndSortingRepository<TipoDominio, Long> {
+public interface TipoDominioRepository extends BaseRespository<TipoDominio,Long> {
 
     TipoDominio findByNomeTipoDominioEquals(String nome);
 

@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${dominio.menu-link}")
-public class MenuController extends BaseController<MenuDTO, Long, MenuService> {
+public class MenuController extends BaseController<MenuDTO, Long> {
 
     @Autowired
     public MenuController(MenuService service) {
         super(service);
-
     }
 
 }

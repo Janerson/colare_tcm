@@ -6,8 +6,10 @@ import com.dom.colare.domain.dto.lic.contrato_resc.ContratoRecisaoDTO;
 import com.dom.colare.domain.services.BaseService;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
-public class ContratoRecisaoService extends BaseService<ContratoRecisaoDTO,Long, ContratoRecisao> {
+public class ContratoRecisaoService extends BaseService<ContratoRecisaoDTO,UUID,ContratoRecisao> {
 
     public ContratoRecisaoService(ContratoRecisaoRepository repository) {
         super(repository, ContratoRecisaoDTO.class, ContratoRecisao.class);

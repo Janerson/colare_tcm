@@ -8,7 +8,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "RESP_FASE1")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ResposanvelFaseUm extends Responsavel {
 
 }

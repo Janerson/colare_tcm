@@ -16,7 +16,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity(name = "RESP_CONTR_INI")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ResponsavelContratoInicial extends Responsavel {
 
 }

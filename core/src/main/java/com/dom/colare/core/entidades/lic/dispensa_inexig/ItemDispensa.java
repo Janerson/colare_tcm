@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity(name = "ITEM_DISP")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ItemDispensa extends Item {
     /**
      * Descrição do Item

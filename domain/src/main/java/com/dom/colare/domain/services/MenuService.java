@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MenuService extends BaseService<MenuDTO, Long, Menu> {
+public class MenuService extends BaseService<MenuDTO, Long,Menu> {
 
     @Autowired
     public MenuService(MenuRepository repository) {

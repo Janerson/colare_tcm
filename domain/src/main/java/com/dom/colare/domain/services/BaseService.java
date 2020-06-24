@@ -10,11 +10,11 @@ import java.util.List;
 
 /**
  * @param <D>  Pojo DTO
- * @param <PK> Tipo Chave Primária
+ * @param <PK>  Tipo chave PK
  * @param <T>  Entidade de Persistência
  */
 @Data
-public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
+public abstract class BaseService<D,PK,T> implements IBaseService<T, D> {
 
     private PagingAndSortingRepository<T, PK> repository;
 
@@ -41,7 +41,7 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
 
     public D atualizar(PK id, D d) {
         D saved = buscarPeloId(id);
-        BeanUtils.copyProperties(d, saved, "seqID");
+        BeanUtils.copyProperties(d, saved, "codigo");
         return gravar(saved);
     }
 

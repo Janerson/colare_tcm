@@ -13,38 +13,37 @@ import java.net.URI;
 
 /**
  * @param <T>  Objeto DTO
- * @param <ID> Tipo Chave primaria
- * @param <S>  Service
+ * @param <PK>  Objeto DTO
  */
-public abstract class BaseController<T extends BaseDTO, ID, S extends BaseService<T, ID, ?>> {
+public abstract class BaseController<T extends BaseDTO,PK> {
 
-    private S service;
+    private final BaseService<T,PK,?> service;
 
-    public BaseController(S service) {
+    public BaseController(BaseService<T,PK,?> service) {
         this.service = service;
     }
 
     @PostMapping
     public ResponseEntity<T> gravar(@RequestBody T t) {
         T t1 = service.gravar(t);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{seqID}")
-                .buildAndExpand(t1.getSeqID()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
+                .buildAndExpand(t1.getCodigo()).toUri();
         return ResponseEntity.created(uri).body(t1);
     }
 
     @GetMapping("/{ID}")
-    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") ID id) throws Exception {
+    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") PK id) throws Exception {
         return new ResponseEntity<>(service.buscarPeloId(id), HttpStatus.OK);
     }
 
     @PutMapping("/{ID}")
-    public ResponseEntity<T> atualizar(@PathVariable("ID") ID id, @RequestBody T t) throws Exception {
+    public ResponseEntity<T> atualizar(@PathVariable("ID") PK id, @RequestBody T t) throws Exception {
         return ResponseEntity.ok(service.atualizar(id, t));
     }
 
     @DeleteMapping("/{ID}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void apagarPorId(@PathVariable("ID") ID id) throws Exception {
+    public void apagarPorId(@PathVariable("ID") PK id) throws Exception {
         service.apagarPorId(id);
     }
 

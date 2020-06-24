@@ -5,6 +5,7 @@ import com.dom.colare.core.entidades.shared.Responsavel;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 /**
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
  */
 @Entity(name = "RESP_FASE2")
 @Data
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ResponsaveisFaseDois extends Responsavel {
 
 

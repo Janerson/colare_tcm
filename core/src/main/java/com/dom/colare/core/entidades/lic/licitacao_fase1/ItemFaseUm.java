@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity(name = "ITEM_FASE1")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ItemFaseUm extends Item {
 
     /**

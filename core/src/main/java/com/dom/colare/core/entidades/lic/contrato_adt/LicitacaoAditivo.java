@@ -8,6 +8,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "ADTV_CONT_LICIT")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "uuid")
 public class LicitacaoAditivo extends Licitacao {
 }

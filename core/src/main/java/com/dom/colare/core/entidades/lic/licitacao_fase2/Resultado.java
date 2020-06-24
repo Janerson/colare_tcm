@@ -4,6 +4,7 @@ package com.dom.colare.core.entidades.lic.licitacao_fase2;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -28,21 +29,25 @@ public class Resultado extends BaseEntityID {
      * Data da Adjudicação da Licitação
      * 
      */
+    @Column
     private String dataAdjudicacao;
     /**
      * Data da homologação
      * 
      */
+    @Column
     private String dataHomologacao;
     /**
      * Identifica o tipo do documento
      * 
      */
+    @Column
     private Integer codTipoDocumento;
     /**
      * Número do documento
      * 
      */
+    @Column
     private String numeroDocumento;
     /**
      * 

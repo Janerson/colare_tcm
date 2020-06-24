@@ -1,9 +1,11 @@
 package com.dom.colare.data.repository.lic;
 
 import com.dom.colare.core.entidades.lic.reg_licitacao.RegLicitacao;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import com.dom.colare.data.repository.BaseRespository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface RegLicitacaoRepository extends PagingAndSortingRepository<RegLicitacao, Long> {
+public interface RegLicitacaoRepository extends BaseRespository<RegLicitacao, UUID> {
 }

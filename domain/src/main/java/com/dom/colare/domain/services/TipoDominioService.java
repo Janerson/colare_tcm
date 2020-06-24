@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TipoDominioService extends BaseService<TipoDominio, Long, TipoDominio> {
+public class TipoDominioService extends BaseService<TipoDominio,Long,TipoDominio> {
 
     private TipoDominioRepository repository;
 

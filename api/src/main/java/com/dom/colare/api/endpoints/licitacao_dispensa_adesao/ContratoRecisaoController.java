@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 //https://virtual.tcm.go.gov.br/recepcao/LIC/CONTRATO_RESC/01/2020
 
 @RestController
 @RequestMapping("${lic.contrato-recisao}")
-public class ContratoRecisaoController extends BaseController<ContratoRecisaoDTO, Long, ContratoRecisaoService> {
+public class ContratoRecisaoController extends BaseController<ContratoRecisaoDTO, UUID> {
 
     @Autowired
     public ContratoRecisaoController(ContratoRecisaoService service) {

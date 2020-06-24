@@ -21,6 +21,7 @@ import java.util.Set;
  */
 @Entity(name = "ITEM_ADESAO")
 @Data
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ItemAdesaoRegistroPreco extends Item {
 
     /**

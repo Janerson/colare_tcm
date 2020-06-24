@@ -16,7 +16,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity(name = "PES_PSS_TXTEDIT")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "codigo")
 public class TextoEditalSimplificado extends TextoEdital {
 
 }

@@ -16,7 +16,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity(name = "RESP_DISP")
 @Data
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "codigo")
 public class ResponsavelDispensa extends Responsavel {
 
 }
