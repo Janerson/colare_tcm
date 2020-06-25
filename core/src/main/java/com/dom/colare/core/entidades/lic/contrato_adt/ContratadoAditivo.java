@@ -37,7 +37,7 @@ public class ContratadoAditivo extends Contratado {
     @Valid
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTRATADO_ADT_ID")
-    public Set<QuadroSocietarioAditivo> quadroSocietarioAditivo = null;
+    public Set<QuadroSocietarioAditivo> quadroSocietario = new HashSet<>();
 
 
 }

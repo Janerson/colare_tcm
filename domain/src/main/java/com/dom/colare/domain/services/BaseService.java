@@ -16,15 +16,18 @@ import java.util.List;
 @Data
 public abstract class BaseService<D,PK,T> implements IBaseService<T, D> {
 
-    private PagingAndSortingRepository<T, PK> repository;
 
-    private Class<D> dtoClass;
-    private Class<T> entityClass;
+    private final PagingAndSortingRepository<T, PK> repository;
+
+    private final Class<D> dtoClass;
+    private final Class<T> entityClass;
+//    private T entity;
+//    private D dto;
 
   /*  @Autowired
     private ModelMapper mapper;*/
 
-    public BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
+    public  BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
         this.repository = repository;
         this.dtoClass = dtoClass;
         this.entityClass = entityClass;

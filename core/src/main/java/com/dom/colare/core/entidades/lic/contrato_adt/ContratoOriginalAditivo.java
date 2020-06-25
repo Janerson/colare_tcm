@@ -1,13 +1,10 @@
 
 package com.dom.colare.core.entidades.lic.contrato_adt;
 
-import com.dom.colare.core.entidades.lic.licitacao_fase1.LicitacaoFaseUm;
 import com.dom.colare.core.entidades.shared.ContratoOriginal;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 
 
@@ -28,8 +25,8 @@ public class ContratoOriginalAditivo extends ContratoOriginal {
      * 
      */
     @Valid
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "ADTV_CONT_LICIT_ID")
-    public LicitacaoFaseUm licitacao;
+    public LicitacaoAditivo licitacao;
 
 }

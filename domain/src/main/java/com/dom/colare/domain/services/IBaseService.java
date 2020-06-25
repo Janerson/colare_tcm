@@ -23,8 +23,6 @@ public interface IBaseService<T, D> {
         return modelMapper;
     }
 
-
-
     /**
      * <p>Note: outClass object must have default constructor with no arguments</p>
      *
@@ -33,13 +31,35 @@ public interface IBaseService<T, D> {
      * @return new object of <code>outClass</code> type.
      */
     default D mapToDTO(final T entity, Class<D> outClass) {
-
         return modelMapper().map(entity, outClass);
     }
 
     default T mapFromDTO(final D entityDTO, Class<T> outClass) {
         return modelMapper().map(entityDTO, outClass);
     }
+
+    /**
+     *
+     * @param dto Object
+     * @param entity Object
+     * @return entity
+     */
+    default T mapFromDTO(final D dto, T entity) {
+        modelMapper().map(dto, entity);
+        return entity;
+    }
+
+    /**
+     *
+     * @param entity Object
+     * @param dto Object
+     * @return dto
+     */
+    default D mapToDTO(final T entity, D dto) {
+        modelMapper().map(entity, dto);
+        return dto;
+    }
+
 
     /**
      * <p>Note: outClass object must have default constructor with no arguments</p>
