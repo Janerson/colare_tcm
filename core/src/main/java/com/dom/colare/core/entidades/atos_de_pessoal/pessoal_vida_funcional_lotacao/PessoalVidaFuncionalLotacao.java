@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.atos_de_pessoal.pessoal_vida_funcional_lotacao;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -65,5 +66,7 @@ public class PessoalVidaFuncionalLotacao extends BaseEntityID {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PES_LOTACAO_DET_ID")
     private DetalhamentoLotacao detalhamentoLotacao;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

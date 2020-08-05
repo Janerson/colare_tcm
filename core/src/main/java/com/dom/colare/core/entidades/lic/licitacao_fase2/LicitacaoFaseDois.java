@@ -1,12 +1,11 @@
 
 package com.dom.colare.core.entidades.lic.licitacao_fase2;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -88,5 +87,8 @@ public class LicitacaoFaseDois extends BaseEntityID {
     @JoinColumn(name = "LICITACAOFASE2_ID")
     private Set<AtasLicitacao> atasLicitacao = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 
 }

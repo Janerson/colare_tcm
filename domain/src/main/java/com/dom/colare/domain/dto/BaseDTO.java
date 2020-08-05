@@ -6,12 +6,8 @@ import java.util.UUID;
 
 @Data
 public class BaseDTO {
-    /**
-     * ID TCM
-     */
-    private Long id;
-    /**
-     * ID BASE DE DADOS
-     */
-    private UUID codigo;
+
+    private UUID uuid;
+
 }
+

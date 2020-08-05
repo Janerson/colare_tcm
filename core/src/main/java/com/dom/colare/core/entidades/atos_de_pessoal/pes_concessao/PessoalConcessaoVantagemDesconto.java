@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_concessao;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -61,5 +62,7 @@ public class PessoalConcessaoVantagemDesconto extends BaseEntityID {
     @JoinColumn(name = "PES_CONCESSAODT_ID")
     private DetalhamentoConcessao detalhamentoConcessao;
 
-    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

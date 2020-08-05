@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.lic.contrato_resc;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -105,5 +106,8 @@ public class ContratoRecisao extends BaseEntityID {
     @JoinColumn(name = "RESC_CONTR_ORIG_ID")
     public ContratoOriginalRecisao contratoOriginal;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 
 }

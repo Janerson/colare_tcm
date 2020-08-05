@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_dados_prev;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -65,5 +66,7 @@ public class PessoalDadosPrevidenciarios extends BaseEntityID {
     @JoinColumn(name = "PES_DADOS_PREV_ID")
     private Set<DadosRgpsUnidadesGestora> dadosRgpsUnidadesGestoras = new HashSet<>();
 
-   
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

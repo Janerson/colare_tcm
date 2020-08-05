@@ -1,13 +1,11 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pes_fp_exc_orcm;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -67,5 +65,7 @@ public class PessoalExecucaoOrcamentariaFolhaPagamento extends BaseEntityID {
     @JoinColumn(name = "PES_FP_EXC_ORCM_ID")
     private Set<Banco> banco = new HashSet<>();
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

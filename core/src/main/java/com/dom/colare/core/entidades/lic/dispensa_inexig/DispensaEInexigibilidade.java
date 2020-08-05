@@ -1,12 +1,11 @@
 
 package com.dom.colare.core.entidades.lic.dispensa_inexig;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -180,4 +179,8 @@ public class DispensaEInexigibilidade extends BaseEntityID {
     @OneToMany
     @JoinColumn(name = "DISPENSA_INEXIG_ID")
     private Set<NaturezaObjetoDetalhadaDispensa> naturezaObjetoDetalhadaDispensa = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

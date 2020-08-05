@@ -10,9 +10,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface TipoDominioRepository extends BaseRespository<TipoDominio,Long> {
+public interface TipoDominioRepository extends BaseRespository<TipoDominio, UUID> {
 
     TipoDominio findByNomeTipoDominioEquals(String nome);
 
@@ -22,9 +23,13 @@ public interface TipoDominioRepository extends BaseRespository<TipoDominio,Long>
      * " WHERE tipo_dominio.nome_tipo_dominio= :nome",nativeQuery = true)
      */
 
-    @Query(value = "select d from dominio d, tipo_dominio t where d member of t.dominios and t.nomeTipoDominio = :nome")
+    @Query(value = "select d from dominio d, tipo_dominio t " +
+            "where d member of t.dominios " +
+            "and t.nomeTipoDominio = :nome")
     Page<Dominio> findByNomeTipoDominioEquals(Pageable p, @Param("nome") String nome);
 
-    @Query(value = "select d from dominio d, tipo_dominio t where d member of t.dominios and t.nomeTipoDominio = :nome and d.ativo = :status")
+    @Query(value = "select d from dominio d, tipo_dominio t " +
+            "where d member of t.dominios and t.nomeTipoDominio = :nome" +
+            " and d.ativo = :status order by d.codigo")
     List<Dominio> listar(@Param("nome") String nome, @Param("status") boolean status);
 }

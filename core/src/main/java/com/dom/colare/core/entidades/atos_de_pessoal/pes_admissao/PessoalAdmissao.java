@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_admissao;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -159,5 +160,7 @@ public class PessoalAdmissao extends BaseEntityID {
     @JoinColumn(name = "PES_ADM_NEPOTIS_ID")
     private DeclaracaoNepotismo declaracaoNepotismo;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

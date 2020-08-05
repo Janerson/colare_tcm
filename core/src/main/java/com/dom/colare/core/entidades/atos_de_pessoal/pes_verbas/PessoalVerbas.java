@@ -1,9 +1,11 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_verbas;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -153,5 +155,7 @@ public class PessoalVerbas extends BaseEntityID {
     @JoinColumn(name = "PES_VER_ND_ID")
     private CodificacaoNaturezaDespesa codificacaoNaturezaDespesa;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

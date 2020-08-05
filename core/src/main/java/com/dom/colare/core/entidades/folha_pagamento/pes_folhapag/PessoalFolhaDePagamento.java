@@ -1,12 +1,11 @@
 
 package com.dom.colare.core.entidades.folha_pagamento.pes_folhapag;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -74,5 +73,7 @@ public class PessoalFolhaDePagamento extends BaseEntityID {
     @JoinColumn(name = "PES_FOLHAPAG_ID")
     private Set<FolhaDePagamento> folhaDePagamento = new HashSet<>();
 
-    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

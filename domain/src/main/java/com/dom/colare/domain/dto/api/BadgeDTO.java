@@ -1,4 +1,4 @@
-package com.dom.colare.domain.dto;
+package com.dom.colare.domain.dto.api;
 
 import lombok.Data;
 

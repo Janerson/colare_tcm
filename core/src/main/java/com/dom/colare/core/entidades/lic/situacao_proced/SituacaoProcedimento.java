@@ -1,11 +1,11 @@
 
 package com.dom.colare.core.entidades.lic.situacao_proced;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +28,7 @@ public class SituacaoProcedimento extends BaseEntityID {
     @NotNull
     @Column
     public Integer codTipoProcedimentoOuContrato;
+    
     /**
      * ID do procedimento de compra ou alienação ou o contrato previamente informado
      * (Required)
@@ -83,4 +84,7 @@ public class SituacaoProcedimento extends BaseEntityID {
     @Column
     public String data;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

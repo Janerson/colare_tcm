@@ -1,24 +1,19 @@
 package com.dom.colare.core.entidades.dominio;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="dominio")
-public class Dominio {
+public class Dominio extends BaseEntityID {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     private long codigo;
     private String descricao;
     private String vigencia;

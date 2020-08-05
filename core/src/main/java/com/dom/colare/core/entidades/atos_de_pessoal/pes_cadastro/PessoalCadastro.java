@@ -1,13 +1,11 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_cadastro;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -106,5 +104,9 @@ public class PessoalCadastro extends BaseEntityID {
     @OneToMany
     @JoinColumn(name = "PES_CADASTRO_ID")
     private Set<RegistroProfissional> registroProfissional = null;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 
 }

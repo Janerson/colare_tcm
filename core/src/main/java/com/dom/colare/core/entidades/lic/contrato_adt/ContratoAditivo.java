@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.lic.contrato_adt;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -151,4 +152,7 @@ public class ContratoAditivo extends BaseEntityID {
     @JoinColumn(name = "ADTV_CONTR_ORIG_ID")
     private ContratoOriginalAditivo contratoOriginal;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

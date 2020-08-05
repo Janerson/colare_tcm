@@ -10,31 +10,29 @@ import java.util.List;
 
 /**
  * @param <D>  Pojo DTO
- * @param <PK>  Tipo chave PK
+ * @param <PK> Tipo chave PK
  * @param <T>  Entidade de Persistência
  */
 @Data
-public abstract class BaseService<D,PK,T> implements IBaseService<T, D> {
+public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
 
 
     private final PagingAndSortingRepository<T, PK> repository;
 
     private final Class<D> dtoClass;
     private final Class<T> entityClass;
+
 //    private T entity;
 //    private D dto;
 
-  /*  @Autowired
-    private ModelMapper mapper;*/
-
-    public  BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
+    public BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
         this.repository = repository;
         this.dtoClass = dtoClass;
         this.entityClass = entityClass;
     }
 
     public D gravar(D d) {
-       T t = mapFromDTO(d, entityClass);
+        T t = mapFromDTO(d, entityClass);
         return mapToDTO(repository.save(t), dtoClass);
     }
 
@@ -44,7 +42,7 @@ public abstract class BaseService<D,PK,T> implements IBaseService<T, D> {
 
     public D atualizar(PK id, D d) {
         D saved = buscarPeloId(id);
-        BeanUtils.copyProperties(d, saved, "codigo");
+        BeanUtils.copyProperties(d, saved, "uuid");
         return gravar(saved);
     }
 
@@ -62,7 +60,6 @@ public abstract class BaseService<D,PK,T> implements IBaseService<T, D> {
         return repository.findAll(pageable)
                 .map(entity -> mapToDTO(entity, dtoClass));
     }
-
 
 }
 

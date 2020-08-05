@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.lic.reg_licitacao;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -84,7 +85,8 @@ public class RegLicitacao extends BaseEntityID {
     @JoinColumn(name = "DETALHALC123_ID")
     private DetalhamentoLc123 detalhamentoLc123;
 
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 
 }

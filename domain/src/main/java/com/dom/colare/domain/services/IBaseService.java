@@ -1,7 +1,10 @@
 package com.dom.colare.domain.services;
 
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MappingContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,12 +17,26 @@ import java.util.stream.Collectors;
  */
 public interface IBaseService<T, D> {
 
+    default BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 
+    default ModelMapper modelMapper() {
 
-    default ModelMapper modelMapper(){
+        Converter<String,String> passwordConverter = new Converter<String, String>() {
+            @Override
+            public String convert(MappingContext<String, String> context) {
+                String path  = context.getMapping().getPath();
+                return path.contains("password") ?
+                        encoder().encode(context.getSource())
+                        : context.getSource();
+            }
+        };
+
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.addConverter(passwordConverter);
         return modelMapper;
     }
 
@@ -39,8 +56,7 @@ public interface IBaseService<T, D> {
     }
 
     /**
-     *
-     * @param dto Object
+     * @param dto    Object
      * @param entity Object
      * @return entity
      */
@@ -50,9 +66,8 @@ public interface IBaseService<T, D> {
     }
 
     /**
-     *
      * @param entity Object
-     * @param dto Object
+     * @param dto    Object
      * @return dto
      */
     default D mapToDTO(final T entity, D dto) {

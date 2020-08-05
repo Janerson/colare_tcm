@@ -1,7 +1,5 @@
 package com.dom.colare.api.exception;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +24,13 @@ import java.util.List;
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Autowired
-    private MessageSource messageSource;
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
             HttpHeaders headers,
             HttpStatus status,
             WebRequest request) {
+
         List<String> errors = new ArrayList<String>();
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.add(error.getField() + ": " + error.getDefaultMessage());
@@ -44,7 +40,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         }
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
+                new ApiError(HttpStatus.BAD_REQUEST, status.value(), ex.getLocalizedMessage(), errors);
         return handleExceptionInternal(
                 ex, apiError, headers, apiError.getStatus(), request);
     }
@@ -56,7 +52,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         String error = ex.getParameterName() + " parameter is missing";
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+                new ApiError(HttpStatus.BAD_REQUEST, status.value(), ex.getLocalizedMessage(), error);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
@@ -71,7 +67,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         }
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
+                new ApiError(HttpStatus.BAD_REQUEST, 500, ex.getLocalizedMessage(), errors);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
@@ -83,7 +79,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getName() + " should be of type " + ex.getRequiredType().getName();
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+                new ApiError(HttpStatus.BAD_REQUEST, 500, ex.getLocalizedMessage(), error);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
@@ -93,7 +89,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
             NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String error = "No handler found for " + ex.getHttpMethod() + " " + ex.getRequestURL();
 
-        ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getLocalizedMessage(), error);
+        ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, status.value(), ex.getLocalizedMessage(), error);
         return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 
@@ -109,7 +105,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 " method is not supported for this request. Supported methods are ");
         ex.getSupportedHttpMethods().forEach(t -> builder.append(t + " "));
 
-        ApiError apiError = new ApiError(HttpStatus.METHOD_NOT_ALLOWED,
+        ApiError apiError = new ApiError(HttpStatus.METHOD_NOT_ALLOWED, status.value(),
                 ex.getLocalizedMessage(), builder.toString());
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
@@ -126,7 +122,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         builder.append(" media type is not supported. Supported media types are ");
         ex.getSupportedMediaTypes().forEach(t -> builder.append(t + ", "));
 
-        ApiError apiError = new ApiError(HttpStatus.UNSUPPORTED_MEDIA_TYPE,
+        ApiError apiError = new ApiError(HttpStatus.UNSUPPORTED_MEDIA_TYPE, status.value(),
                 ex.getLocalizedMessage(), builder.substring(0, builder.length() - 2));
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
@@ -135,7 +131,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
         ApiError apiError = new ApiError(
-                HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), "error occurred: " );
+                HttpStatus.INTERNAL_SERVER_ERROR, 500, ex.getMessage(), "error occurred: ");
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }

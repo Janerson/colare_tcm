@@ -1,9 +1,11 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_pensionist;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -107,5 +109,7 @@ public class PessoalPensionista extends BaseEntityID {
     @JoinColumn(name = "PES_PENS_FIN_ID")
     private RequisitosFinanceiros requisitosFinanceiros;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

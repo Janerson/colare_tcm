@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.lic.adesao_reg_prec;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -175,4 +176,7 @@ public class AdesaoARegistroDePrecos extends BaseEntityID {
     @JoinColumn(name = "ADESAO_REG_PREC_ID")
     private Set<RecursoOrcamentarioAdesao> recursoOrcamentarioAdesao = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

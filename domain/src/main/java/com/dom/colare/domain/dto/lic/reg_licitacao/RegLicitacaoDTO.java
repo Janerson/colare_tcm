@@ -1,6 +1,7 @@
 
 package com.dom.colare.domain.dto.lic.reg_licitacao;
 
+import com.dom.colare.domain.dto.ArquivoDTO;
 import com.dom.colare.domain.dto.BaseDTO;
 import lombok.Data;
 
@@ -63,6 +64,8 @@ public class RegLicitacaoDTO extends BaseDTO {
      * 
      */
     private DetalhamentoLc123DTO detalhamentoLc123;
+
+    private ArquivoDTO arquivo;
 
 
 }

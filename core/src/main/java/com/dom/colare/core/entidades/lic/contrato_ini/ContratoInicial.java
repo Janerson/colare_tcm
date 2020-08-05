@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.lic.contrato_ini;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -200,4 +201,8 @@ public class ContratoInicial extends BaseEntityID {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTRATO_INI_ID")
     private Set<NaturezaObjetoDetalhadaContratoInicial> naturezaDoObjetoDetalhada = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

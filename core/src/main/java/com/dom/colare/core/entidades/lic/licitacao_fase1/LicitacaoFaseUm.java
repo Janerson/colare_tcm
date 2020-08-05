@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.lic.licitacao_fase1;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -268,5 +269,9 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @OneToMany
     @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<EditalEAnexoFase1> editalEAnexo = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 
 }

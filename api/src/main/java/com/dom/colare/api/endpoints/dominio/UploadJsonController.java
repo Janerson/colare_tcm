@@ -4,8 +4,6 @@ import com.dom.colare.core.entidades.dominio.Dominio;
 import com.dom.colare.core.entidades.dominio.TipoDominio;
 import com.dom.colare.domain.services.TipoDominioService;
 import com.fasterxml.jackson.databind.json.JsonMapper;
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -17,11 +15,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("${dominio.processar-json}")
-public class ProcessarJsonController {
+@RequestMapping("${dominio.upload-json}")
+public class UploadJsonController {
 
-    @Autowired
-    private TipoDominioService service;
+    private final TipoDominioService service;
+
+    public UploadJsonController(TipoDominioService service) {
+        this.service = service;
+    }
 
     @GetMapping("/PAGED/{TABELA}")
     public Page<Dominio> paginado(Pageable pageable, @PathVariable("TABELA") String tabela) {
@@ -50,8 +51,5 @@ public class ProcessarJsonController {
         return new ResponseEntity<>(service.gravar(tipoDominio.get(0)), HttpStatus.OK);
     }
 
-    @Data
-    private static class tabela {
-        private String title;
-    }
+
 }

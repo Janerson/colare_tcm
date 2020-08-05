@@ -2,6 +2,7 @@ package com.dom.colare.api;
 
 import com.dom.colare.domain.dto.BaseDTO;
 import com.dom.colare.domain.services.BaseService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 /**
  * @param <T>  Objeto DTO
- * @param <PK>  Objeto DTO
+ * @param <PK>  Tipo chave primária
  */
 public abstract class BaseController<T extends BaseDTO,PK> {
 
@@ -23,34 +25,37 @@ public abstract class BaseController<T extends BaseDTO,PK> {
         this.service = service;
     }
 
-    @PostMapping
+    @ApiOperation(value = "Gravar entidade")
+    @PostMapping(produces="application/json", consumes="application/json")
     public ResponseEntity<T> gravar(@RequestBody T t) {
         T t1 = service.gravar(t);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-                .buildAndExpand(t1.getCodigo()).toUri();
+                .buildAndExpand(t1.getUuid()).toUri();
         return ResponseEntity.created(uri).body(t1);
     }
 
-    @GetMapping("/{ID}")
-    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") PK id) throws Exception {
+    @GetMapping(path = "/{ID}", produces="application/json")
+    public ResponseEntity<T> buscarPeloID(@PathVariable("ID") PK id) {
         return new ResponseEntity<>(service.buscarPeloId(id), HttpStatus.OK);
     }
 
     @PutMapping("/{ID}")
-    public ResponseEntity<T> atualizar(@PathVariable("ID") PK id, @RequestBody T t) throws Exception {
+    public ResponseEntity<T> atualizar(@PathVariable("ID") PK id, @RequestBody T t) {
         return ResponseEntity.ok(service.atualizar(id, t));
     }
 
     @DeleteMapping("/{ID}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void apagarPorId(@PathVariable("ID") PK id) throws Exception {
+    public void apagarPorId(@PathVariable("ID") PK id) {
         service.apagarPorId(id);
     }
 
     @GetMapping("/ALL")
     public ResponseEntity<?> listar() {
-        //TODO - Retornar STATUS NO_CONTENT quando array vazio.
-        return new ResponseEntity<>(service.listar(), HttpStatus.OK);
+        List<T> listEntity = service.listar();
+        return listEntity.isEmpty() ?
+                new ResponseEntity<>(listEntity, HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(listEntity, HttpStatus.OK);
     }
 
     @GetMapping("/PAGED")

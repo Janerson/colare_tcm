@@ -1,13 +1,11 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_procselsimp;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -147,4 +145,7 @@ public class PessoalEditalProcessoSeletivoSimplificado extends BaseEntityID {
     @JoinColumn(name = "PES_PSS_PRD_INS")
     private PeriodoInscricaoConcurso periodoInscricaoConcurso;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

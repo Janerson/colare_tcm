@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.dominio;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,11 +8,9 @@ import java.util.List;
 
 @Data
 @Entity(name="tipo_dominio")
-public class TipoDominio {
+public class TipoDominio extends BaseEntityID {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private String nomeTipoDominio;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -1,6 +1,7 @@
 
 package com.dom.colare.core.entidades.atos_de_pessoal.pes_cargos;
 
+import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import lombok.Data;
 
@@ -210,5 +211,7 @@ public class PessoalCargos extends BaseEntityID {
     @JoinColumn(name = "PES_CARGOS_ID")
     private Set<Classe> classe = null;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ARQUIVO_ID")
+    private Arquivo arquivo;
 }

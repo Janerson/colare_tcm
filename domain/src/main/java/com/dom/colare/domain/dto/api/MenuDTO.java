@@ -1,5 +1,6 @@
-package com.dom.colare.domain.dto;
+package com.dom.colare.domain.dto.api;
 
+import com.dom.colare.domain.dto.BaseDTO;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
