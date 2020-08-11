@@ -18,6 +18,7 @@ public class CorsFilter implements Filter {
     @Value("${api.origin}")
     private String origin;
 
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
@@ -33,5 +34,6 @@ public class CorsFilter implements Filter {
             chain.doFilter(req,resp);
         }
     }
+
 
 }
