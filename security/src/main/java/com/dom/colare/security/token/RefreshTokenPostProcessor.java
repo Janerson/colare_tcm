@@ -1,5 +1,6 @@
 package com.dom.colare.security.token;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
+
+    @Value("${api.enable-https}")
+    private boolean enableHttps;
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
@@ -49,7 +53,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
     private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
         Cookie resfreshTokenCookie =  new Cookie("refresh_token", refreshToken);
         resfreshTokenCookie.setHttpOnly(true);
-        resfreshTokenCookie.setSecure(false);//TODO mudar para true em produção
+        resfreshTokenCookie.setSecure(enableHttps);//TODO mudar para true em produção
         resfreshTokenCookie.setPath(req.getContextPath()+"/oauth/token");
         resfreshTokenCookie.setMaxAge(86400);
         resp.addCookie(resfreshTokenCookie);
