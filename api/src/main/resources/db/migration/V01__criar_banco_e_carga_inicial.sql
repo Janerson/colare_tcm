@@ -13,9 +13,6 @@
 
 
 -- Copiando estrutura do banco de dados para colare
-CREATE DATABASE IF NOT EXISTS `colare` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `colare`;
-
 -- Copiando estrutura para tabela colare.adesao_reg_prec
 CREATE TABLE IF NOT EXISTS `adesao_reg_prec` (
   `uuid` binary(16) NOT NULL,
