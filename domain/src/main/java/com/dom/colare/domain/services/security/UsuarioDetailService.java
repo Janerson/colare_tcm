@@ -6,7 +6,6 @@ import com.dom.colare.domain.dto.security.UsuarioDTO;
 import com.dom.colare.domain.services.BaseService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,7 +31,8 @@ public class UsuarioDetailService extends BaseService<UsuarioDTO, UUID, Usuario>
         Usuario usuario = repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
 
-        return new User(usuario.getEmail(), usuario.getPassword(), gerPermissoes(usuario));
+        //return new User(usuario.getEmail(), usuario.getPassword(), gerPermissoes(usuario));
+        return new UsuarioToken(usuario,gerPermissoes(usuario));
     }
 
     private Collection<? extends GrantedAuthority> gerPermissoes(Usuario usuario) {
@@ -41,6 +41,8 @@ public class UsuarioDetailService extends BaseService<UsuarioDTO, UUID, Usuario>
         authorities.add(new SimpleGrantedAuthority("READ"));
         authorities.add(new SimpleGrantedAuthority("UPDATE"));
         authorities.add(new SimpleGrantedAuthority("DELETE"));
+        authorities.add(new SimpleGrantedAuthority("LIST"));
         return authorities;
     }
+
 }

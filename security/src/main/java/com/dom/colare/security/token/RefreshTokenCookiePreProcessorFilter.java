@@ -29,18 +29,18 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
             for (Cookie cookie : req.getCookies()) {
                 if (cookie.getName().equals("refresh_token")) {
                     String refreshToken = cookie.getValue();
-                    req = new ServeletReqquestWrapper(req, refreshToken);
+                    req = new ServeletRequestWrapper(req, refreshToken);
                 }
             }
         }
         chain.doFilter(req,response);
     }
 
-    static class ServeletReqquestWrapper extends HttpServletRequestWrapper {
+    static class ServeletRequestWrapper extends HttpServletRequestWrapper {
 
         private final String refreshToken;
 
-        public ServeletReqquestWrapper(HttpServletRequest request, String refreshToken) {
+        public ServeletRequestWrapper(HttpServletRequest request, String refreshToken) {
             super(request);
             this.refreshToken = refreshToken;
         }

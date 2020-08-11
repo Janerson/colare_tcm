@@ -1,5 +1,6 @@
 package com.dom.colare.domain.services;
 
+import org.modelmapper.Conditions;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -23,10 +24,10 @@ public interface IBaseService<T, D> {
 
     default ModelMapper modelMapper() {
 
-        Converter<String,String> passwordConverter = new Converter<String, String>() {
+        Converter<String, String> passwordConverter = new Converter<String, String>() {
             @Override
             public String convert(MappingContext<String, String> context) {
-                String path  = context.getMapping().getPath();
+                String path = context.getMapping().getPath();
                 return path.contains("password") ?
                         encoder().encode(context.getSource())
                         : context.getSource();
@@ -35,7 +36,7 @@ public interface IBaseService<T, D> {
 
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
-                .setMatchingStrategy(MatchingStrategies.STRICT);
+                .setMatchingStrategy(MatchingStrategies.STRICT).setPropertyCondition(Conditions.isNotNull());
         modelMapper.addConverter(passwordConverter);
         return modelMapper;
     }
