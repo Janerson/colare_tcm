@@ -19,15 +19,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 public class ResourcerServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
-            // -- swagger ui
-            "/v2/api-docs",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui.html",
-            "/webjars/**"
-            // other public endpoints of your API may be appended to this array
+            "/", "/csrf", "/v2/api-docs",
+            "/swagger-resources/configuration/ui",
+            "/configuration/ui", "/swagger-resources",
+            "/swagger-resources/configuration/security",
+            "/configuration/security", "/swagger-ui.html",
+            "/webjars/**","/swagger-resources/configuration/ui"
     };
 
     @Qualifier(value = "usuarioDetailService")
