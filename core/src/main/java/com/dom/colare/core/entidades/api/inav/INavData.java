@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "INAV_DATA")
 @Data
 public class INavData extends BaseEntityID {
     private String name;

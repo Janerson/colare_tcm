@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name = "INAV_BADGE")
 @Data
 public class INavBadge extends BaseEntityID {
 
