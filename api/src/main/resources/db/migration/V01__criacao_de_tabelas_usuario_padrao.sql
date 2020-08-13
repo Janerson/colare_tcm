@@ -1,5 +1,3 @@
-USE [colare]
-GO
 /****** Object:  Table [dbo].[adesao_reg_prec]    Script Date: 13/08/2020 00:10:04 ******/
 SET ANSI_NULLS ON
 GO
