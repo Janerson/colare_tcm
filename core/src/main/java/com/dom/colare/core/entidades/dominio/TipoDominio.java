@@ -13,6 +13,7 @@ public class TipoDominio extends BaseEntityID {
 
     private String nomeTipoDominio;
 
+    @OrderBy(value = "codigo asc")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "TP_DOMINIO_ID")
     private List<Dominio> dominios;

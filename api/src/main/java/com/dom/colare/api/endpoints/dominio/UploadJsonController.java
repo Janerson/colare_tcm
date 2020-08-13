@@ -2,10 +2,13 @@ package com.dom.colare.api.endpoints.dominio;
 
 import com.dom.colare.core.entidades.dominio.Dominio;
 import com.dom.colare.core.entidades.dominio.TipoDominio;
-import com.dom.colare.domain.services.TipoDominioService;
+import com.dom.colare.domain.services.api.TipoDominioService;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,8 @@ import java.util.List;
 public class UploadJsonController {
 
     private final TipoDominioService service;
+    @Value("${spring.data.web.pageable.default-page-size}")
+    private int PAGE_SIZE;
 
     public UploadJsonController(TipoDominioService service) {
         this.service = service;
@@ -26,7 +31,8 @@ public class UploadJsonController {
 
     @GetMapping("/PAGED/{TABELA}")
     public Page<Dominio> paginado(Pageable pageable, @PathVariable("TABELA") String tabela) {
-        return service.paginado(pageable, tabela);
+        Pageable page  = PageRequest.of(pageable.getPageNumber(),PAGE_SIZE, Sort.by("codigo"));
+        return service.paginado(page, tabela);
     }
 
     @GetMapping("ALL/{tabela}/{status}")

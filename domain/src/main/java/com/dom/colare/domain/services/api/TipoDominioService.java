@@ -1,8 +1,9 @@
-package com.dom.colare.domain.services;
+package com.dom.colare.domain.services.api;
 
 import com.dom.colare.core.entidades.dominio.Dominio;
 import com.dom.colare.core.entidades.dominio.TipoDominio;
 import com.dom.colare.data.repository.dominio.tcm.TipoDominioRepository;
+import com.dom.colare.domain.services.BaseService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

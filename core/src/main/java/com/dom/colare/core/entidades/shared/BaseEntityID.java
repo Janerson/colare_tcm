@@ -22,7 +22,7 @@ public abstract class BaseEntityID implements Serializable {
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid ;//= UuidCreator.getTimeOrdered()
 
-    @Column(insertable = false, updatable = false, columnDefinition = "BIGINT(20) NOT NULL AUTO_INCREMENT UNIQUE KEY")
+    @Column(insertable = false, updatable = false, columnDefinition = "BIGINT NOT NULL IDENTITY")
     protected long seq = 0;
 
     @CreationTimestamp
