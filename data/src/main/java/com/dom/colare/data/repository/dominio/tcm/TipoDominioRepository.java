@@ -17,16 +17,11 @@ public interface TipoDominioRepository extends BaseRespository<TipoDominio, UUID
 
     TipoDominio findByNomeTipoDominioEquals(String nome);
 
-    /**
-     * @Query(value = "SELECT d.id, d.ativo, d.codigo, d.descricao, d.vigencia FROM dominio d " +
-     * " INNER JOIN tipo_dominio ON tipo_dominio.id = d.tp_dominio_id\n" +
-     * " WHERE tipo_dominio.nome_tipo_dominio= :nome",nativeQuery = true)
-     */
-
+    //
     @Query(value = "select d from dominio d, tipo_dominio t " +
             "where d member of t.dominios " +
-            "and t.nomeTipoDominio = :nome")
-    Page<Dominio> findByNomeTipoDominioEquals(Pageable p, @Param("nome") String nome);
+            "and t.nomeTipoDominio = :nome and d.descricao like :descricao")
+    Page<Dominio> findByNomeTipoDominioEquals(Pageable p, @Param("nome") String nome, @Param("descricao") String descricao);
 
     @Query(value = "select d from dominio d, tipo_dominio t " +
             "where d member of t.dominios and t.nomeTipoDominio = :nome" +

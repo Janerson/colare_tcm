@@ -15,18 +15,18 @@ import java.util.List;
 
 /**
  * @param <T>  Objeto DTO
- * @param <PK>  Tipo chave primária
+ * @param <PK> Tipo chave primária
  */
-public abstract class BaseController<T extends BaseDTO,PK> {
+public abstract class BaseController<T extends BaseDTO, PK> {
 
-    private final BaseService<T,PK,?> service;
+    private final BaseService<T, PK, ?> service;
 
-    public BaseController(BaseService<T,PK,?> service) {
+    public BaseController(BaseService<T, PK, ?> service) {
         this.service = service;
     }
 
     @ApiOperation(value = "Gravar entidade")
-    @PostMapping(produces="application/json", consumes="application/json")
+    @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<T> gravar(@RequestBody T t) {
         T t1 = service.gravar(t);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
@@ -34,7 +34,7 @@ public abstract class BaseController<T extends BaseDTO,PK> {
         return ResponseEntity.created(uri).body(t1);
     }
 
-    @GetMapping(path = "/{ID}", produces="application/json")
+    @GetMapping(path = "/{ID}", produces = "application/json")
     public ResponseEntity<T> buscarPeloID(@PathVariable("ID") PK id) {
         return new ResponseEntity<>(service.buscarPeloId(id), HttpStatus.OK);
     }
@@ -61,5 +61,10 @@ public abstract class BaseController<T extends BaseDTO,PK> {
     @GetMapping("/PAGED")
     public Page<T> paginado(Pageable pageable) {
         return service.paginado(pageable);
+    }
+
+    @GetMapping("/PAGINADO")
+    public Page<T> listaPaginada(@RequestParam("search")String search, Pageable pageable) {
+        return service.listaPaginada(pageable,search);
     }
 }

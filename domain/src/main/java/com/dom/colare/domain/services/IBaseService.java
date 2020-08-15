@@ -41,7 +41,7 @@ public interface IBaseService<T, D> {
         return modelMapper;
     }
 
-    /**
+   /**
      * <p>Note: outClass object must have default constructor with no arguments</p>
      *
      * @param entity   entity that needs to be mapped.
@@ -103,4 +103,7 @@ public interface IBaseService<T, D> {
         modelMapper().map(source, destination);
         return destination;
     }
-}
+
+
+  }
+

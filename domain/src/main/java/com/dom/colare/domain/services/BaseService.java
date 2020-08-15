@@ -1,10 +1,11 @@
 package com.dom.colare.domain.services;
 
+import com.dom.colare.core.entidades.shared.BaseEntityID;
+import com.dom.colare.data.repository.BaseRespository;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
@@ -14,10 +15,11 @@ import java.util.List;
  * @param <T>  Entidade de Persistência
  */
 @Data
-public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
+public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBaseService<T, D> {
 
 
-    private final PagingAndSortingRepository<T, PK> repository;
+    /*private final PagingAndSortingRepository<T, PK> repository;*/
+    private final BaseRespository<T, PK> repository;
 
     private final Class<D> dtoClass;
     private final Class<T> entityClass;
@@ -25,7 +27,7 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
 //    private T entity;
 //    private D dto;
 
-    public BaseService(PagingAndSortingRepository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
+    public BaseService(BaseRespository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
         this.repository = repository;
         this.dtoClass = dtoClass;
         this.entityClass = entityClass;
@@ -53,11 +55,17 @@ public abstract class BaseService<D, PK, T> implements IBaseService<T, D> {
     }
 
     public List<D> listar() {
+
         return mapAll(repository.findAll(), dtoClass);
     }
 
     public Page<D> paginado(Pageable pageable) {
         return repository.findAll(pageable)
+                .map(entity -> mapToDTO(entity, dtoClass));
+    }
+
+    public Page<D> listaPaginada(Pageable pageable , String searchTerm) {
+        return repository.findAll(Specifications.allColumnsLike(searchTerm),pageable)
                 .map(entity -> mapToDTO(entity, dtoClass));
     }
 

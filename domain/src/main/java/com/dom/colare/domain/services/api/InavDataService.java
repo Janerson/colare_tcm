@@ -31,5 +31,4 @@ public class InavDataService extends BaseService<InavDataDTO, UUID, INavData> {
 
     }
 
-
 }

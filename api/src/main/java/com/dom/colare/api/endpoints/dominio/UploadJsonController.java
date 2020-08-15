@@ -30,9 +30,12 @@ public class UploadJsonController {
     }
 
     @GetMapping("/PAGED/{TABELA}")
-    public Page<Dominio> paginado(Pageable pageable, @PathVariable("TABELA") String tabela) {
-        Pageable page  = PageRequest.of(pageable.getPageNumber(),PAGE_SIZE, Sort.by("codigo"));
-        return service.paginado(page, tabela);
+    public Page<Dominio> paginado(Pageable pageable, @PathVariable("TABELA") String tabela, @RequestParam("search")String search) {
+        Pageable page = PageRequest.of(pageable.getPageNumber(), PAGE_SIZE, Sort.by("codigo"));
+        if (!search.contains("%")) {
+            search = "%" + search + "%";
+        }
+        return service.paginado(page, tabela,search);
     }
 
     @GetMapping("ALL/{tabela}/{status}")
@@ -48,7 +51,7 @@ public class UploadJsonController {
             throw new RuntimeException("Nenhum arquivo enviado ou recebido.");
         }
 
-        List<TipoDominio> tipoDominio = Arrays.asList(new JsonMapper().readValue(file.getInputStream(),TipoDominio[].class));
+        List<TipoDominio> tipoDominio = Arrays.asList(new JsonMapper().readValue(file.getInputStream(), TipoDominio[].class));
 
         if (!tabela.trim().equalsIgnoreCase(tipoDominio.get(0).getNomeTipoDominio().trim())) {
             throw new Exception("Arquivo de importação não corresponde com a tabela: " + tabela);
