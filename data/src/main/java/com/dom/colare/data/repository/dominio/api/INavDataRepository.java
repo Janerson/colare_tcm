@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface INavDataRepository extends BaseRespository<INavData, UUID> {
 
-    @Query(value = "SELECT  * from colare.inav_data where menu_id is null order by inserted_at asc" , nativeQuery = true)
+    @Query(value = "SELECT  * from colare.inav_data where menu_id is null order by seq asc" , nativeQuery = true)
     List<INavData> listarTodos();
 
     List<INavData> findAllByUrlEndingWith(String layout);
