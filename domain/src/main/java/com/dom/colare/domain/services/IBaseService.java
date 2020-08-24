@@ -42,8 +42,6 @@ public interface IBaseService<T, D> {
     }
 
    /**
-     * <p>Note: outClass object must have default constructor with no arguments</p>
-     *
      * @param entity   entity that needs to be mapped.
      * @param outClass class of result object.
      * @return new object of <code>outClass</code> type.

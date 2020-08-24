@@ -55,7 +55,6 @@ public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBas
     }
 
     public List<D> listar() {
-
         return mapAll(repository.findAll(), dtoClass);
     }
 
