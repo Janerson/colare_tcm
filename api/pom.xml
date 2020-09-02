@@ -16,12 +16,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-      <dependency>
+     <!-- <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
           <version>6.5.3</version>
-          <!-- <version>5.2.4</version>-->
-        </dependency>
+          &lt;!&ndash; <version>5.2.4</version>&ndash;&gt;
+        </dependency>-->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>

@@ -2,6 +2,8 @@ package com.dom.colare.data.repository.dominio.api;
 
 import com.dom.colare.core.entidades.api.inav.INavData;
 import com.dom.colare.data.repository.BaseRespository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,9 @@ public interface INavDataRepository extends BaseRespository<INavData, UUID> {
     List<INavData> listarTodos();
 
     List<INavData> findAllByUrlEndingWith(String layout);
+
+    @Query(value = "SELECT  * from colare.inav_data where menu_id is null order by seq asc" , nativeQuery = true)
+    Page<INavData> listar(Pageable pageable);
 
     /**
      * Consulta Layouts pela Sigla da Prestação de Contas

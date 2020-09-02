@@ -15,4 +15,6 @@ public interface RetificaHomologRepository extends BaseRespository<RetificaHomol
     @Query(value = "select  r from RETIFICAHOMOLOG r where r.idProcedimentoOuContrato =:idProcedimento and r.arquivo.statusEnvio = :statusEnvio")
     RetificaHomolog getByIdProcedimentoAndSatusEnvio(@Param("idProcedimento") Integer idProcedimento, @Param("statusEnvio") String statusEnvio);
 
+
+
 }

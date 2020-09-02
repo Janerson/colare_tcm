@@ -25,4 +25,6 @@ public class RetificaHomoloService extends BaseService<RetificaHomologDTO, UUID,
         if (retifica != null) mapToDTO(retifica, dto);
         return Optional.of(dto);
     }
+
+
 }

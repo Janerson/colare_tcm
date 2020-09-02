@@ -5,6 +5,8 @@ import com.dom.colare.data.repository.dominio.api.INavDataRepository;
 import com.dom.colare.domain.dto.api.InavDataDTO;
 import com.dom.colare.domain.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,9 +28,13 @@ public class InavDataService extends BaseService<InavDataDTO, UUID, INavData> {
         return mapAll(repository.listarTodos(), InavDataDTO.class);
     }
 
+    public Page<InavDataDTO> listar(Pageable pageable) {
+        return repository.listar(pageable)
+                .map(entity -> modelMapper().map(entity,InavDataDTO.class));
+    }
+
     public InavDataDTO listarPorLayout(String layout) {
         return mapToDTO(repository.getByUrlEndingWith(layout), InavDataDTO.class);
-
     }
 
 }

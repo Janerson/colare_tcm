@@ -4,6 +4,8 @@ import com.dom.colare.api.BaseController;
 import com.dom.colare.domain.dto.api.InavDataDTO;
 import com.dom.colare.domain.services.api.InavDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,11 @@ public class INavDataController extends BaseController<InavDataDTO, UUID> {
     @GetMapping(path = "SPC/{layout}")
     public InavDataDTO listarPorUrl(@PathVariable("layout") String layout){
         return service.listarPorLayout(layout);
+    }
+
+    @GetMapping(path = "LISTAR")
+    public Page<InavDataDTO> listarTitulos(Pageable pageable){
+        return service.listar(pageable);
     }
 
 }

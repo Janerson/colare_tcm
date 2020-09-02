@@ -17,7 +17,6 @@ import java.util.List;
 @Data
 public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBaseService<T, D> {
 
-
     /*private final PagingAndSortingRepository<T, PK> repository;*/
     private final BaseRespository<T, PK> repository;
 

@@ -7,11 +7,7 @@ import java.util.UUID;
 
 public class GerarSenhaUtil {
     public static void main(String[] args) {
-        UUID uuid = UuidCreator.getTimeOrdered();
+       UUID uuid = UuidCreator.getTimeOrdered();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        for (int i = 0; i < 15; i++){
-            System.out.println(UuidCreator.getTimeOrdered());
-        }
-
     }
 }
