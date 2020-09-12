@@ -20,6 +20,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -31,7 +32,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
             HttpStatus status,
             WebRequest request) {
 
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = new ArrayList<>();
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.add(error.getField() + ": " + error.getDefaultMessage());
         }
@@ -126,6 +127,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getLocalizedMessage(), builder.substring(0, builder.length() - 2));
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler({NoSuchElementException.class})
+    public ResponseEntity<Object> noSuchElement(NoSuchElementException ex, WebRequest request){
+        ApiError apiError = new ApiError(
+                HttpStatus.INTERNAL_SERVER_ERROR, 500, ex.getMessage(), "error occurred: Elemento não encontrado");
+        return new ResponseEntity<>(
+                apiError, new HttpHeaders(), apiError.getStatus());
+
     }
 
     @ExceptionHandler({Exception.class})

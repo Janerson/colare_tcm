@@ -13,11 +13,12 @@ import javax.persistence.InheritanceType;
 public abstract class Publicacao extends BaseEntityID {
 
     @Column
-    private String idDocumentoPDF;
-    @Column
     private String dataPublicacao;
     @Column
     private Integer codVeiculoPublicacao;
     @Column
     private String descricao;
+    @Column
+    private String idDocumentoPDF;
+
 }

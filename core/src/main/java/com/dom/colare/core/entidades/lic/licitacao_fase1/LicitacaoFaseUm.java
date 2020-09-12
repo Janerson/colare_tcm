@@ -172,9 +172,9 @@ public class LicitacaoFaseUm extends BaseEntityID {
 
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
-     */
+     *
     @Column
-    private String descricaoNaturezaObjetoOutros;
+    private String descricaoNaturezaObjetoOutros;*/
 
     /**
      * Trata-se de prestação de serviço a ser executado de forma contínua.
@@ -227,7 +227,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
             orphanRemoval = true
     )
     @JoinColumn(name = "LICITACAOFASE1_ID")
-    private Set<ParecerFaseUm> parecerFaseUm = new HashSet<>();
+    private Set<ParecerFaseUm> parecer = new HashSet<>();
     /**
      * (Required)
      */
@@ -243,9 +243,9 @@ public class LicitacaoFaseUm extends BaseEntityID {
 
 
     @Valid
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "LICITACAOFASE1_ID")
-    private Set<RecursoOrcamentarioFaseUm> recursoOrcamentarios = new HashSet<>();
+    private Set<RecursoOrcamentarioFaseUm> recursoOrcamentario = new HashSet<>();
     /**
      * (Required)
      */
@@ -254,21 +254,23 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @NotNull
     @OneToMany
     @JoinColumn(name = "LICITACAOFASE1_ID")
-    private Set<PublicacaoFaseUm> publicacao = new HashSet<>();  /**
-    /*
+    private Set<PublicacaoFaseUm> publicacao = new HashSet<>();
+
+     @Valid
+     @OneToMany(cascade = CascadeType.ALL)
+     @JoinColumn(name = "LICITACAOFASE1_ID")
+     private Set<EditalEAnexoFase1> editalEAnexos = new HashSet<>();
+
+     /**
+     /*
      * (Required)
      */
     @Size(min = 1)
     @Valid
     @NotNull
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<NaturezaObjetoDetalhadaFase1> naturezaObjetoDetalhada = new HashSet<>();
-
-    @Valid
-    @OneToMany
-    @JoinColumn(name = "LICITACAOFASE1_ID")
-    private Set<EditalEAnexoFase1> editalEAnexo = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ARQUIVO_ID")

@@ -2,6 +2,7 @@
 package com.dom.colare.domain.dto.lic.reg_licitacao;
 
 
+import com.dom.colare.domain.dto.BaseDTO;
 import lombok.Data;
 
 /**
@@ -11,7 +12,7 @@ import lombok.Data;
  * 
  */
 @Data
-public class DetalhamentoLc123DTO {
+public class DetalhamentoLc123DTO extends BaseDTO {
 
     /**
      * Identifica se o município regulamentou procedimentos para participação exclusiva de ME e EPP

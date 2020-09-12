@@ -34,7 +34,7 @@
             <version>2.5.4</version>
         </dependency>-->
 
-        <dependency>
+       <dependency>
             <groupId>com.dom.colare</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -44,12 +44,12 @@
             <artifactId>security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
+     <dependency>
             <groupId>com.dom.colare</groupId>
             <artifactId>domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
+      <dependency>
             <groupId>com.dom.colare</groupId>
             <artifactId>data</artifactId>
             <version>0.0.1-SNAPSHOT</version>

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @param <T>  Objeto DTO
@@ -36,7 +37,10 @@ public abstract class BaseController<T extends BaseDTO, PK> {
 
     @GetMapping(path = "/{ID}", produces = "application/json")
     public ResponseEntity<T> buscarPeloID(@PathVariable("ID") PK id) {
-        return new ResponseEntity<>(service.buscarPeloId(id), HttpStatus.OK);
+        Optional<T> optionalT = Optional.ofNullable(service.buscarPeloId(id));
+
+        return optionalT.map(t -> new ResponseEntity<>(t, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @PutMapping("/{ID}")
@@ -64,7 +68,7 @@ public abstract class BaseController<T extends BaseDTO, PK> {
     }
 
     @GetMapping("/PAGINADO")
-    public Page<T> listaPaginada(@RequestParam("search")String search, Pageable pageable) {
-        return service.listaPaginada(pageable,search);
+    public Page<T> listaPaginada(@RequestParam("search") String search, Pageable pageable) {
+        return service.listaPaginada(pageable, search);
     }
 }

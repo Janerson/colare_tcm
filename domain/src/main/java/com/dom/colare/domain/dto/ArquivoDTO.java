@@ -2,11 +2,9 @@ package com.dom.colare.domain.dto;
 
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
-public class ArquivoDTO {
-    private UUID uuid;
+public class ArquivoDTO extends BaseDTO {
+
     private long id;
     private long ano;
     private long mes;

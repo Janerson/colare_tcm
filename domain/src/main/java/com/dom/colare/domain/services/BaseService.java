@@ -38,7 +38,9 @@ public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBas
     }
 
     public D buscarPeloId(PK pk) {
-        return mapToDTO(repository.findById(pk).get(), dtoClass);
+        return repository.findById(pk)
+                .map(x  -> mapToDTO(x, dtoClass))
+                .orElse(null);
     }
 
     public D atualizar(PK id, D d) {
