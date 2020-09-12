@@ -3,6 +3,7 @@ package com.dom.colare.api.exception;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -58,13 +59,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
 
-    @ExceptionHandler({ConstraintViolationException.class})
+    //@ExceptionHandler({ConstraintViolationException.class})
+    @ExceptionHandler({ TransactionSystemException.class })
     public ResponseEntity<Object> handleConstraintViolation(
-            ConstraintViolationException ex, WebRequest request) {
+            Exception ex, WebRequest request) {
         List<String> errors = new ArrayList<String>();
-        for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
-            errors.add(violation.getRootBeanClass().getName() + " " +
-                    violation.getPropertyPath() + ": " + violation.getMessage());
+        Throwable cause = ((TransactionSystemException) ex).getRootCause();
+        if (cause instanceof ConstraintViolationException) {
+            for (ConstraintViolation<?> violation : ((ConstraintViolationException) cause).getConstraintViolations()) {
+                errors.add(violation.getPropertyPath() + ": " + violation.getMessage());
+            }
         }
 
         ApiError apiError =
@@ -138,11 +142,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
-    @ExceptionHandler({Exception.class})
+   /* @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, 500, ex.getMessage(), "error occurred: ");
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
-    }
+    }*/
 }

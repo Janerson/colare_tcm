@@ -38,7 +38,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
      */
     @DecimalMin("1")
     @DecimalMax("500")
-    @NotNull
+    @NotNull(message = "Número da licitação não pode ser nulo")
     @Column
     private Integer numeroLicitacao;
     /**

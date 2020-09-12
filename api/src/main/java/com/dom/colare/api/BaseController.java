@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +28,8 @@ public abstract class BaseController<T extends BaseDTO, PK> {
     }
 
     @ApiOperation(value = "Gravar entidade")
-    @PostMapping(produces = "application/json", consumes = "application/json")
-    public ResponseEntity<T> gravar(@RequestBody T t) {
+    @PostMapping(produces = "application/json")
+    public ResponseEntity<T> gravar(@Valid @RequestBody T t) {
         T t1 = service.gravar(t);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
                 .buildAndExpand(t1.getUuid()).toUri();
