@@ -2,7 +2,6 @@ package com.dom.colare.domain.services;
 
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import com.dom.colare.data.repository.BaseRespository;
-import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +13,6 @@ import java.util.List;
  * @param <PK> Tipo chave PK
  * @param <T>  Entidade de Persistência
  */
-@Data
 public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBaseService<T, D> {
 
     /*private final PagingAndSortingRepository<T, PK> repository;*/
@@ -37,6 +35,10 @@ public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBas
         return mapToDTO(repository.save(t), dtoClass);
     }
 
+    public List<D> gravarTodos(List<D> list){
+        return mapAllToDTO(repository.saveAll(mapAllToEntity(list,entityClass)),dtoClass);
+    }
+
     public D buscarPeloId(PK pk) {
         return repository.findById(pk)
                 .map(x  -> mapToDTO(x, dtoClass))
@@ -56,15 +58,12 @@ public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBas
     }
 
     public List<D> listar() {
-        return mapAll(repository.findAll(), dtoClass);
+        return mapAllToDTO(repository.findAll(), dtoClass);
     }
 
-    public Page<D> paginado(Pageable pageable) {
-        return repository.findAll(pageable)
-                .map(entity -> mapToDTO(entity, dtoClass));
-    }
+    public Page<D> paginado(Pageable pageable, String searchTerm) {
+        //Pageable page = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize(), Sort.by("seq").ascending());
 
-    public Page<D> listaPaginada(Pageable pageable , String searchTerm) {
         return repository.findAll(Specifications.allColumnsLike(searchTerm),pageable)
                 .map(entity -> mapToDTO(entity, dtoClass));
     }

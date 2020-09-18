@@ -36,6 +36,11 @@ public abstract class BaseController<T extends BaseDTO, PK> {
         return ResponseEntity.created(uri).body(t1);
     }
 
+    @PostMapping(path = "/INSERIR_LISTA")
+    public List<T> gravarTodos(@Valid @RequestBody List<T> list){
+        return service.gravarTodos(list);
+    }
+
     @GetMapping(path = "/{ID}", produces = "application/json")
     public ResponseEntity<T> buscarPeloID(@PathVariable("ID") PK id) {
         Optional<T> optionalT = Optional.ofNullable(service.buscarPeloId(id));
@@ -45,7 +50,7 @@ public abstract class BaseController<T extends BaseDTO, PK> {
     }
 
     @PutMapping("/{ID}")
-    public ResponseEntity<T> atualizar(@PathVariable("ID") PK id, @RequestBody T t) {
+    public ResponseEntity<T> atualizar(@PathVariable("ID") PK id, @Valid @RequestBody T t) {
         return ResponseEntity.ok(service.atualizar(id, t));
     }
 
@@ -64,12 +69,8 @@ public abstract class BaseController<T extends BaseDTO, PK> {
     }
 
     @GetMapping("/PAGED")
-    public Page<T> paginado(Pageable pageable) {
-        return service.paginado(pageable);
+    public Page<T> paginado(@RequestParam("search") String search, Pageable pageable) {
+        return service.paginado(pageable,search);
     }
 
-    @GetMapping("/PAGINADO")
-    public Page<T> listaPaginada(@RequestParam("search") String search, Pageable pageable) {
-        return service.listaPaginada(pageable, search);
-    }
 }

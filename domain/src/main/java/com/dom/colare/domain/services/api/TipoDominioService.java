@@ -33,6 +33,13 @@ public class TipoDominioService extends BaseService<TipoDominio, UUID,TipoDomini
 
     }
 
+    /**
+     *
+     * @param pageable
+     * @param nome Nome da Tabela de Dominio
+     * @param descricao
+     * @return
+     */
     public Page<Dominio> paginado(Pageable pageable, String nome , String descricao) {
         return repository.findByNomeTipoDominioEquals(pageable,nome, descricao)
                 .map(entity -> modelMapper().map(entity,Dominio.class));

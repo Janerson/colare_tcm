@@ -25,7 +25,7 @@ public class InavDataService extends BaseService<InavDataDTO, UUID, INavData> {
 
     @Override
     public List<InavDataDTO> listar() {
-        return mapAll(repository.listarTodos(), InavDataDTO.class);
+        return mapAllToDTO(repository.listarTodos(), InavDataDTO.class);
     }
 
     public Page<InavDataDTO> listar(Pageable pageable) {

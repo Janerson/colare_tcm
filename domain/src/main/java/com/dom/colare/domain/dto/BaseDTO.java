@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.UUID;
 
+/**
+ * Base DTO
+ */
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class BaseDTO {

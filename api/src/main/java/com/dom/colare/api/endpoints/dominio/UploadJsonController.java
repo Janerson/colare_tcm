@@ -6,9 +6,7 @@ import com.dom.colare.domain.services.api.TipoDominioService;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,11 +29,11 @@ public class UploadJsonController {
 
     @GetMapping("/PAGED/{TABELA}")
     public Page<Dominio> paginado(Pageable pageable, @PathVariable("TABELA") String tabela, @RequestParam("search")String search) {
-        Pageable page = PageRequest.of(pageable.getPageNumber(), PAGE_SIZE, Sort.by("codigo"));
+      //  Pageable page = PageRequest.of(pageable.getPageNumber(), PAGE_SIZE, Sort.by("codigo"));
         if (!search.contains("%")) {
             search = "%" + search + "%";
         }
-        return service.paginado(page, tabela,search);
+        return service.paginado(pageable,tabela,search);
     }
 
     @GetMapping("ALL/{tabela}/{status}")

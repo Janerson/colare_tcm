@@ -82,11 +82,19 @@ public interface IBaseService<T, D> {
      * @param outCLass   class of result list element
      * @return list of mapped object with <code><D></code> type.
      */
-    default List<D> mapAll(final Iterable<T> entityList, Class<D> outCLass) {
+    default List<D> mapAllToDTO(final Iterable<T> entityList, Class<D> outCLass) {
         Collection<T> tList = new ArrayList<>();
         entityList.forEach(tList::add);
         return tList.stream()
                 .map(entity -> mapToDTO(entity, outCLass))
+                .collect(Collectors.toList());
+    }
+
+    default List<T> mapAllToEntity(final Iterable<D> entityList, Class<T> outCLass) {
+        Collection<D> tList = new ArrayList<>();
+        entityList.forEach(tList::add);
+        return tList.stream()
+                .map(entity -> mapFromDTO(entity, outCLass))
                 .collect(Collectors.toList());
     }
 

@@ -21,7 +21,7 @@ public interface INavDataRepository extends BaseRespository<INavData, UUID> {
     @Query(value = "SELECT  * from colare.inav_data where menu_id is null order by seq asc" , nativeQuery = true)
     Page<INavData> listar(Pageable pageable);
 
-    /**
+    /**@
      * Consulta Layouts pela Sigla da Prestação de Contas
      * @param spc
      * @return INavData

@@ -270,7 +270,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "LICITACAOFASE1_ID")
-    private Set<NaturezaObjetoDetalhadaFase1> naturezaObjetoDetalhada = new HashSet<>();
+    private Set<NaturezaObjetoDetalhadaFase1> naturezaDoObjetoDetalhada = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ARQUIVO_ID")

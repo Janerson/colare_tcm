@@ -1,8 +1,10 @@
 package com.dom.colare.api.exception;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -22,6 +24,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -129,6 +132,34 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         ApiError apiError = new ApiError(HttpStatus.UNSUPPORTED_MEDIA_TYPE, status.value(),
                 ex.getLocalizedMessage(), builder.substring(0, builder.length() - 2));
+        return new ResponseEntity<>(
+                apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(
+            HttpMessageNotReadableException ex,
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request) {
+        if(ex.getCause() instanceof  JsonMappingException){
+            return handleConverterErrors((JsonMappingException) ex.getCause(),request);
+        }
+
+        ApiError apiError = new ApiError(HttpStatus.PRECONDITION_FAILED, status.value(),
+                ex.getLocalizedMessage(), ex.getCause().getLocalizedMessage());
+        return new ResponseEntity<>(
+                apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler(JsonMappingException.class)
+    public ResponseEntity<Object> handleConverterErrors(JsonMappingException ex ,  WebRequest request) {
+        List<String> list  = ex.getPath().stream()
+                .map(JsonMappingException.Reference::getFieldName)
+                .map(s -> s + ": "+ex.getCause())
+                .collect(Collectors.toList());
+        ApiError apiError = new ApiError(
+                HttpStatus.PRECONDITION_FAILED, 400, ex.getLocalizedMessage(), list);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
