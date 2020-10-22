@@ -17,5 +17,6 @@ public interface BaseRespository<T extends BaseEntityID, PK> extends PagingAndSo
 
     Page<T> findAll(Specification<T> spec, Pageable pageable);
 
+
 }
 

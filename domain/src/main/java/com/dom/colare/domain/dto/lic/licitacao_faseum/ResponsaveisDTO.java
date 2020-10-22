@@ -10,4 +10,5 @@ import lombok.Data;
 public class ResponsaveisDTO extends BaseDTO {
     private long codTipoResponsabilidade;
     private String numeroCpf;
+    private LicitacaoFaseUmDTO faseUm;
 }

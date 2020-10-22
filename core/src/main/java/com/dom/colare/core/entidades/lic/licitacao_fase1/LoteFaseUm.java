@@ -2,34 +2,35 @@
 package com.dom.colare.core.entidades.lic.licitacao_fase1;
 
 import com.dom.colare.core.entidades.shared.Lote;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
-
-
 /**
  * lote
  * <p>
  * – Cadastro de Lotes do Processo Licitatório
  */
+@Getter
+@Setter
 @Entity(name = "LOTE_FASE1")
-@Data
 @PrimaryKeyJoinColumn(name = "id")
 public class LoteFaseUm extends Lote {
 
-    @Size(min = 1)
+    public LoteFaseUm() {
+    }
+
+    //@Size(min = 1)
     @Valid
-    @NotNull
-    @OneToMany
-    @JoinColumn(name = "LOTE_FASE1_ID")
+    @OneToMany(mappedBy = "lote",cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<ItemFaseUm> item = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LICITACAOFASE1_ID")
+   // @JsonBackReference
+    private LicitacaoFaseUm faseUm;
 
 }

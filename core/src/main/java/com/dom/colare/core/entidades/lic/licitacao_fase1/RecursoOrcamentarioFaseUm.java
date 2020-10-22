@@ -4,10 +4,7 @@ package com.dom.colare.core.entidades.lic.licitacao_fase1;
 import com.dom.colare.core.entidades.shared.RecursoOrcamentario;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
@@ -30,5 +27,9 @@ public class RecursoOrcamentarioFaseUm extends RecursoOrcamentario {
     @OneToMany
     @JoinColumn(name = "RECORC_FASE1_ID")
     private Set<DotacaoFaseUm> dotacao = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LICITACAOFASE1_ID")
+    private LicitacaoFaseUm faseUm;
 
 }

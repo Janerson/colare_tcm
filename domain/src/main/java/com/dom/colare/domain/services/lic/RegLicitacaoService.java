@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class RegLicitcaoService  extends BaseService<RegLicitacaoDTO, UUID,RegLicitacao> {
+public class RegLicitacaoService  extends BaseService<RegLicitacaoDTO, UUID,RegLicitacao> {
 
-    public RegLicitcaoService(RegLicitacaoRepository repository) {
+    public RegLicitacaoService(RegLicitacaoRepository repository) {
         super(repository, RegLicitacaoDTO.class, RegLicitacao.class);
     }
 }

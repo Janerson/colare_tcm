@@ -1,5 +1,6 @@
 package com.dom.colare.domain.services;
 
+import org.modelmapper.Condition;
 import org.modelmapper.Conditions;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -8,6 +9,7 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,7 +43,17 @@ public interface IBaseService<T, D> {
         return modelMapper;
     }
 
-   /**
+    default Condition<T, D> skipProperty(String... s) {
+        return new Condition<T, D>() {
+            @Override
+            public boolean applies(MappingContext<T, D> mappingContext) {
+                return Arrays.stream(s).noneMatch(s1 -> s1.toUpperCase() == mappingContext.getMapping().getLastDestinationProperty().getName());
+            }
+        };
+
+    }
+
+    /**
      * @param entity   entity that needs to be mapped.
      * @param outClass class of result object.
      * @return new object of <code>outClass</code> type.
@@ -111,5 +123,5 @@ public interface IBaseService<T, D> {
     }
 
 
-  }
+}
 

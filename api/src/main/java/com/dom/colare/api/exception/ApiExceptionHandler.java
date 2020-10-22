@@ -45,7 +45,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         }
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, status.value(), ex.getLocalizedMessage(), errors);
+                new ApiError(HttpStatus.PRECONDITION_FAILED, status.value(), ex.getLocalizedMessage(), errors);
         return handleExceptionInternal(
                 ex, apiError, headers, apiError.getStatus(), request);
     }
@@ -66,16 +66,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ TransactionSystemException.class })
     public ResponseEntity<Object> handleConstraintViolation(
             Exception ex, WebRequest request) {
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = new ArrayList<>();
         Throwable cause = ((TransactionSystemException) ex).getRootCause();
         if (cause instanceof ConstraintViolationException) {
             for (ConstraintViolation<?> violation : ((ConstraintViolationException) cause).getConstraintViolations()) {
-                errors.add(violation.getPropertyPath() + ": " + violation.getMessage());
+                errors.add( violation.getMessage());
             }
         }
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, 500, ex.getLocalizedMessage(), errors);
+                new ApiError(HttpStatus.PRECONDITION_FAILED, 412, ex.getLocalizedMessage(), errors);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
@@ -109,8 +109,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
         StringBuilder builder = new StringBuilder();
         builder.append(ex.getMethod());
-        builder.append(
-                " method is not supported for this request. Supported methods are ");
+        builder.append(" method is not supported for this request. Supported methods are: ");
         ex.getSupportedHttpMethods().forEach(t -> builder.append(t + " "));
 
         ApiError apiError = new ApiError(HttpStatus.METHOD_NOT_ALLOWED, status.value(),
@@ -159,13 +158,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .map(s -> s + ": "+ex.getCause())
                 .collect(Collectors.toList());
         ApiError apiError = new ApiError(
-                HttpStatus.PRECONDITION_FAILED, 400, ex.getLocalizedMessage(), list);
+                HttpStatus.PRECONDITION_FAILED, 412
+                , ex.getLocalizedMessage(), list);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }
 
     @ExceptionHandler({NoSuchElementException.class})
-    public ResponseEntity<Object> noSuchElement(NoSuchElementException ex, WebRequest request){
+    public ResponseEntity<Object> noSuchElement(NoSuchElementException ex, WebRequest request) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, 500, ex.getMessage(), "error occurred: Elemento não encontrado");
         return new ResponseEntity<>(
@@ -176,7 +176,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
    /* @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
         ApiError apiError = new ApiError(
-                HttpStatus.INTERNAL_SERVER_ERROR, 500, ex.getMessage(), "error occurred: ");
+                HttpStatus.INTERNAL_SERVER_ERROR, 500, "Erro não tratado, contacte o desenvolvedor.", "error occurred: ");
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }*/

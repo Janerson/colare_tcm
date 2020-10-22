@@ -15,4 +15,5 @@ public class ParecerDTO extends BaseDTO {
     private LocalDate dataParecer;
     private String numeroCpf;
     private String numeroRegistroOrgaoDeClasse;
+    private LicitacaoFaseUmDTO faseUm;
 }

@@ -2,14 +2,14 @@ package com.dom.colare.core.entidades.lic.licitacao_fase1;
 
 import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,9 +20,9 @@ import java.util.Set;
  * Envio inicial dos dados da licitação - Abertura da licitação
  */
 @Entity(name = "LICITACAOFASE1")
-@Data
+@Getter
+@Setter
 public class LicitacaoFaseUm extends BaseEntityID {
-
     /**
      * Exercício do edital da licitação
      * (Required)
@@ -55,10 +55,11 @@ public class LicitacaoFaseUm extends BaseEntityID {
     @NotNull
     @Column
     private String objeto;
+
     /**
      * Número de convidados.
      */
-    @DecimalMin("1")
+    @DecimalMin(value = "1", message = "Número de convidados dever ser maior ou igual a {value}")
     @Column
     private Integer numeroDeConvidados;
     /**
@@ -144,14 +145,12 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * ID do arquivo enviado contendo o documento digitalizado
      * (Required)
      */
-    @NotNull
     private String idDocumentoPDF;
 
     /**
      * Código do Tipo de Envio
      * (Required)
      */
-    @NotNull
     @Column
     private Integer codTipoEnvio;
 
@@ -173,8 +172,7 @@ public class LicitacaoFaseUm extends BaseEntityID {
     /**
      * Descrição da natureza do objeto quando for selecionado a Natureza do objeto = Outros
      *
-    @Column
-    private String descricaoNaturezaObjetoOutros;*/
+     @Column private String descricaoNaturezaObjetoOutros;*/
 
     /**
      * Trata-se de prestação de serviço a ser executado de forma contínua.
@@ -193,81 +191,91 @@ public class LicitacaoFaseUm extends BaseEntityID {
     /**
      * (Required)
      */
-    @Size(min = 1)
+    //Size(min = 1)
     @Valid
-    @NotNull
+    //@NotNull
     @OneToMany(
+            mappedBy = "faseUm",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
-    @JoinColumn(name = "LICITACAOFASE1_ID")
+    @OrderBy("seq")
+    //@JsonManagedReference
     private Set<LoteFaseUm> lote = new HashSet<>();
 
     /**
      * (Required)
      */
-    @Size(min = 1)
+    //@Size(min = 1)
     @Valid
-    @NotNull
+    //@NotNull
     @OneToMany(
+            mappedBy = "faseUm",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "LICITACAOFASE1_ID")
+    //@JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<ResposanvelFaseUm> responsaveis = new HashSet<>();
 
     /**
      * (Required)
      */
-    @Size(min = 1)
+    //@Size(min = 1)
     @Valid
-    @NotNull
+    // @NotNull
     @OneToMany(
+            mappedBy = "faseUm",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<ParecerFaseUm> parecer = new HashSet<>();
     /**
      * (Required)
      */
-    @Size(min = 1)
+    //@Size(min = 1)
     @Valid
-    @NotNull
+    // @NotNull
     @OneToMany(
+            mappedBy = "faseUm",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "LICITACAOFASE1_ID")
+   // @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<Comissao> comissao = new HashSet<>();
 
 
+    //@Size(min = 1)
     @Valid
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "LICITACAOFASE1_ID")
+    // @NotNull
+    @OneToMany(
+            mappedBy = "faseUm",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Set<RecursoOrcamentarioFaseUm> recursoOrcamentario = new HashSet<>();
     /**
      * (Required)
      */
-    @Size(min = 1)
+    //@Size(min = 1)
     @Valid
-    @NotNull
+    //@NotNull
     @OneToMany
     @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<PublicacaoFaseUm> publicacao = new HashSet<>();
 
-     @Valid
-     @OneToMany(cascade = CascadeType.ALL)
-     @JoinColumn(name = "LICITACAOFASE1_ID")
-     private Set<EditalEAnexoFase1> editalEAnexos = new HashSet<>();
+    @Valid
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "LICITACAOFASE1_ID")
+    private Set<EditalEAnexoFase1> editalEAnexos = new HashSet<>();
 
-     /**
-     /*
+    /**
+     * /*
      * (Required)
      */
-    @Size(min = 1)
+    //@Size(min = 1)
     @Valid
-    @NotNull
+    //@NotNull
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<NaturezaObjetoDetalhadaFase1> naturezaDoObjetoDetalhada = new HashSet<>();

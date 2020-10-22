@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("${passaporte.unidade-gestora}")
+@RequestMapping("${dominio.unidades-gestoras}")
 public class UnidadeGestoraController extends BaseController<UnidadeGestoraDTO, UUID> {
 
     private final UnidadeGestoraService service;

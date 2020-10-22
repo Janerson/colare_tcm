@@ -17,4 +17,5 @@ public class ComissaoDTO extends BaseDTO {
     private LocalDate inicioVigencia;
     private MembroDTO[] membro;
     private String numeroAtoNomeacao;
+    private LicitacaoFaseUmDTO faseUm;
 }

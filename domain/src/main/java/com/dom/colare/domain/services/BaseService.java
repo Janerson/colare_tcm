@@ -2,7 +2,7 @@ package com.dom.colare.domain.services;
 
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import com.dom.colare.data.repository.BaseRespository;
-import org.springframework.beans.BeanUtils;
+import org.modelmapper.TypeMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,6 +23,10 @@ public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBas
 
 //    private T entity;
 //    private D dto;
+
+    public TypeMap<T,D> typeMap(){
+       return modelMapper().createTypeMap(entityClass,dtoClass);
+    }
 
     public BaseService(BaseRespository<T, PK> repository, Class<D> dtoClass, Class<T> entityClass) {
         this.repository = repository;
@@ -47,14 +51,13 @@ public abstract class BaseService<D, PK, T extends BaseEntityID> implements IBas
 
     public D atualizar(PK id, D d) {
         D saved = buscarPeloId(id);
-        BeanUtils.copyProperties(d, saved, "uuid");
+        //BeanUtils.copyProperties(d, saved, "uuid");
+        modelMapper().map(saved,d);
         return gravar(saved);
     }
 
-    public D apagarPorId(PK pk) {
-        D d = buscarPeloId(pk);
+    public void apagarPorId(PK pk) {
         repository.deleteById(pk);
-        return d;
     }
 
     public List<D> listar() {

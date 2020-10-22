@@ -16,4 +16,14 @@ public class LicitacaoFaseUmService extends BaseService<LicitacaoFaseUmDTO, UUID
         super(repository, LicitacaoFaseUmDTO.class, LicitacaoFaseUm.class);
         this.repository = repository;
     }
+
+/*    @Override
+    public LicitacaoFaseUmDTO atualizar(UUID id, LicitacaoFaseUmDTO licitacaoFaseUmDTO) {
+        String[] IGNORE_FIELDS = {"uuid", "lote"};
+        LicitacaoFaseUmDTO saved = buscarPeloId(id);
+        modelMapper().getConfiguration().setPropertyCondition(skipProperty(IGNORE_FIELDS));
+        modelMapper().map(saved, licitacaoFaseUmDTO);
+        return gravar(licitacaoFaseUmDTO);
+    }*/
+
 }

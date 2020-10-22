@@ -14,4 +14,5 @@ public class PublicacaoDTO extends BaseDTO {
     private LocalDate dataPublicacao;
     private String descricao;
     private String idDocumentoPDF;
+    private LicitacaoFaseUmDTO faseUm;
 }

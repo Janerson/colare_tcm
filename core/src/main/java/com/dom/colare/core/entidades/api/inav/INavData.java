@@ -22,7 +22,7 @@ public class INavData extends BaseEntityID {
     private Boolean title;
 
     @OrderBy(value = "seq")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "MENU_ID")
     private List<INavData> children;
     private String classe;

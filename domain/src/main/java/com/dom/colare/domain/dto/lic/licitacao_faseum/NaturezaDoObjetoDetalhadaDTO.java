@@ -7,4 +7,5 @@ package com.dom.colare.domain.dto.lic.licitacao_faseum;
 public class NaturezaDoObjetoDetalhadaDTO {
     private long codNaturezaObjetoDetalhada;
     private String descricaoNaturezaObjetoOutros;
+    private LicitacaoFaseUmDTO faseUm;
 }

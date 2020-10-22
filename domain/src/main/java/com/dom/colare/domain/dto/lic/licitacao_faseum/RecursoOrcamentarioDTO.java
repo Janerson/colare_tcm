@@ -11,4 +11,5 @@ public class RecursoOrcamentarioDTO extends BaseDTO {
     private long codOrigemRecurso;
     private DotacaoDTO[] dotacao;
     private Long idConvenio;
+    private LicitacaoFaseUmDTO faseUm;
 }

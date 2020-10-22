@@ -1,6 +1,5 @@
 package com.dom.colare.domain.dto.api;
 
-import com.dom.colare.core.entidades.api.inav.INavData;
 import com.dom.colare.domain.dto.BaseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -17,7 +16,7 @@ public class InavDataDTO extends BaseDTO {
     private String icon;
     private INavBadgeDTO badge;
     private Boolean title;
-    private List<INavData> children;
+    private List<InavDataDTO> children;
     @JsonProperty("class")
     private String classe;
     private Boolean divider;

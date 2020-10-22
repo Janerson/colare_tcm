@@ -4,8 +4,7 @@ package com.dom.colare.core.entidades.lic.licitacao_fase1;
 import com.dom.colare.core.entidades.shared.Item;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
@@ -32,4 +31,9 @@ public class ItemFaseUm extends Item {
      */
     @NotNull
     private Boolean precoMaximo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LOTE_FASE1_ID")
+    private LoteFaseUm lote;
 }
