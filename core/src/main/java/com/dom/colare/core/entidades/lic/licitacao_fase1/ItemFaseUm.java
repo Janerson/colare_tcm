@@ -2,7 +2,9 @@
 package com.dom.colare.core.entidades.lic.licitacao_fase1;
 
 import com.dom.colare.core.entidades.shared.Item;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,8 +15,9 @@ import javax.validation.constraints.NotNull;
  * <p>
  * Cadastro de Itens do Processo Licitatório
  */
+@Getter
+@Setter
 @Entity(name = "ITEM_FASE1")
-@Data
 @PrimaryKeyJoinColumn(name = "codigo")
 public class ItemFaseUm extends Item {
 
@@ -22,18 +25,18 @@ public class ItemFaseUm extends Item {
      * Descrição do Item
      * (Required)
      */
-    @NotNull
+    @NotNull(message = "Obrigatório informar a descrição do item")
     private String descricao;
 
     /**
      * Indica se é o preço máximo
      * (Required)
      */
-    @NotNull
+    @NotNull(message = "Obrigatório informar se é preço máximo")
     private Boolean precoMaximo;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LOTE_FASE1_ID")
-    private LoteFaseUm lote;
+    @JsonBackReference
+    private LoteFaseUm loteFaseUm;
 }

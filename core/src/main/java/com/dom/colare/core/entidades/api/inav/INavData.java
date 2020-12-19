@@ -15,11 +15,14 @@ public class INavData extends BaseEntityID {
     private String layoutDescricao;
     private String href;
     private String icon;
+    private String nomeTabelaColare;
+
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "BADGE_ID")
     private INavBadge badge;
     private Boolean title;
+    private Boolean show;
 
     @OrderBy(value = "seq")
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

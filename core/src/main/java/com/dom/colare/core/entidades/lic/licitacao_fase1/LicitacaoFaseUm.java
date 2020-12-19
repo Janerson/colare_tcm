@@ -2,6 +2,7 @@ package com.dom.colare.core.entidades.lic.licitacao_fase1;
 
 import com.dom.colare.core.entidades.shared.Arquivo;
 import com.dom.colare.core.entidades.shared.BaseEntityID;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -196,12 +197,12 @@ public class LicitacaoFaseUm extends BaseEntityID {
     //@NotNull
     @OneToMany(
             mappedBy = "faseUm",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH},
             orphanRemoval = true,
             fetch = FetchType.EAGER
     )
     @OrderBy("seq")
-    //@JsonManagedReference
+    @JsonManagedReference
     private Set<LoteFaseUm> lote = new HashSet<>();
 
     /**
@@ -233,21 +234,15 @@ public class LicitacaoFaseUm extends BaseEntityID {
     /**
      * (Required)
      */
-    //@Size(min = 1)
     @Valid
-    // @NotNull
     @OneToMany(
             mappedBy = "faseUm",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-   // @JoinColumn(name = "LICITACAOFASE1_ID")
     private Set<Comissao> comissao = new HashSet<>();
 
-
-    //@Size(min = 1)
     @Valid
-    // @NotNull
     @OneToMany(
             mappedBy = "faseUm",
             cascade = CascadeType.ALL,
@@ -257,16 +252,21 @@ public class LicitacaoFaseUm extends BaseEntityID {
     /**
      * (Required)
      */
-    //@Size(min = 1)
     @Valid
-    //@NotNull
-    @OneToMany
-    @JoinColumn(name = "LICITACAOFASE1_ID")
+    @OneToMany(
+            mappedBy = "faseUm",
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH},
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    @OrderBy("seq")
+    @JsonManagedReference
     private Set<PublicacaoFaseUm> publicacao = new HashSet<>();
 
     @Valid
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "LICITACAOFASE1_ID")
+    @JsonManagedReference
     private Set<EditalEAnexoFase1> editalEAnexos = new HashSet<>();
 
     /**
@@ -274,10 +274,16 @@ public class LicitacaoFaseUm extends BaseEntityID {
      * (Required)
      */
     //@Size(min = 1)
+
     @Valid
-    //@NotNull
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "LICITACAOFASE1_ID")
+    @OneToMany(
+            mappedBy = "faseUm",
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH},
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    @OrderBy("seq")
+    @JsonManagedReference
     private Set<NaturezaObjetoDetalhadaFase1> naturezaDoObjetoDetalhada = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)

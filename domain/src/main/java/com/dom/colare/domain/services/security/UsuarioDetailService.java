@@ -2,7 +2,6 @@ package com.dom.colare.domain.services.security;
 
 import com.dom.colare.core.entidades.security.Usuario;
 import com.dom.colare.data.repository.security.UsuarioRepository;
-import com.dom.colare.domain.dto.security.UsuarioDTO;
 import com.dom.colare.domain.services.BaseService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,12 +16,12 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class UsuarioDetailService extends BaseService<UsuarioDTO, UUID, Usuario> implements UserDetailsService {
+public class UsuarioDetailService extends BaseService<UUID, Usuario> implements UserDetailsService {
 
     private final UsuarioRepository repository;
 
     public UsuarioDetailService(UsuarioRepository repository) {
-        super(repository, UsuarioDTO.class, Usuario.class);
+        super(repository);
         this.repository = repository;
     }
 

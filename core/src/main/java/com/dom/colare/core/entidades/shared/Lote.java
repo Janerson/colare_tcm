@@ -27,7 +27,7 @@ public abstract class Lote extends BaseEntityID {
      * 
      */
     @DecimalMin("0")
-    @NotNull
+    @NotNull(message = "Informe o número do lote.")
     private Integer numeroLote;
     /**
      * Descrição do Lote

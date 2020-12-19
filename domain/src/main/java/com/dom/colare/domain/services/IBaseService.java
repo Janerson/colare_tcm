@@ -4,7 +4,9 @@ import org.modelmapper.Condition;
 import org.modelmapper.Conditions;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
 import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.convention.NamingConventions;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -38,6 +40,9 @@ public interface IBaseService<T, D> {
 
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE)
+                .setSourceNamingConvention(NamingConventions.JAVABEANS_MUTATOR)
                 .setMatchingStrategy(MatchingStrategies.STRICT).setPropertyCondition(Conditions.isNotNull());
         modelMapper.addConverter(passwordConverter);
         return modelMapper;

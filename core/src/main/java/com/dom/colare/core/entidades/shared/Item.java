@@ -20,7 +20,7 @@ public abstract class Item extends BaseEntityID {
      * (Required)
      */
     @DecimalMin("1")
-    @NotNull
+    @NotNull(message = "Obrigatório informar número do item.")
     @Column
     private int numeroItem;
 
@@ -29,7 +29,7 @@ public abstract class Item extends BaseEntityID {
      * (Required)
      */
     @DecimalMin("0")
-    @NotNull
+    @NotNull(message = "Obrigatório informar a quantidade.")
     @Column
     private int quantidade;
 
@@ -43,7 +43,7 @@ public abstract class Item extends BaseEntityID {
      * Código da unidade medida
      * (Required)
      */
-    @NotNull
+    @NotNull(message = "Obrigatório informar unidade de medida.")
     @Column
     private int codUnidadeMedida;
 
@@ -52,7 +52,7 @@ public abstract class Item extends BaseEntityID {
      * (Required)
      */
     @DecimalMin("0")
-    @NotNull
+    @NotNull(message = "Obrigatório informar valor de referência.")
     @Column
     private double valorDeReferencia;
 
@@ -60,7 +60,7 @@ public abstract class Item extends BaseEntityID {
      * Código da origem do valor de referência
      * (Required)
      */
-    @NotNull
+    @NotNull(message = "Obrigatório informar origem do valor de referência.")
     @Column
     private int codOrigemValorReferencia;
 

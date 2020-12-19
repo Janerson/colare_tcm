@@ -1,6 +1,7 @@
 package com.dom.colare.core.entidades.lic.licitacao_fase1;
 
 import com.dom.colare.core.entidades.shared.NaturezaObjetoDetalhada;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,5 +13,6 @@ public class NaturezaObjetoDetalhadaFase1 extends NaturezaObjetoDetalhada {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LICITACAOFASE1_ID")
+    @JsonBackReference
     private LicitacaoFaseUm faseUm;
 }

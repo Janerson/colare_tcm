@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class TipoDominioService extends BaseService<TipoDominio, UUID,TipoDominio> {
+public class TipoDominioService extends BaseService<UUID,TipoDominio> {
 
     private TipoDominioRepository repository;
 
     @Autowired
     public TipoDominioService(TipoDominioRepository repository) {
-        super(repository, TipoDominio.class, TipoDominio.class);
+        super(repository);
         this.repository = repository;
     }
 
@@ -28,7 +28,7 @@ public class TipoDominioService extends BaseService<TipoDominio, UUID,TipoDomini
     public TipoDominio gravar(TipoDominio tipoDominio) {
         TipoDominio tpDominio = repository.findByNomeTipoDominioEquals(tipoDominio.getNomeTipoDominio());
         if(tpDominio == null) tpDominio = new TipoDominio();
-        BeanUtils.copyProperties(tipoDominio, tpDominio, "id");
+        BeanUtils.copyProperties(tipoDominio, tpDominio, "uuid");
         return super.gravar(tpDominio);
 
     }
@@ -41,8 +41,7 @@ public class TipoDominioService extends BaseService<TipoDominio, UUID,TipoDomini
      * @return
      */
     public Page<Dominio> paginado(Pageable pageable, String nome , String descricao) {
-        return repository.findByNomeTipoDominioEquals(pageable,nome, descricao)
-                .map(entity -> modelMapper().map(entity,Dominio.class));
+        return repository.findByNomeTipoDominioEquals(pageable,nome, descricao);
     }
 
     public List<Dominio> listar(String tabela,Boolean status){

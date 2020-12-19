@@ -2,7 +2,6 @@ package com.dom.colare.domain.services.security;
 
 import com.dom.colare.core.entidades.security.Cliente;
 import com.dom.colare.data.repository.security.ClienteRepository;
-import com.dom.colare.domain.dto.security.ClienteDTO;
 import com.dom.colare.domain.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,13 +15,13 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @Service
-public class ClienteDetailService extends BaseService<ClienteDTO, UUID, Cliente> implements ClientDetailsService {
+public class ClienteDetailService extends BaseService<UUID, Cliente> implements ClientDetailsService {
 
     private final ClienteRepository repository;
 
     @Autowired
     public ClienteDetailService(ClienteRepository repository) {
-        super(repository, ClienteDTO.class, Cliente.class);
+        super(repository);
         this.repository = repository;
     }
 

@@ -87,7 +87,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getName() + " should be of type " + ex.getRequiredType().getName();
 
         ApiError apiError =
-                new ApiError(HttpStatus.BAD_REQUEST, 500, ex.getLocalizedMessage(), error);
+                new ApiError(HttpStatus.BAD_REQUEST, 400, ex.getLocalizedMessage(), error);
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());
     }

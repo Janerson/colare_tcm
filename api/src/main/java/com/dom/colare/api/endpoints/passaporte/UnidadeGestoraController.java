@@ -1,7 +1,7 @@
 package com.dom.colare.api.endpoints.passaporte;
 
 import com.dom.colare.api.BaseController;
-import com.dom.colare.domain.dto.passaporte.UnidadeGestoraDTO;
+import com.dom.colare.core.entidades.passaporte.UnidadeGestora;
 import com.dom.colare.domain.services.passaporte.UnidadeGestoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("${dominio.unidades-gestoras}")
-public class UnidadeGestoraController extends BaseController<UnidadeGestoraDTO, UUID> {
+public class UnidadeGestoraController extends BaseController<UnidadeGestora, UUID> {
 
     private final UnidadeGestoraService service;
 
@@ -23,7 +23,7 @@ public class UnidadeGestoraController extends BaseController<UnidadeGestoraDTO, 
         this.service = service;
     }
 
-    public void listInsert(@RequestBody List<UnidadeGestoraDTO> unidadeGestoras){
+    public void listInsert(@RequestBody List<UnidadeGestora> unidadeGestoras){
 
     }
 

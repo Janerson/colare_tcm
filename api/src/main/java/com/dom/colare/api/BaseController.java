@@ -1,6 +1,6 @@
 package com.dom.colare.api;
 
-import com.dom.colare.domain.dto.BaseDTO;
+import com.dom.colare.core.entidades.shared.BaseEntityID;
 import com.dom.colare.domain.services.BaseService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
@@ -19,11 +19,11 @@ import java.util.Optional;
  * @param <T>  Objeto DTO
  * @param <PK> Tipo chave primária
  */
-public abstract class BaseController<T extends BaseDTO, PK> {
+public abstract class BaseController<T extends BaseEntityID, PK> {
 
-    private final BaseService<T, PK, ?> service;
+    private final BaseService<PK, T> service;
 
-    public BaseController(BaseService<T, PK, ?> service) {
+    public BaseController(BaseService< PK, T> service) {
         this.service = service;
     }
 
@@ -37,7 +37,7 @@ public abstract class BaseController<T extends BaseDTO, PK> {
     }
 
     @PostMapping(path = "/INSERIR_LISTA")
-    public List<T> gravarTodos(@Valid @RequestBody List<T> list){
+    public Iterable<T> gravarTodos(@Valid @RequestBody List<T> list){
         return service.gravarTodos(list);
     }
 

@@ -1,7 +1,7 @@
 package com.dom.colare.api.endpoints.security;
 
 import com.dom.colare.api.BaseController;
-import com.dom.colare.domain.dto.security.UsuarioDTO;
+import com.dom.colare.core.entidades.security.Usuario;
 import com.dom.colare.domain.services.security.UsuarioDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("${dominio.usuario}")
-public class UsuarioController extends BaseController<UsuarioDTO, UUID> {
+public class UsuarioController extends BaseController<Usuario, UUID> {
 
     @Autowired
     public UsuarioController(UsuarioDetailService usuarioDetailService) {

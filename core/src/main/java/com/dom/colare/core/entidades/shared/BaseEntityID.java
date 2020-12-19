@@ -1,5 +1,6 @@
 package com.dom.colare.core.entidades.shared;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,14 +22,17 @@ public abstract class BaseEntityID implements Serializable {
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid ;//= UuidCreator.getTimeOrdered()
 
+    @JsonIgnore
     @Column(insertable = false, updatable = false, columnDefinition = "BIGINT NOT NULL IDENTITY")
     private long seq = 0;
 
+    @JsonIgnore
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     private Date insertedAt;
 
+    @JsonIgnore
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date alteredAt;

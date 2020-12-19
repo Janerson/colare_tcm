@@ -2,7 +2,6 @@ package com.dom.colare.domain.services.api;
 
 import com.dom.colare.core.entidades.api.inav.INavData;
 import com.dom.colare.data.repository.dominio.api.INavDataRepository;
-import com.dom.colare.domain.dto.api.InavDataDTO;
 import com.dom.colare.domain.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,28 +12,33 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class InavDataService extends BaseService<InavDataDTO, UUID, INavData> {
+public class InavDataService extends BaseService< UUID, INavData> {
 
     private INavDataRepository repository;
 
     @Autowired
     public InavDataService(INavDataRepository repository) {
-        super(repository, InavDataDTO.class, INavData.class);
+        super(repository);
         this.repository = repository;
     }
 
-    @Override
-    public List<InavDataDTO> listar() {
-        return mapAllToDTO(repository.listarTodos(), InavDataDTO.class);
+
+    public List<INavData> listarPorStatus(boolean show) {
+        return repository.listarTodos(show);
     }
 
-    public Page<InavDataDTO> listar(Pageable pageable) {
-        return repository.listar(pageable)
-                .map(entity -> modelMapper().map(entity,InavDataDTO.class));
+
+    public Page<INavData> listar(Pageable pageable) {
+        return repository.listar(pageable);
+
     }
 
-    public InavDataDTO listarPorLayout(String layout) {
-        return mapToDTO(repository.getByUrlEndingWith(layout), InavDataDTO.class);
+    public Page<INavData> listarPorUrlIniciandoCom(Pageable pageable, String path, String name) {
+        return repository.getAllByUrlContainingAndNameContaining(pageable, path, name);
+
+    }
+    public INavData listarPorLayout(String layout) {
+        return repository.getByUrlEndingWith(layout);
     }
 
 }
