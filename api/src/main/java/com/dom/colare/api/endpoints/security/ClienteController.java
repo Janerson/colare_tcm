@@ -1,6 +1,6 @@
 package com.dom.colare.api.endpoints.security;
 
-import com.dom.colare.api.BaseController;
+import com.dom.colare.api.endpoints.BaseController;
 import com.dom.colare.core.entidades.security.Cliente;
 import com.dom.colare.domain.services.security.ClienteDetailService;
 import org.springframework.beans.factory.annotation.Autowired;

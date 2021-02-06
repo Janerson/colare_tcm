@@ -1,4 +1,4 @@
-package com.dom.colare.api;
+package com.dom.colare.api.endpoints;
 
 import com.dom.colare.core.entidades.shared.BaseEntityID;
 import com.dom.colare.domain.services.BaseService;

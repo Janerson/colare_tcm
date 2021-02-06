@@ -1,7 +1,7 @@
 package com.dom.colare.api.endpoints.dominio;
 
 
-import com.dom.colare.api.BaseController;
+import com.dom.colare.api.endpoints.BaseController;
 import com.dom.colare.core.entidades.api.inav.INavData;
 import com.dom.colare.domain.services.api.InavDataService;
 import org.springframework.beans.factory.annotation.Autowired;

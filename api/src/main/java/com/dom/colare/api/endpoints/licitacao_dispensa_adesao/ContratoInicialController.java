@@ -1,6 +1,6 @@
 package com.dom.colare.api.endpoints.licitacao_dispensa_adesao;
 
-import com.dom.colare.api.BaseController;
+import com.dom.colare.api.endpoints.BaseController;
 import com.dom.colare.core.entidades.lic.contrato_ini.ContratoInicial;
 import com.dom.colare.domain.services.lic.contrato.ContratoInicialService;
 import org.springframework.beans.factory.annotation.Autowired;

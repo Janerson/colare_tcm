@@ -1,6 +1,6 @@
 package com.dom.colare.api.endpoints.passaporte;
 
-import com.dom.colare.api.BaseController;
+import com.dom.colare.api.endpoints.BaseController;
 import com.dom.colare.core.entidades.passaporte.UnidadeGestora;
 import com.dom.colare.domain.services.passaporte.UnidadeGestoraService;
 import org.springframework.beans.factory.annotation.Autowired;
