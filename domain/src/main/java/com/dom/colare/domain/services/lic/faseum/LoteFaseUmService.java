@@ -18,9 +18,9 @@ public class LoteFaseUmService extends BaseService<UUID, LoteFaseUm> {
         super(repository);
         this.repository = repository;
     }
+
     public Page<LoteFaseUm> listarByLicitacaoID(Pageable pageable, UUID uuid, String src){
         return repository.findBy(pageable,uuid,src);
     }
-
 
 }

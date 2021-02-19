@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ import java.util.Set;
 @Setter
 @Entity(name = "LOTE_FASE1")
 @PrimaryKeyJoinColumn(name = "id")
+@DynamicUpdate
 public class LoteFaseUm extends Lote {
 
     public LoteFaseUm() {

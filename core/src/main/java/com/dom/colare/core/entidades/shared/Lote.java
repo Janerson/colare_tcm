@@ -2,6 +2,7 @@
 package com.dom.colare.core.entidades.shared;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Data
+@DynamicUpdate
 public abstract class Lote extends BaseEntityID {
 
     /**

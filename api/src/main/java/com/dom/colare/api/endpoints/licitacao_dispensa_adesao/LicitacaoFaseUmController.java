@@ -18,7 +18,8 @@ import java.util.UUID;
 @RequestMapping("${lic.licitacao-fase-um}")
 public class LicitacaoFaseUmController extends BaseController<LicitacaoFaseUm, UUID> {
 
-    private LicitacaoFaseUmService service;
+
+    private final LicitacaoFaseUmService service;
 
     @Autowired
     private LoteFaseUmService loteService;
@@ -35,7 +36,6 @@ public class LicitacaoFaseUmController extends BaseController<LicitacaoFaseUm, U
     public LicitacaoFaseUmController(LicitacaoFaseUmService service) {
         super(service);
         this.service = service;
-
     }
 
     // LOTE
@@ -43,6 +43,11 @@ public class LicitacaoFaseUmController extends BaseController<LicitacaoFaseUm, U
     public ResponseEntity<LoteFaseUm> adicionarLote(@PathVariable("id") UUID uuid, @Valid @RequestBody LoteFaseUm lote) {
         LicitacaoFaseUm lic = service.buscarPeloId(uuid);
         lote.setFaseUm(lic);
+        return new ResponseEntity<>(loteService.gravar(lote), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/{id}/LOTE/UPD")
+    public ResponseEntity<LoteFaseUm> atualizarLote(@PathVariable("id") UUID uuid, @Valid @RequestBody LoteFaseUm lote) {
         return new ResponseEntity<>(loteService.gravar(lote), HttpStatus.OK);
     }
 
@@ -91,6 +96,7 @@ public class LicitacaoFaseUmController extends BaseController<LicitacaoFaseUm, U
     public Page<PublicacaoFaseUm> listarPublicacoes(Pageable pageable, @PathVariable("id") UUID uuid, @RequestParam("search") String search) {
         return publicacaoService.listarByLicitacaoID(pageable, uuid, search);
     }
+
     /* Edital e Anexos*/
     @PostMapping(path = "/{id}/EDITAL-E-ANEXOS/ADD")
     public ResponseEntity<EditalEAnexoFase1> adicionarEditalEAnexo(@PathVariable("id") UUID uuid, @Valid @RequestBody EditalEAnexoFase1 ed) {
@@ -108,6 +114,7 @@ public class LicitacaoFaseUmController extends BaseController<LicitacaoFaseUm, U
     public Page<EditalEAnexoFase1> listarEditais(Pageable pageable, @PathVariable("id") UUID uuid, @RequestParam("search") String search) {
         return editalEAnexosFaseUmService.listarByLicitacaoID(pageable, uuid, search);
     }
+
     /* Natureza Objeto Detalhada*/
     @PostMapping(path = "/{id}/NATUREZA-DO-OBJETO-DETALHADA/ADD")
     public ResponseEntity<NaturezaObjetoDetalhadaFase1> adicionarNatObjDet(@PathVariable("id") UUID uuid, @Valid @RequestBody NaturezaObjetoDetalhadaFase1 nat) {
